@@ -1292,65 +1292,204 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ================= PARTNERS ================= */}
+        {/* ================= INTERNATIONAL PARTNERS ================= */}
         <section
           className="partners"
           id="partners"
           aria-label="International partners"
         >
-          <p className="partners-label" data-reveal>
-            International partners powering world-class delivery
-          </p>
+          <div className="wrap">
+            <div className="sec-head sec-head-c" data-reveal>
+              <span className="eyebrow">06 — International partners</span>
+              <h3 className="partners-title">
+                Our partners empower us to deliver world-class services and
+                products. Thanks to them.
+              </h3>
+            </div>
+          </div>
           <div className="marquee">
             <div className="marquee-track">
-              <span className="plogo">
-                ABBYY <span className="pdot"></span>
-              </span>
-              <span className="plogo">
-                KODAK ALARIS <span className="pdot"></span>
-              </span>
-              <span className="plogo">
-                AVISION <span className="pdot"></span>
-              </span>
-              <span className="plogo">
-                ATIZ <span className="pdot"></span>
-              </span>
-              <span className="plogo">
-                PIQL <span className="pdot"></span>
-              </span>
-              <span className="plogo">
-                I2S <span className="pdot"></span>
-              </span>
-              <span className="plogo">
-                GONSIN <span className="pdot"></span>
-              </span>
-              <span className="plogo">
-                SMA <span className="pdot"></span>
-              </span>
-              <span className="plogo">
-                ABBYY <span className="pdot"></span>
-              </span>
-              <span className="plogo">
-                KODAK ALARIS <span className="pdot"></span>
-              </span>
-              <span className="plogo">
-                AVISION <span className="pdot"></span>
-              </span>
-              <span className="plogo">
-                ATIZ <span className="pdot"></span>
-              </span>
-              <span className="plogo">
-                PIQL <span className="pdot"></span>
-              </span>
-              <span className="plogo">
-                I2S <span className="pdot"></span>
-              </span>
-              <span className="plogo">
-                GONSIN <span className="pdot"></span>
-              </span>
-              <span className="plogo">
-                SMA <span className="pdot"></span>
-              </span>
+              {[
+                ["ABBYY", "ABBYY"],
+                ["Kodak Alaris", "KODAK"],
+                ["Avision", "AVISION"],
+                ["ATIZ", "ATIZ"],
+                ["PIQL", "PIQL"],
+                ["I2S", "I2S"],
+                ["GONSIN", "GONSIN"],
+                ["SMA", "SMA"],
+              ]
+                .concat([
+                  ["ABBYY", "ABBYY"],
+                  ["Kodak Alaris", "KODAK"],
+                  ["Avision", "AVISION"],
+                  ["ATIZ", "ATIZ"],
+                  ["PIQL", "PIQL"],
+                  ["I2S", "I2S"],
+                  ["GONSIN", "GONSIN"],
+                  ["SMA", "SMA"],
+                ])
+                .map(([name, file], i) => (
+                  <span className="plogo" key={name + i}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`/assets/img/partners/${file}.png`}
+                      alt={`${name} — international partner`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </span>
+                ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ================= ASSOCIATIONS ================= */}
+        <section
+          className="assoc"
+          id="associations"
+          aria-label="Associations &amp; memberships"
+        >
+          <div className="wrap">
+            <div className="sec-head sec-head-c" data-reveal>
+              <span className="eyebrow">07 — Associations</span>
+              <h2>
+                <span className="lm">
+                  <span>Active in the</span>
+                </span>
+                <span className="lm">
+                  <span>
+                    national{" "}
+                    <em
+                      className="serif-i"
+                      style={{ color: "var(--green-deep)" }}
+                    >
+                      community
+                    </em>
+                    .
+                  </span>
+                </span>
+              </h2>
+              <p className="lead" data-reveal>
+                Devnet has been playing a very active role in various national
+                and international associations.
+              </p>
+            </div>
+            <div className="assoc-grid">
+              {[
+                ["DCCI", "Dhaka Chamber of Commerce &amp; Industry", "dcci"],
+                [
+                  "BASIS",
+                  "Bangladesh Association of Software &amp; Information Services",
+                  "basis",
+                ],
+                ["BCS", "Bangladesh Computer Society", "bcs"],
+                [
+                  "BGCCI",
+                  "Bangladesh-German Chamber of Commerce &amp; Industry",
+                  "bgcci",
+                ],
+              ].map(([code, full, file]) => (
+                <figure className="assoc-card" data-reveal key={file}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`/assets/img/assoc/${file}.jpg`}
+                    alt={`${code} logo`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption
+                    dangerouslySetInnerHTML={{ __html: full as string }}
+                  />
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ================= OUR KEY CLIENTS ================= */}
+        <section className="clients" id="clients" aria-label="Our key clients">
+          <div className="wrap">
+            <div className="sec-head">
+              <span className="eyebrow">08 — Trusted by</span>
+              <h2>
+                <span className="lm">
+                  <span>Our key</span>
+                </span>
+                <span className="lm">
+                  <span>
+                    <em
+                      className="serif-i"
+                      style={{ color: "var(--green-deep)" }}
+                    >
+                      clients
+                    </em>
+                    .
+                  </span>
+                </span>
+              </h2>
+              <p className="lead" data-reveal>
+                A key client portfolio spanning the country&apos;s leading banks,
+                government bodies and development partners — with over 1,700
+                people connected to us.
+              </p>
+            </div>
+            <div className="clients-grid" data-reveal>
+              {[
+                ["Al-Arafah Islami Bank", "al-arafah.png"],
+                ["The City Bank", "city-bank.png"],
+                ["LankaBangla Finance", "lankabangla.jpg"],
+                ["HSBC", "hsbc.png"],
+                ["UCB Bank", "ucb.png"],
+                ["Dhaka Bank", "dhaka-bank.png"],
+                ["Bangladesh Government", "bd-govt.png"],
+                ["Southeast Bank", "southeast.png"],
+                ["RAJUK", "rajuk.jpg"],
+                ["Sher-e-Bangla Agricultural University", "sau.png"],
+                ["SIBL", "sibl.jpg"],
+                ["UNFPA", "unfpa.svg"],
+                ["UNICEF", "unicef.svg"],
+                ["Institute of Microfinance", "inm.png"],
+                ["World Bank", "world-bank.svg"],
+                ["Islami Bank BD Ltd", "islami-bank.png"],
+                ["Community Bank Bangladesh", "community-bank.jpg"],
+                ["CPD", "cpd.jpg"],
+                ["Bangladesh Air Force", "air-force.png"],
+                ["Delta Life Insurance", "delta-life.jpg"],
+                ["Microcredit Regulatory Authority", "mra.jpeg"],
+                ["Bangladesh Energy Regulatory Commission", "berc.png"],
+                ["IPDC Finance", "ipdc.png"],
+                ["Grameen Bank", "grameen.png"],
+                ["Trust Bank", "trust-bank.png"],
+                ["Prime Bank", "prime-bank.png"],
+                ["BIISS", "biiss.png"],
+                ["a2i Bangladesh", "a2i.png"],
+                ["UNDP", "undp.png"],
+                ["IDCOL", "idcol.png"],
+                ["British Council", "british-council.png"],
+                ["Dhaka Stock Exchange", null],
+              ].map(([name, file]) => (
+                <figure className="client-logo" title={name as string} key={name}>
+                  {file ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={`/assets/img/clients/logos/${file}`}
+                      alt={name as string}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <span className="client-mono" aria-hidden="true">
+                      {(name as string)
+                        .split(" ")
+                        .slice(0, 2)
+                        .map((w) => w[0])
+                        .join("")}
+                    </span>
+                  )}
+                  <figcaption>{name}</figcaption>
+                </figure>
+              ))}
             </div>
           </div>
         </section>
@@ -1358,7 +1497,23 @@ export default function Home() {
         {/* ================= TESTIMONIALS ================= */}
         <section className="voices" id="voices">
           <div className="wrap">
-            <span className="eyebrow">04 — Client voices</span>
+            <div className="sec-head voices-head">
+              <span className="eyebrow">09 — Client voices</span>
+              <h2>
+                <span className="lm">
+                  <span>What our clients</span>
+                </span>
+                <span className="lm">
+                  <span>
+                    say{" "}
+                    <em className="serif-i" style={{ color: "var(--green-deep)" }}>
+                      about us
+                    </em>
+                    .
+                  </span>
+                </span>
+              </h2>
+            </div>
             <span className="quote-mark serif-i" aria-hidden="true">
               &quot;
             </span>
@@ -1372,7 +1527,14 @@ export default function Home() {
                   towns.
                 </p>
                 <div className="t-who">
-                  <span className="t-ava">KH</span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    className="t-photo"
+                    src="/assets/img/clients/mahabubul.jpg"
+                    alt="Kazi Mohammad Mahabubul Hoque"
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <div>
                     <div className="t-name">
                       Kazi Mohammad Mahabubul Hoque
@@ -1385,12 +1547,65 @@ export default function Home() {
               </div>
               <div className="t-slide">
                 <p className="t-quote">
+                  Document imaging &amp; archiving solution and a customised
+                  Digital Library Management System from Devnet let us preserve
+                  and digitise our national heritage collection with confidence.
+                </p>
+                <div className="t-who">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    className="t-photo"
+                    src="/assets/img/clients/wadudul.jpg"
+                    alt="Wadudul Bari Chowdhury"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div>
+                    <div className="t-name">Wadudul Bari Chowdhury</div>
+                    <div className="t-role">
+                      Directorate of Archives &amp; Libraries
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="t-slide">
+                <p className="t-quote">
+                  Scanning and archiving of 1,15,000 CS, SA &amp; RS mouza maps
+                  has immensely benefited the Directorate of Land Records &amp;
+                  Surveys — a milestone for the nation&apos;s land management.
+                </p>
+                <div className="t-who">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    className="t-photo"
+                    src="/assets/img/clients/nilmani.jpg"
+                    alt="Kongkham Nilmani Singha"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div>
+                    <div className="t-name">Kongkham Nilmani Singha</div>
+                    <div className="t-role">
+                      Project Director — DLRS
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="t-slide">
+                <p className="t-quote">
                   Devnet&apos;s strategic design of a pragmatic data capture and
                   imaging solution — tailored for GR data entry, processing and
                   optimisation — has yielded substantial benefits.
                 </p>
                 <div className="t-who">
-                  <span className="t-ava">AA</span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    className="t-photo"
+                    src="/assets/img/clients/azad.jpg"
+                    alt="Prof. Dr. Abul Kalam Azad"
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <div>
                     <div className="t-name">Prof. Dr. Abul Kalam Azad</div>
                     <div className="t-role">
@@ -1407,7 +1622,14 @@ export default function Home() {
                   QUICKFILL.
                 </p>
                 <div className="t-who">
-                  <span className="t-ava">AS</span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    className="t-photo"
+                    src="/assets/img/clients/abushair.jpg"
+                    alt="Abu Shair"
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <div>
                     <div className="t-name">Abu Shair</div>
                     <div className="t-role">
@@ -1434,6 +1656,16 @@ export default function Home() {
                   className="t-dot"
                   data-i="2"
                   aria-label="Testimonial 3"
+                ></button>
+                <button
+                  className="t-dot"
+                  data-i="3"
+                  aria-label="Testimonial 4"
+                ></button>
+                <button
+                  className="t-dot"
+                  data-i="4"
+                  aria-label="Testimonial 5"
                 ></button>
               </div>
               <div className="t-arrows">

@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devnet Limited — Enterprise EDMS &amp; e-Governance Solutions</title>
+<meta name="description" content="Devnet Limited builds comprehensive, powerful and scalable e-governance solutions. DocuDEX EDMS — capture, manage, store and search your documents. Since 1997.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --ink:        #05110b;
+    --ink-2:      #0b1f14;
+    --paper:      #fbfdfb;
+    --card:       #ffffff;
+    --green:      #16a34a;
+    --green-deep: #0e7a36;
+    --green-hot:  #2ee86c;
+    --green-soft: #e3f4e9;
+    --red:        #e5484d;
+    --amber:      #b97f0a;
+    --txt:        #22332a;
+    --mut:        #5d6d63;
+    --txt-inv:    #e9f2ec;
+    --mut-inv:    #9cb2a5;
+    --line:       rgba(10,31,20,.10);
+    --line-inv:   rgba(255,255,255,.13);
+    --disp: "Archivo", sans-serif;
+    --body: "Inter", sans-serif;
+    --serif: "Archivo", sans-serif;
+    --mono: "IBM Plex Mono", monospace;
+    --ease: cubic-bezier(.22,.68,.14,1);
+    --noise: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2"/><feColorMatrix type="saturate" values="0"/></filter><rect width="220" height="220" filter="url(%23n)" opacity="0.55"/></svg>');
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);background:var(--paper);color:var(--txt);
+    font-size:16px;line-height:1.68;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  ::selection{background:var(--green);color:#fff}
+  h1,h2,h3,h4{font-family:var(--disp);font-weight:600;line-height:1.05;letter-spacing:-.02em}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  section{scroll-margin-top:90px}
+  .wrap{width:min(1280px,92%);margin:0 auto}
+  .eyebrow{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:.6rem;color:var(--green-deep);font-weight:500;
+  }
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(22,163,74,.14)}
+  .eyebrow.inv{color:var(--green-hot)}
+  .eyebrow.inv::before{background:var(--green-hot);box-shadow:0 0 0 4px rgba(46,232,108,.14)}
+  .sec-head{margin-bottom:3.6rem}
+  .sec-head h2{font-size:clamp(2.2rem,4.8vw,3.8rem);margin-top:1.1rem;color:var(--ink)}
+  .sec-head p.lead{max-width:580px;color:var(--mut);margin-top:1.2rem;font-size:1.06rem}
+  .serif-i{font-family:var(--disp);font-style:normal;font-weight:800;letter-spacing:-.02em}
+  .lm{display:block;overflow:hidden;padding-bottom:.09em;margin-bottom:-.09em}
+  .lm>span{display:block;will-change:transform}
+
+  #progress{position:fixed;top:0;left:0;height:2.5px;width:0%;background:linear-gradient(90deg,var(--green),var(--green-hot));z-index:1000}
+
+  /* ============ NAV ============ */
+  nav{
+    position:fixed;inset:0 0 auto 0;z-index:990;
+    transition:transform .5s var(--ease),background .35s,border-color .35s,backdrop-filter .35s;
+    border-bottom:1px solid transparent;
+  }
+  nav.scrolled{background:rgba(5,17,11,.75);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-color:var(--line-inv)}
+  nav.hidden-nav{transform:translateY(-100%)}
+  .nav-in{width:min(1280px,92%);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:1.05rem 0}
+  .logo{display:flex;align-items:center;gap:.6rem;font-family:var(--disp);font-weight:700;font-size:1.32rem;color:#fff;letter-spacing:-.02em}
+  .logo-mark{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--green) 0%,var(--green-deep) 100%);position:relative;flex:none;box-shadow:0 4px 14px rgba(22,163,74,.4)}
+  .logo-mark::before{content:"";position:absolute;inset:9px;border:2.5px solid #fff;border-radius:50%;border-right-color:transparent;transform:rotate(-45deg)}
+  .logo-mark::after{content:"";position:absolute;top:7px;right:7px;width:6px;height:6px;border-radius:50%;background:var(--red)}
+  .nav-links{display:flex;gap:2.1rem;align-items:center;list-style:none}
+  .nav-links a{color:rgba(255,255,255,.8);font-size:.92rem;font-weight:500;position:relative;padding:.2rem 0;transition:color .25s}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:100%;height:1.5px;background:var(--green-hot);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
+  .nav-links a:hover{color:#fff}
+  .nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+  .btn{
+    display:inline-flex;align-items:center;gap:.55rem;font-family:var(--disp);font-weight:600;font-size:.95rem;
+    padding:.82rem 1.6rem;border-radius:100px;transition:transform .3s var(--ease),box-shadow .3s,background .3s,color .3s,border-color .3s;
+    cursor:pointer;border:none;
+  }
+  .btn .ar{transition:transform .3s var(--ease)}
+  .btn:hover .ar{transform:translateX(4px)}
+  .btn-hot{background:var(--green-hot);color:var(--ink)}
+  .btn-hot:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(46,232,108,.3)}
+  .btn-glass{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(8px)}
+  .btn-glass:hover{background:rgba(255,255,255,.18);border-color:#fff;transform:translateY(-2px)}
+  .btn-paper{background:#fff;color:var(--ink)}
+  .btn-paper:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.22)}
+  .btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+  .btn-outline:hover{background:rgba(255,255,255,.12);border-color:#fff;transform:translateY(-2px)}
+  .nav-cta{padding:.6rem 1.3rem;font-size:.88rem}
+  .burger{display:none;background:none;border:none;cursor:pointer;width:40px;height:40px;position:relative;z-index:1001}
+  .burger span{display:block;width:22px;height:2px;background:#fff;margin:5px auto;transition:.35s var(--ease)}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .m-menu{
+    position:fixed;inset:0;background:rgba(5,17,11,.97);backdrop-filter:blur(12px);z-index:950;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2rem;
+    opacity:0;pointer-events:none;transition:opacity .4s;
+  }
+  .m-menu.open{opacity:1;pointer-events:auto}
+  .m-menu a{color:#fff;font-family:var(--disp);font-size:1.7rem;font-weight:600}
+  .m-menu a:hover{color:var(--green-hot)}
+
+  /* ============ HERO — FULL-BLEED PHOTO ============ */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;color:#fff}
+  .hero-img{position:absolute;inset:0;width:100%;height:112%;top:-6%;object-fit:cover;will-change:transform}
+  .hero-ol{position:absolute;inset:0;background:
+    linear-gradient(100deg,rgba(4,13,9,.9) 0%,rgba(4,13,9,.62) 46%,rgba(4,13,9,.28) 100%);}
+  .hero-ol2{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,13,9,.5) 0%,transparent 26%,transparent 55%,rgba(4,13,9,.88) 100%)}
+  .grain::after{content:"";position:absolute;inset:0;background-image:var(--noise);opacity:.07;pointer-events:none;mix-blend-mode:overlay}
+  .hero-in{position:relative;z-index:3;width:min(1280px,92%);margin:0 auto;padding:9rem 0 12rem}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:.65rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--green-hot);border:1px solid rgba(46,232,108,.35);background:rgba(5,17,11,.4);backdrop-filter:blur(8px);
+    padding:.52rem 1.05rem;border-radius:100px;margin-bottom:2.2rem;
+  }
+  .hero-badge .pulse{width:7px;height:7px;border-radius:50%;background:var(--green-hot);animation:pulse 2.2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(46,232,108,.5)}70%{box-shadow:0 0 0 9px rgba(46,232,108,0)}100%{box-shadow:0 0 0 0 rgba(46,232,108,0)}}
+  .hero h1{font-size:clamp(3.1rem,7.6vw,6.8rem);font-weight:700;color:#fff;max-width:13ch;text-shadow:0 2px 40px rgba(0,0,0,.35)}
+  .hero h1 .serif-i{color:var(--green-hot);font-size:1em}
+  .hero-sub{max-width:560px;color:rgba(233,242,236,.88);font-size:1.14rem;margin:2rem 0 2.8rem;text-shadow:0 1px 24px rgba(0,0,0,.4)}
+  .hero-sub strong{color:#fff;font-weight:600}
+  .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+  .hero-note{font-family:var(--mono);font-size:.72rem;color:rgba(233,242,236,.66);letter-spacing:.06em;margin-top:1.6rem}
+
+  /* ============ STATS BAND (overlapping glass) ============ */
+  .statsband{position:relative;z-index:6;margin-top:-7.5rem;padding-bottom:0}
+  .sb-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+  .sb-card{
+    background:rgba(6,20,13,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:1.7rem 1.6rem 1.5rem;color:#fff;
+    box-shadow:0 30px 60px rgba(3,10,6,.35);
+    transition:transform .4s var(--ease),border-color .4s;
+  }
+  .sb-card:hover{transform:translateY(-6px);border-color:rgba(46,232,108,.45)}
+  .sb-num{font-family:var(--disp);font-weight:700;font-size:clamp(2.2rem,3.6vw,3.2rem);letter-spacing:-.03em;line-height:1;color:#fff}
+  .sb-num em{font-style:normal;color:var(--green-hot);font-size:.6em;vertical-align:.3em;margin-left:.05em}
+  .sb-lbl{margin-top:.7rem;color:var(--mut-inv);font-size:.86rem;line-height:1.5}
+  .trustline{
+    text-align:center;margin-top:2.6rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--mut);
+  }
+  .trustline b{color:var(--green-deep);font-weight:500}
+
+  /* ============ SOLUTIONS — BENTO ============ */
+  .solutions{background:var(--paper);padding:7rem 0 8rem}
+  .bento{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+  .b-card{border-radius:24px;overflow:hidden;position:relative;min-height:340px;display:flex;flex-direction:column}
+  .b-imgcard{grid-column:span 2;color:#fff;background:var(--ink)}
+  .b-imgcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease);opacity:.92}
+  .b-imgcard:hover img{transform:scale(1.055)}
+  .b-imgol{position:absolute;inset:0;background:linear-gradient(185deg,rgba(4,13,9,.12) 30%,rgba(4,13,9,.55) 68%,rgba(4,13,9,.92) 100%)}
+  .b-tag{
+    position:absolute;top:1.4rem;left:1.4rem;z-index:3;font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+    color:#fff;background:rgba(5,17,11,.45);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);
+    padding:.4rem .85rem;border-radius:100px;
+  }
+  .b-go{
+    position:absolute;top:1.25rem;right:1.25rem;z-index:3;width:46px;height:46px;border-radius:50%;
+    background:var(--green-hot);display:grid;place-items:center;color:var(--ink);
+    opacity:0;transform:translateY(-8px);transition:opacity .35s,transform .35s var(--ease);
+  }
+  .b-go svg{width:18px;height:18px}
+  .b-imgcard:hover .b-go{opacity:1;transform:translateY(0)}
+  .b-imgbody{position:relative;z-index:3;margin-top:auto;padding:2rem 2rem 1.9rem}
+  .b-imgbody h3{font-size:1.6rem;color:#fff;margin-bottom:.55rem}
+  .b-imgbody p{color:rgba(255,255,255,.85);font-size:.95rem;max-width:52ch}
+  .b-one{grid-column:auto}
+  .b-one .b-imgbody{padding:1.7rem 1.6rem 1.6rem}
+  .b-one .b-imgbody h3{font-size:1.32rem}
+  .b-one .b-imgbody p{font-size:.88rem}
+  .b-clean{background:var(--card);border:1px solid var(--line);padding:2rem 1.9rem 1.9rem;transition:transform .45s var(--ease),box-shadow .45s,border-color .45s}
+  .b-clean:hover{transform:translateY(-7px);box-shadow:0 26px 50px rgba(9,32,19,.11);border-color:rgba(22,163,74,.35)}
+  .b-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem}
+  .b-ico{width:52px;height:52px;border-radius:14px;background:var(--green-soft);display:grid;place-items:center;transition:background .4s,transform .4s var(--ease)}
+  .b-ico svg{width:24px;height:24px;stroke:var(--green-deep);transition:stroke .4s}
+  .b-clean:hover .b-ico{background:var(--green-deep);transform:rotate(-6deg) scale(1.05)}
+  .b-clean:hover .b-ico svg{stroke:#fff}
+  .b-idx{font-family:var(--mono);font-size:.7rem;color:rgba(10,31,20,.35);letter-spacing:.1em}
+  .b-clean h3{font-size:1.3rem;color:var(--ink);margin-bottom:.65rem}
+  .b-clean p{color:var(--mut);font-size:.93rem;flex:1}
+  .b-link{display:inline-flex;align-items:center;gap:.45rem;margin-top:1.4rem;font-family:var(--disp);font-weight:600;font-size:.88rem;color:var(--green-deep)}
+  .b-link .ar{transition:transform .3s var(--ease)}
+  .b-clean:hover .b-link .ar{transform:translateX(5px)}
+  .b-cta{
+    background:linear-gradient(150deg,var(--green-deep),var(--green) 85%);color:#fff;padding:2rem 1.9rem;
+    display:flex;flex-direction:column;transition:transform .45s var(--ease),box-shadow .45s;
+  }
+  .b-cta:hover{transform:translateY(-7px);box-shadow:0 26px 55px rgba(14,122,54,.35)}
+  .b-cta-num{font-family:var(--disp);font-weight:700;font-size:3.4rem;line-height:1;letter-spacing:-.03em}
+  .b-cta-num em{font-style:normal;font-size:.5em;vertical-align:.5em;color:rgba(255,255,255,.85)}
+  .b-cta p{margin-top:.6rem;color:rgba(255,255,255,.88);font-size:.95rem}
+  .b-cta .go{margin-top:auto;display:inline-flex;align-items:center;gap:.55rem;font-family:var(--disp);font-weight:600;font-size:.95rem;color:#fff}
+  .b-cta .go .ar{transition:transform .3s var(--ease)}
+  .b-cta:hover .go .ar{transform:translateX(6px)}
+
+  /* ============ DOCUDEX SPOTLIGHT (dark) ============ */
+  .docudex{background:var(--ink-2);color:var(--txt-inv);padding:8rem 0;position:relative;overflow:hidden}
+  .docudex::before{content:"";position:absolute;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(22,163,74,.14),transparent 65%);top:-260px;right:-220px}
+  .docudex .sec-head h2{color:var(--txt-inv)}
+  .dx-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:4.5rem;align-items:center;position:relative}
+  .dx-feats{margin-top:2.5rem;display:grid;gap:1.1rem}
+  .dx-feat{display:flex;gap:1rem;align-items:flex-start}
+  .dx-feat-ico{width:34px;height:34px;flex:none;border-radius:10px;background:rgba(46,232,108,.11);display:grid;place-items:center;margin-top:.15rem}
+  .dx-feat-ico svg{width:16px;height:16px;stroke:var(--green-hot)}
+  .dx-feat b{display:block;font-family:var(--disp);font-weight:600;color:#fff;font-size:1.02rem;margin-bottom:.15rem}
+  .dx-feat p{color:var(--mut-inv);font-size:.9rem}
+  .dx-cta{margin-top:2.7rem}
+  .mock{background:#0d2417;border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden;box-shadow:0 50px 100px rgba(0,0,0,.45);transform:rotate(.8deg)}
+  .mock-bar{display:flex;align-items:center;gap:.6rem;padding:.85rem 1.2rem;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
+  .mdot{width:10px;height:10px;border-radius:50%}
+  .mdot.r{background:#ff5f57}.mdot.y{background:#febc2e}.mdot.g{background:#28c840}
+  .mock-title{font-family:var(--mono);font-size:.68rem;color:var(--mut-inv);margin-left:.6rem;letter-spacing:.08em}
+  .mock-badge{margin-left:auto;font-family:var(--mono);font-size:.6rem;color:var(--green-hot);border:1px solid rgba(46,232,108,.35);padding:.18rem .6rem;border-radius:100px}
+  .mock-body{display:grid;grid-template-columns:56px 1fr;min-height:360px}
+  .mock-side{border-right:1px solid rgba(255,255,255,.07);padding:1rem 0;display:flex;flex-direction:column;align-items:center;gap:1.1rem}
+  .ms-ico{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;transition:background .3s}
+  .ms-ico svg{width:15px;height:15px;stroke:rgba(255,255,255,.45)}
+  .ms-ico.on{background:rgba(46,232,108,.14)}
+  .ms-ico.on svg{stroke:var(--green-hot)}
+  .mock-main{padding:1.2rem 1.4rem}
+  .mock-search{display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:.6rem .9rem;font-family:var(--mono);font-size:.7rem;color:var(--mut-inv);margin-bottom:1.1rem}
+  .mock-search svg{width:13px;height:13px;stroke:var(--mut-inv)}
+  .mrow{display:flex;align-items:center;gap:.85rem;padding:.72rem .8rem;border-radius:10px;margin-bottom:.4rem;background:rgba(255,255,255,.028);border:1px solid rgba(255,255,255,.05);transition:background .3s,border-color .3s,transform .3s var(--ease)}
+  .mrow:hover{background:rgba(46,232,108,.07);border-color:rgba(46,232,108,.25);transform:translateX(4px)}
+  .mrow-ico{width:30px;height:30px;border-radius:8px;flex:none;display:grid;place-items:center;background:rgba(255,255,255,.06)}
+  .mrow-ico svg{width:14px;height:14px;stroke:#b9d2c2}
+  .mrow-name{font-family:var(--disp);font-size:.82rem;font-weight:500;color:#eaf5ee}
+  .mrow-meta{font-family:var(--mono);font-size:.6rem;color:var(--mut-inv);margin-top:.1rem}
+  .mchip{margin-left:auto;font-family:var(--mono);font-size:.58rem;padding:.22rem .6rem;border-radius:100px;flex:none}
+  .mchip.ok{color:var(--green-hot);background:rgba(46,232,108,.1);border:1px solid rgba(46,232,108,.3)}
+  .mchip.rev{color:#ffd166;background:rgba(255,209,102,.08);border:1px solid rgba(255,209,102,.3)}
+  .mock-foot{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.6rem;color:var(--mut-inv);padding-top:.9rem;letter-spacing:.06em}
+  .mock-foot b{color:var(--green-hot);font-weight:500}
+  .dx-suite{margin-top:5.5rem;position:relative}
+  .dx-suite-label{font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mut-inv);margin-bottom:1.4rem;display:block}
+  .chips{display:flex;flex-wrap:wrap;gap:.7rem}
+  .chip{
+    font-family:var(--disp);font-weight:500;font-size:.88rem;color:#d9e9de;
+    border:1px solid rgba(255,255,255,.14);padding:.62rem 1.25rem;border-radius:100px;
+    transition:background .3s,color .3s,border-color .3s,transform .3s var(--ease);cursor:default;
+  }
+  .chip:hover{background:var(--green-hot);color:var(--ink);border-color:var(--green-hot);transform:translateY(-3px)}
+
+  /* ============ MILESTONES — IMAGE CARDS ============ */
+  .miles{background:var(--paper);padding:8rem 0}
+  .miles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+  .mcard{background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;transition:transform .45s var(--ease),box-shadow .45s}
+  .mcard:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(9,32,19,.13)}
+  .mcard figure{position:relative;aspect-ratio:16/10;overflow:hidden;margin:0;background:var(--ink)}
+  .mcard figure img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+  .mcard:hover figure img{transform:scale(1.06)}
+  .ftag{
+    position:absolute;top:1.05rem;left:1.05rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+    color:#fff;background:rgba(5,17,11,.5);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);
+    padding:.38rem .8rem;border-radius:100px;z-index:2;
+  }
+  .mcard-body{padding:1.9rem 1.9rem 2rem}
+  .mcard-num{font-family:var(--disp);font-weight:700;font-size:2.7rem;letter-spacing:-.03em;color:var(--ink);line-height:1}
+  .mcard-num em{font-style:normal;font-size:.52em;vertical-align:.45em;color:var(--green)}
+  .mcard h3{font-size:1.16rem;color:var(--ink);margin:.7rem 0 .5rem}
+  .mcard p{font-size:.9rem;color:var(--mut)}
+
+  /* ============ FULL-WIDTH PARALLAX BAND ============ */
+  .band{position:relative;min-height:78vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;color:#fff}
+  .band-img{position:absolute;left:0;top:-12%;width:100%;height:124%;object-fit:cover;will-change:transform}
+  .band-ol{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,13,9,.78),rgba(4,13,9,.5) 45%,rgba(4,13,9,.82))}
+  .band-in{position:relative;z-index:3;width:min(1000px,92%);padding:6rem 0}
+  .band h2{font-size:clamp(2.6rem,6.6vw,5.2rem);font-weight:700;color:#fff;margin-top:1.4rem;text-shadow:0 2px 40px rgba(0,0,0,.4)}
+  .band h2 .serif-i{color:var(--green-hot)}
+  .band p.band-sub{color:rgba(233,242,236,.85);max-width:640px;margin:1.6rem auto 2.6rem;font-size:1.1rem}
+  .band-chips{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+  .band-chip{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:#fff;
+    background:rgba(5,17,11,.45);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);
+    padding:.7rem 1.3rem;border-radius:100px;
+  }
+  .band-chip b{color:var(--green-hot);font-weight:500}
+
+  /* ============ ABOUT / VALUES ============ */
+  .about{background:var(--paper);padding:8rem 0}
+  .about-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:4rem;align-items:center}
+  .about-img{position:relative;border-radius:24px;overflow:hidden;margin:0;aspect-ratio:4/3;box-shadow:0 30px 70px rgba(9,32,19,.14)}
+  .about-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+  .about-img:hover img{transform:scale(1.04)}
+  .about-chip{
+    position:absolute;bottom:1.1rem;left:1.1rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+    color:#fff;background:rgba(5,17,11,.5);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);
+    padding:.42rem .85rem;border-radius:100px;
+  }
+  .about-chip b{color:var(--green-hot);font-weight:500}
+  .about-copy .lead{color:var(--mut);margin-top:1.2rem;font-size:1.05rem;max-width:52ch}
+  .about-vals{display:grid;grid-template-columns:1fr 1fr;gap:1.7rem 2.2rem;margin-top:2.5rem}
+  .av-idx{font-family:var(--mono);font-size:.68rem;color:var(--green-deep);letter-spacing:.15em}
+  .av b{display:block;font-family:var(--disp);font-weight:600;font-size:1.04rem;color:var(--ink);margin:.45rem 0 .25rem}
+  .av p{font-size:.87rem;color:var(--mut)}
+
+  /* ============ PARTNERS ============ */
+  .partners{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:3.6rem 0;overflow:hidden}
+  .partners-label{text-align:center;font-family:var(--mono);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mut);margin-bottom:2.2rem}
+  .marquee{position:relative;overflow:hidden;
+    mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);}
+  .marquee-track{display:flex;align-items:center;gap:4.5rem;width:max-content;animation:marq 30s linear infinite}
+  .marquee:hover .marquee-track{animation-play-state:paused}
+  @keyframes marq{to{transform:translateX(-50%)}}
+  .plogo{font-family:var(--disp);font-weight:700;font-size:1.55rem;letter-spacing:.02em;color:#233b2e;opacity:.5;white-space:nowrap;transition:opacity .3s,color .3s;display:flex;align-items:center;gap:4.5rem}
+  .plogo:hover{opacity:1;color:var(--green-deep)}
+  .pdot{width:6px;height:6px;border-radius:50%;background:var(--green);opacity:.5;flex:none}
+
+  /* ============ TESTIMONIALS ============ */
+  .voices{background:var(--paper);padding:8rem 0;position:relative;overflow:hidden}
+  .voices::before{content:"";position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(22,163,74,.07),transparent 65%);bottom:-320px;left:-220px}
+  .quote-mark{font-family:var(--disp);font-weight:800;font-size:5.4rem;line-height:.6;color:var(--green);display:block;margin-bottom:1.7rem}
+  .t-stage{position:relative;min-height:300px}
+  .t-slide{position:absolute;top:0;left:0;width:100%;opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease);pointer-events:none}
+  .t-slide.active{opacity:1;transform:translateY(0);pointer-events:auto}
+  .t-quote{font-family:var(--disp);font-weight:500;font-size:clamp(1.25rem,2.5vw,1.9rem);line-height:1.42;letter-spacing:-.01em;color:var(--ink);max-width:900px}
+  .t-who{margin-top:2.3rem;display:flex;align-items:center;gap:1rem}
+  .t-ava{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--green-deep));display:grid;place-items:center;font-family:var(--disp);font-weight:700;color:#fff;font-size:.95rem;flex:none}
+  .t-name{font-family:var(--disp);font-weight:600;color:var(--ink);font-size:.98rem}
+  .t-role{font-family:var(--mono);font-size:.68rem;color:var(--mut);letter-spacing:.05em;margin-top:.15rem}
+  .t-ctrl{display:flex;align-items:center;gap:1.4rem;margin-top:3rem}
+  .t-dots{display:flex;gap:.5rem}
+  .t-dot{width:26px;height:3px;border-radius:3px;background:rgba(10,31,20,.15);cursor:pointer;border:none;padding:0;transition:background .3s}
+  .t-dot.on{background:var(--green-deep)}
+  .t-arrows{display:flex;gap:.6rem;margin-left:auto}
+  .t-btn{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(10,31,20,.18);background:#fff;color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:all .3s var(--ease)}
+  .t-btn:hover{background:var(--green-deep);border-color:var(--green-deep);color:#fff;transform:translateY(-2px)}
+  .t-btn svg{width:17px;height:17px}
+
+  /* ============ CTA ============ */
+  .cta{background:linear-gradient(160deg,var(--green-deep) 0%,var(--green) 55%,#1db954 100%);color:#fff;padding:9rem 0;text-align:center;position:relative;overflow:hidden}
+  .cta::before{
+    content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:56px 56px;
+    mask-image:radial-gradient(760px 480px at 50% 40%,#000,transparent 78%);
+    -webkit-mask-image:radial-gradient(760px 480px at 50% 40%,#000,transparent 78%);
+  }
+  .cta-in{position:relative}
+  .cta-eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+  .cta-big{font-size:clamp(3rem,9vw,7.8rem);font-weight:700;letter-spacing:-.03em;color:#fff;margin:1.6rem 0 1.2rem;line-height:1.02}
+  .cta-big .lm{padding-bottom:.3em;margin-bottom:-.3em}
+  .cta-big .serif-i{position:relative;display:inline-block}
+  .cta-big .serif-i svg{position:absolute;left:0;right:0;bottom:-.14em;width:100%;height:.22em;overflow:visible}
+  .cta-big .serif-i svg path{fill:none;stroke:var(--ink);stroke-width:6;stroke-linecap:round;opacity:.85}
+  .cta-sub{color:rgba(255,255,255,.9);max-width:520px;margin:0 auto 3rem;font-size:1.08rem}
+  .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .cta-mini{margin-top:2.7rem;font-family:var(--mono);font-size:.7rem;color:rgba(255,255,255,.78);letter-spacing:.08em}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--ink);color:var(--mut-inv);padding:5.5rem 0 2.6rem}
+  .f-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:3rem;padding-bottom:3.6rem;border-bottom:1px solid var(--line-inv)}
+  .f-brand p{font-size:.92rem;margin:1.4rem 0;max-width:300px}
+  .f-assoc{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase}
+  .f-assoc b{color:var(--green-hot);font-weight:500}
+  footer h4{font-family:var(--mono);font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#fff;margin-bottom:1.4rem}
+  .f-list{list-style:none;display:grid;gap:.7rem;font-size:.9rem}
+  .f-list a,.f-list span{color:var(--mut-inv);transition:color .25s}
+  .f-list a:hover{color:var(--green-hot)}
+  .f-contact{display:grid;gap:1rem;font-size:.9rem}
+  .f-contact .row{display:flex;gap:.8rem;align-items:flex-start}
+  .f-contact svg{width:16px;height:16px;stroke:var(--green-hot);flex:none;margin-top:.25rem}
+  .f-contact a{color:var(--txt-inv)}
+  .f-contact a:hover{color:var(--green-hot)}
+  .f-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding-top:2.4rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em}
+  .f-bottom .tag{color:var(--green-hot)}
+
+  /* ============ RESPONSIVE ============ */
+  @media(max-width:1024px){
+    .bento{grid-template-columns:repeat(2,1fr)}
+    .b-imgcard{grid-column:span 2}
+    .dx-grid{grid-template-columns:1fr;gap:3.5rem}
+    .miles-grid{grid-template-columns:1fr;max-width:560px;margin:0 auto}
+    .about-grid{grid-template-columns:1fr;gap:2.8rem}
+    .f-grid{grid-template-columns:1fr 1fr}
+    .sb-grid{grid-template-columns:repeat(2,1fr)}
+    .statsband{margin-top:-6rem}
+  }
+  @media(max-width:768px){
+    .nav-links,.nav-cta{display:none}
+    .burger{display:block}
+    .hero-in{padding:8rem 0 11rem}
+    .hero h1{font-size:clamp(2.8rem,12vw,4.2rem)}
+    .bento{grid-template-columns:1fr}
+    .b-imgcard{grid-column:auto;min-height:380px}
+    .b-card{min-height:auto}
+    .sb-grid{grid-template-columns:1fr 1fr;gap:.8rem}
+    .sb-card{padding:1.3rem 1.2rem 1.2rem}
+    .t-quote{font-size:1.25rem}
+    .f-grid{grid-template-columns:1fr;gap:2.6rem}
+    .about-vals{grid-template-columns:1fr}
+    .cta-btns .btn{width:100%;justify-content:center}
+    .band{min-height:64vh}
+    .trustline{font-size:.58rem;letter-spacing:.14em}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+    html{scroll-behavior:auto}
+  }
+  .btn:focus-visible,a:focus-visible,button:focus-visible{outline:2.5px solid var(--green-hot);outline-offset:3px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<div id="progress" aria-hidden="true"></div>
+
+<!-- ================= NAV ================= -->
+<nav id="nav" aria-label="Main navigation">
+  <div class="nav-in">
+    <a href="#top" class="logo" aria-label="Devnet Limited — home">
+      <span class="logo-mark" aria-hidden="true"></span>
+      devnet
+    </a>
+    <ul class="nav-links">
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#docudex">DocuDEX</a></li>
+      <li><a href="#milestones">Milestones</a></li>
+      <li><a href="#voices">Clients</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn btn-hot nav-cta" href="mailto:info@devnetlimited.com">Get in touch <span class="ar">→</span></a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="m-menu" id="mmenu">
+  <a href="#solutions">Solutions</a>
+  <a href="#docudex">DocuDEX</a>
+  <a href="#milestones">Milestones</a>
+  <a href="#voices">Clients</a>
+  <a href="#contact">Contact</a>
+  <a class="btn btn-hot" href="mailto:info@devnetlimited.com">Get in touch <span class="ar">→</span></a>
+</div>
+
+<!-- ================= HERO ================= -->
+<header class="hero grain" id="top">
+  <video class="hero-img" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-poster.jpg" data-fallback="assets/img/hero-loop.webp" aria-hidden="true">
+    <source src="assets/video/docudex-film-15s.mp4" type="video/mp4">
+  </video>
+  <div class="hero-ol" aria-hidden="true"></div>
+  <div class="hero-ol2" aria-hidden="true"></div>
+  <div class="hero-in">
+    <div class="hero-badge" data-h><span class="pulse" aria-hidden="true"></span> Empowering Smart Bangladesh · Since 1997</div>
+    <h1>
+      <span class="lm"><span>Changing the</span></span>
+      <span class="lm"><span>way <em class="serif-i">we work</em>.</span></span>
+    </h1>
+    <p class="hero-sub" data-h>
+      <strong>DocuDEX</strong> — the flagship EDMS from Devnet Limited — helps organisations capture,
+      manage, store and search millions of documents. Comprehensive, powerful and scalable
+      e-governance, built in Dhaka for the region's largest institutions.
+    </p>
+    <div class="hero-ctas" data-h>
+      <a class="btn btn-hot" href="https://devnetlimited.com/docudex-edms/" target="_blank" rel="noopener noreferrer">Explore DocuDEX <span class="ar">→</span></a>
+      <a class="btn btn-glass" href="mailto:info@devnetlimited.com">Talk to our team</a>
+    </div>
+    <p class="hero-note" data-h>1st to introduce DMS &amp; ICR in Bangladesh — 25+ years on, still leading.</p>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= STATS BAND ================= -->
+<section class="statsband" aria-label="Key numbers">
+  <div class="wrap">
+    <div class="sb-grid">
+      <div class="sb-card" data-reveal>
+        <div class="sb-num"><span class="count" data-count="1">0</span><em>st</em></div>
+        <p class="sb-lbl">Introduced DMS &amp; ICR in Bangladesh</p>
+      </div>
+      <div class="sb-card" data-reveal>
+        <div class="sb-num"><span class="count" data-count="70">0</span><em>B</em></div>
+        <p class="sb-lbl">Images processed &amp; managed — and counting</p>
+      </div>
+      <div class="sb-card" data-reveal>
+        <div class="sb-num"><span class="count" data-count="63">0</span><em>K</em></div>
+        <p class="sb-lbl">Enterprise processes automated &amp; streamlined</p>
+      </div>
+      <div class="sb-card" data-reveal>
+        <div class="sb-num"><span class="count" data-count="30">0</span><em>M</em></div>
+        <p class="sb-lbl">Pages digitised every single year</p>
+      </div>
+    </div>
+    <p class="trustline" data-reveal>Trusted by — <b>DLRS</b> · <b>RAJUK</b> · <b>DGHS</b> · <b>Bangladesh National Library</b> · <b>Linde BD</b> · <b>10+ Banks</b></p>
+  </div>
+</section>
+
+<!-- ================= SOLUTIONS — BENTO ================= -->
+<section class="solutions" id="solutions">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">01 — What we do</span>
+      <h2>
+        <span class="lm"><span>One platform,</span></span>
+        <span class="lm"><span>every <em class="serif-i" style="color:var(--green-deep)">document</em>.</span></span>
+      </h2>
+      <p class="lead" data-reveal>From capture to workflow to secure archive — high-tech solutions for organisations that run on paper today and can't afford to tomorrow.</p>
+    </div>
+
+    <div class="bento">
+      <!-- Image card 1 -->
+      <a class="b-card b-imgcard" data-reveal href="https://devnetlimited.com/docudex-edms/" target="_blank" rel="noopener noreferrer">
+        <img src="assets/img/scanner-macro.jpg" alt="High-speed production document scanner in operation" loading="lazy" decoding="async">
+        <span class="b-imgol" aria-hidden="true"></span>
+        <span class="b-tag">Flagship · DocuDEX EDMS</span>
+        <span class="b-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+        <div class="b-imgbody">
+          <h3>Document Management</h3>
+          <p>Capture, manage, store and search valuable documents with speed and total control — the EDMS trusted across government and enterprise.</p>
+        </div>
+      </a>
+
+      <!-- Image card -->
+      <a class="b-card b-imgcard b-one" data-reveal href="https://devnetlimited.com/docudex-workflow/" target="_blank" rel="noopener noreferrer">
+        <img src="assets/img/workflow-approval.jpg" alt="Professional approving documents in a workflow app on a tablet" loading="lazy" decoding="async">
+        <span class="b-imgol" aria-hidden="true"></span>
+        <span class="b-tag">DocuDEX Workflow</span>
+        <span class="b-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+        <div class="b-imgbody">
+          <h3>Process Automation</h3>
+          <p>Official activities routed automatically — approvals move in hours, not weeks.</p>
+        </div>
+      </a>
+
+      <!-- Image card -->
+      <a class="b-card b-imgcard b-one" data-reveal href="https://devnetlimited.com/capture-software/" target="_blank" rel="noopener noreferrer">
+        <img src="assets/img/capture-analysis.jpg" alt="Analyst reviewing extracted document data on a large monitor" loading="lazy" decoding="async">
+        <span class="b-imgol" aria-hidden="true"></span>
+        <span class="b-tag">Content Intelligence</span>
+        <span class="b-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+        <div class="b-imgbody">
+          <h3>Capture Software</h3>
+          <p>Scanned paper becomes structured, data-driven insight for sharper decisions.</p>
+        </div>
+      </a>
+
+      <!-- Image card 2 -->
+      <a class="b-card b-imgcard" data-reveal href="https://devnetlimited.com/record-management/" target="_blank" rel="noopener noreferrer">
+        <img src="assets/img/records-vault.jpg" alt="Modern records archive facility with rolling shelving" loading="lazy" decoding="async">
+        <span class="b-imgol" aria-hidden="true"></span>
+        <span class="b-tag">Secure · Onsite &amp; Offsite</span>
+        <span class="b-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+        <div class="b-imgbody">
+          <h3>Record Management</h3>
+          <p>Move your business records offsite — secure, compliant storage and management for both electronic and hard-copy archives.</p>
+        </div>
+      </a>
+
+      <!-- Image card -->
+      <a class="b-card b-imgcard b-one" data-reveal href="https://devnetlimited.com/document-scanner/" target="_blank" rel="noopener noreferrer">
+        <img src="assets/img/scanner-hardware.jpg" alt="Large-format production document scanner in a digitization facility" loading="lazy" decoding="async">
+        <span class="b-imgol" aria-hidden="true"></span>
+        <span class="b-tag">Robotic · Book &amp; Map · Microfilm</span>
+        <span class="b-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+        <div class="b-imgbody">
+          <h3>Document Scanners</h3>
+          <p>High-volume hardware that minimises downtime and keeps work flowing.</p>
+        </div>
+      </a>
+
+      <!-- Image card -->
+      <article class="b-card b-imgcard b-one" data-reveal>
+        <img src="assets/img/data-center.jpg" alt="Modern data center aisle with green status lighting" loading="lazy" decoding="async">
+        <span class="b-imgol" aria-hidden="true"></span>
+        <span class="b-tag">ICR · OCR · RPA</span>
+        <div class="b-imgbody">
+          <h3>AI &amp; Machine Learning</h3>
+          <p>Documents read, classified and routed automatically — the intelligence behind paperless.</p>
+        </div>
+      </article>
+
+      <!-- Green CTA card -->
+      <a class="b-card b-cta" data-reveal href="#docudex">
+        <div class="b-cta-num">13<em>+</em></div>
+        <p>Products in the DocuDEX family — from Agile Audit and HRIS to e-KYC, Land Management and RPA.</p>
+        <span class="go">See the full suite <span class="ar">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DOCUDEX SPOTLIGHT ================= -->
+<section class="docudex" id="docudex">
+  <div class="wrap">
+    <div class="dx-grid">
+      <div>
+        <div class="sec-head" style="margin-bottom:0">
+          <span class="eyebrow inv">02 — The flagship</span>
+          <h2>
+            <span class="lm"><span>Meet</span></span>
+            <span class="lm"><span><em class="serif-i" style="color:var(--green-hot)">DocuDEX</em>.</span></span>
+          </h2>
+        </div>
+        <div class="dx-feats">
+          <div class="dx-feat" data-reveal>
+            <span class="dx-feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+            <div><b>Capture</b><p>Scan and ingest at industrial scale — 30M+ pages a year, from loose leaf to century-old maps.</p></div>
+          </div>
+          <div class="dx-feat" data-reveal>
+            <span class="dx-feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></span>
+            <div><b>Manage</b><p>Version, permission and audit every file — with workflow that keeps official tasks moving.</p></div>
+          </div>
+          <div class="dx-feat" data-reveal>
+            <span class="dx-feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>
+            <div><b>Store</b><p>Secure onsite or offsite archives for electronic and hard-copy records alike.</p></div>
+          </div>
+          <div class="dx-feat" data-reveal>
+            <span class="dx-feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></span>
+            <div><b>Search</b><p>Full-text, ICR-powered retrieval across 70 billion images — answers in seconds, not storerooms.</p></div>
+          </div>
+        </div>
+        <div class="dx-cta" data-reveal>
+          <a class="btn btn-hot" href="https://devnetlimited.com/docudex-edms/" target="_blank" rel="noopener noreferrer">See DocuDEX in detail <span class="ar">→</span></a>
+        </div>
+      </div>
+
+      <div class="mock" data-reveal aria-hidden="true">
+        <div class="mock-bar">
+          <span class="mdot r"></span><span class="mdot y"></span><span class="mdot g"></span>
+          <span class="mock-title">DocuDEX EDMS — Central Archive</span>
+          <span class="mock-badge">LIVE</span>
+        </div>
+        <div class="mock-body">
+          <div class="mock-side">
+            <span class="ms-ico on"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+            <span class="ms-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span>
+            <span class="ms-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.2 4.2l2.8 2.8M17 17l2.8 2.8M1 12h4M19 12h4M4.2 19.8L7 17M17 7l2.8-2.8"/></svg></span>
+            <span class="ms-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          </div>
+          <div class="mock-main">
+            <div class="mock-search">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+              Search 70,000,000,000 indexed images…
+            </div>
+            <div class="mrow" data-mrow>
+              <span class="mrow-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
+              <div><div class="mrow-name">RAJUK_plot-allotment_0117.pdf</div><div class="mrow-meta">Housing · scanned 09:41 · v3</div></div>
+              <span class="mchip ok">INDEXED</span>
+            </div>
+            <div class="mrow" data-mrow>
+              <span class="mrow-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span>
+              <div><div class="mrow-name">mouza-map_district-04.tif</div><div class="mrow-meta">DLRS · geo-tagged · 600 dpi</div></div>
+              <span class="mchip ok">OCR 99.2%</span>
+            </div>
+            <div class="mrow" data-mrow>
+              <span class="mrow-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M9 15l2 2 4-4"/></svg></span>
+              <div><div class="mrow-name">loan-file_AGB-2291.pdf</div><div class="mrow-meta">Banking · workflow step 3/4</div></div>
+              <span class="mchip rev">IN REVIEW</span>
+            </div>
+            <div class="mrow" data-mrow>
+              <span class="mrow-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+              <div><div class="mrow-name">national-library_archive-1954.tif</div><div class="mrow-meta">Heritage · newspaper · restored</div></div>
+              <span class="mchip ok">ARCHIVED</span>
+            </div>
+            <div class="mock-foot"><span>4 of 2,847 results</span><b>0.3s query time</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dx-suite">
+      <span class="dx-suite-label" data-reveal>The full product suite</span>
+      <div class="chips" data-reveal>
+        <span class="chip">DocuDEX EDMS</span>
+        <span class="chip">DocuDEX Workflow</span>
+        <span class="chip">Agile Audit</span>
+        <span class="chip">HRIS</span>
+        <span class="chip">Invoice Processing</span>
+        <span class="chip">Online Proctoring</span>
+        <span class="chip">Library Management</span>
+        <span class="chip">e-KYC Management</span>
+        <span class="chip">Land Management</span>
+        <span class="chip">RPA</span>
+        <span class="chip">Robotic Scanners</span>
+        <span class="chip">Book &amp; Map Scanners</span>
+        <span class="chip">Microfilm Scanners</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MILESTONES ================= -->
+<section class="miles" id="milestones">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">03 — Proven at national scale</span>
+      <h2>
+        <span class="lm"><span>Milestones that</span></span>
+        <span class="lm"><span>moved a <em class="serif-i" style="color:var(--green-deep)">nation</em>.</span></span>
+      </h2>
+    </div>
+    <div class="miles-grid">
+      <article class="mcard" data-reveal>
+        <figure>
+          <img src="assets/img/heritage-map.jpg" alt="Archivist digitizing an antique land survey map on a book scanner" loading="lazy" decoding="async">
+          <span class="ftag">Land Management — DLRS</span>
+        </figure>
+        <div class="mcard-body">
+          <div class="mcard-num"><span class="count" data-count="213">0</span><em>K</em></div>
+          <h3>Mouza maps scanned &amp; archived</h3>
+          <p>Digitising the land records of Bangladesh — one of the largest geospatial archiving programmes in the country's history.</p>
+        </div>
+      </article>
+      <article class="mcard" data-reveal>
+        <figure>
+          <img src="assets/img/banking-operations.jpg" alt="Bank operations professionals working with digital approval dashboards in a modern fintech office" loading="lazy" decoding="async">
+          <span class="ftag">Banking sector</span>
+        </figure>
+        <div class="mcard-body">
+          <div class="mcard-num"><span class="count" data-count="10">0</span><em>+</em></div>
+          <h3>Banks on DocuDEX DMS &amp; Workflow</h3>
+          <p>Loan files, KYC and approvals automated end-to-end — maximising efficiency across the financial sector.</p>
+        </div>
+      </article>
+      <article class="mcard" data-reveal>
+        <figure>
+          <img src="assets/img/library-digitization.jpg" alt="Robotic book scanner digitizing a heritage volume in the national library preservation lab" loading="lazy" decoding="async">
+          <span class="ftag">National heritage</span>
+        </figure>
+        <div class="mcard-body">
+          <div class="mcard-num" style="font-size:1.9rem;padding-top:.5rem">National Library</div>
+          <h3>A country's memory, digitised</h3>
+          <p>Old books, newspapers, magazines and maps converted through our imaging solution and customised Digital Library Management System.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PARALLAX BAND ================= -->
+<section class="band grain" aria-label="Empowering Smart Bangladesh">
+  <video class="band-img" autoplay muted loop playsinline preload="auto" poster="assets/img/dhaka-skyline.jpg" data-fallback="assets/img/skyline-loop.webp" aria-hidden="true">
+    <source src="assets/video/dhaka-timelapse.mp4" type="video/mp4">
+  </video>
+  <div class="band-ol" aria-hidden="true"></div>
+  <div class="band-in">
+    <span class="eyebrow inv" data-reveal>Our mission</span>
+    <h2>
+      <span class="lm"><span>Empowering</span></span>
+      <span class="lm"><span><em class="serif-i">Smart Bangladesh</em>.</span></span>
+    </h2>
+    <p class="band-sub" data-reveal>For over 25 years we've been building the digital backbone of the nation's institutions — comprehensive, powerful and scalable e-governance solutions that keep a country's paperwork moving.</p>
+    <div class="band-chips" data-reveal>
+      <span class="band-chip"><b>213K</b> mouza maps digitised</span>
+      <span class="band-chip"><b>10+</b> banks automated</span>
+      <span class="band-chip"><b>30M</b> pages every year</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT / VALUES ================= -->
+<section class="about" id="about" aria-label="Who we are">
+  <div class="wrap about-grid">
+    <figure class="about-img" data-reveal>
+      <img src="assets/img/team-devnet.jpg" alt="The Devnet team collaborating at the Dhaka office" loading="lazy" decoding="async">
+      <span class="about-chip"><b>Since 1997</b> · Dhaka, Bangladesh</span>
+    </figure>
+    <div class="about-copy">
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="eyebrow">05 — Who we are</span>
+        <h2>
+          <span class="lm"><span>A team built for</span></span>
+          <span class="lm"><span>the <em class="serif-i" style="color:var(--green-deep)">long term</em>.</span></span>
+        </h2>
+      </div>
+      <p class="lead" data-reveal>Our philosophy is simple: long-term, collaborative relationships that consistently deliver business value to our clients — and real opportunity for our people.</p>
+      <div class="about-vals">
+        <div class="av" data-reveal>
+          <span class="av-idx">01</span>
+          <b>User-centred</b>
+          <p>Iterative design that produces highly usable, accessible products.</p>
+        </div>
+        <div class="av" data-reveal>
+          <span class="av-idx">02</span>
+          <b>Innovation &amp; creativity</b>
+          <p>New ideas that lead to better products and a more dynamic society.</p>
+        </div>
+        <div class="av" data-reveal>
+          <span class="av-idx">03</span>
+          <b>Agility &amp; adaptability</b>
+          <p>Empowering organisations to change course with confidence.</p>
+        </div>
+        <div class="av" data-reveal>
+          <span class="av-idx">04</span>
+          <b>Collaboration</b>
+          <p>Active participation and teamwork, project after project.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PARTNERS ================= -->
+<section class="partners" id="partners" aria-label="International partners">
+  <p class="partners-label" data-reveal>International partners powering world-class delivery</p>
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="plogo">ABBYY <span class="pdot"></span></span>
+      <span class="plogo">KODAK ALARIS <span class="pdot"></span></span>
+      <span class="plogo">AVISION <span class="pdot"></span></span>
+      <span class="plogo">ATIZ <span class="pdot"></span></span>
+      <span class="plogo">PIQL <span class="pdot"></span></span>
+      <span class="plogo">I2S <span class="pdot"></span></span>
+      <span class="plogo">GONSIN <span class="pdot"></span></span>
+      <span class="plogo">SMA <span class="pdot"></span></span>
+      <span class="plogo">ABBYY <span class="pdot"></span></span>
+      <span class="plogo">KODAK ALARIS <span class="pdot"></span></span>
+      <span class="plogo">AVISION <span class="pdot"></span></span>
+      <span class="plogo">ATIZ <span class="pdot"></span></span>
+      <span class="plogo">PIQL <span class="pdot"></span></span>
+      <span class="plogo">I2S <span class="pdot"></span></span>
+      <span class="plogo">GONSIN <span class="pdot"></span></span>
+      <span class="plogo">SMA <span class="pdot"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="voices" id="voices">
+  <div class="wrap">
+    <span class="eyebrow">04 — Client voices</span>
+    <span class="quote-mark serif-i" aria-hidden="true">"</span>
+
+    <div class="t-stage" id="tStage">
+      <div class="t-slide active">
+        <p class="t-quote">Digital archiving solutions provided by Devnet — their customised EDMS and scanning services — allowed us to preserve the files of plots and flats across RAJUK's housing model towns.</p>
+        <div class="t-who">
+          <span class="t-ava">KH</span>
+          <div>
+            <div class="t-name">Kazi Mohammad Mahabubul Hoque</div>
+            <div class="t-role">System Analyst &amp; Project Manager, MIS — RAJUK</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-slide">
+        <p class="t-quote">Devnet's strategic design of a pragmatic data capture and imaging solution — tailored for GR data entry, processing and optimisation — has yielded substantial benefits.</p>
+        <div class="t-who">
+          <span class="t-ava">AA</span>
+          <div>
+            <div class="t-name">Prof. Dr. Abul Kalam Azad</div>
+            <div class="t-role">ADG (Planning &amp; Development) &amp; Director MIS — Directorate General of Health Services</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-slide">
+        <p class="t-quote">Devnet, with ABBYY FlexiCapture, was willing to meet our individual needs — which ensured the success of project QUICKFILL.</p>
+        <div class="t-who">
+          <span class="t-ava">AS</span>
+          <div>
+            <div class="t-name">Abu Shair</div>
+            <div class="t-role">Information Services Head — Linde Bangladesh Limited</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="t-ctrl">
+      <div class="t-dots" role="tablist" aria-label="Testimonials">
+        <button class="t-dot on" data-i="0" aria-label="Testimonial 1"></button>
+        <button class="t-dot" data-i="1" aria-label="Testimonial 2"></button>
+        <button class="t-dot" data-i="2" aria-label="Testimonial 3"></button>
+      </div>
+      <div class="t-arrows">
+        <button class="t-btn" id="tPrev" aria-label="Previous testimonial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+        <button class="t-btn" id="tNext" aria-label="Next testimonial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta" id="contact">
+  <div class="wrap cta-in">
+    <span class="cta-eyebrow" data-reveal>Ready when you are</span>
+    <h2 class="cta-big" id="ctaBig">
+      <span class="lm"><span>Let's go</span></span>
+      <span class="lm"><span><em class="serif-i">paperless<svg viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 18 C 60 8, 150 6, 296 12" /></svg></em>.</span></span>
+    </h2>
+    <p class="cta-sub" data-reveal>Tell us what's buried in your filing rooms. Our team will show you how DocuDEX captures it, indexes it and puts it a search away — keeping you cool, in every step.</p>
+    <div class="cta-btns" data-reveal>
+      <a class="btn btn-paper" href="mailto:info@devnetlimited.com">info@devnetlimited.com <span class="ar">→</span></a>
+      <a class="btn btn-outline" href="tel:+8801713044055">+880 1713-044055</a>
+    </div>
+    <p class="cta-mini" data-reveal>Level-9 (East), BDBL Bhaban · 12 Kawran Bazar · Dhaka-1215, Bangladesh</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <a href="#top" class="logo" aria-label="Devnet Limited">
+          <span class="logo-mark" aria-hidden="true"></span>
+          devnet
+        </a>
+        <p>Comprehensive, powerful and scalable e-governance solutions — built in Dhaka since 1997. Empowering Smart Bangladesh, one document at a time.</p>
+        <p class="f-assoc">Member — <b>BASIS</b> · <b>DCCI</b> · <b>BGCCI</b></p>
+      </div>
+      <div>
+        <h4>Solutions</h4>
+        <ul class="f-list">
+          <li><a href="https://devnetlimited.com/docudex-edms/" target="_blank" rel="noopener noreferrer">DocuDEX EDMS</a></li>
+          <li><a href="https://devnetlimited.com/docudex-workflow/" target="_blank" rel="noopener noreferrer">DocuDEX Workflow</a></li>
+          <li><a href="https://devnetlimited.com/capture-software/" target="_blank" rel="noopener noreferrer">Capture Software</a></li>
+          <li><a href="https://devnetlimited.com/record-management/" target="_blank" rel="noopener noreferrer">Record Management</a></li>
+          <li><a href="https://devnetlimited.com/document-scanner/" target="_blank" rel="noopener noreferrer">Document Scanners</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul class="f-list">
+          <li><span>Document Scanning &amp; Archiving</span></li>
+          <li><span>Application Development</span></li>
+          <li><span>Mobile App Development</span></li>
+          <li><span>Data Processing &amp; BPO</span></li>
+          <li><span>Banking Solutions</span></li>
+          <li><span>AI &amp; Machine Learning</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div class="f-contact">
+          <div class="row">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Level-9 (East), BDBL Bhaban,<br>12 Kawran Bazar, Dhaka-1215, Bangladesh</span>
+          </div>
+          <div class="row">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span><a href="tel:+880255013964">+8802 55013964</a> · <a href="tel:+880255013965">65</a><br><a href="tel:+8801713044055">+880 1713-044055</a></span>
+          </div>
+          <div class="row">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            <span><a href="mailto:info@devnetlimited.com">info@devnetlimited.com</a></span>
+          </div>
+          <div class="row">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span><a href="https://devnetlimited.com" target="_blank" rel="noopener noreferrer">devnetlimited.com</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© 1997–2026 Devnet Limited. All rights reserved.</span>
+      <span class="tag">Keeping you cool, in every step.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Nav + progress ---------- */
+  var nav = document.getElementById("nav");
+  var lastY = 0;
+  function onScroll(){
+    var y = window.scrollY;
+    nav.classList.toggle("scrolled", y > 40);
+    if (y > 420 && y > lastY + 6) nav.classList.add("hidden-nav");
+    else if (y < lastY - 6 || y <= 420) nav.classList.remove("hidden-nav");
+    lastY = y;
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById("progress").style.width = (h > 0 ? (y / h) * 100 : 0) + "%";
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  /* ---------- Mobile menu ---------- */
+  var burger = document.getElementById("burger");
+  var mmenu = document.getElementById("mmenu");
+  burger.addEventListener("click", function(){
+    var open = mmenu.classList.toggle("open");
+    burger.classList.toggle("open", open);
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
+    document.body.style.overflow = open ? "hidden" : "";
+  });
+  mmenu.querySelectorAll("a").forEach(function(a){
+    a.addEventListener("click", function(){
+      mmenu.classList.remove("open");
+      burger.classList.remove("open");
+      burger.setAttribute("aria-expanded","false");
+      document.body.style.overflow = "";
+    });
+  });
+
+  /* ---------- Testimonial carousel ---------- */
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".t-slide"));
+  var dots = Array.prototype.slice.call(document.querySelectorAll(".t-dot"));
+  var tIdx = 0, tTimer = null;
+  function tGo(i){
+    tIdx = (i + slides.length) % slides.length;
+    slides.forEach(function(s, k){ s.classList.toggle("active", k === tIdx); });
+    dots.forEach(function(d, k){ d.classList.toggle("on", k === tIdx); });
+    var st = document.getElementById("tStage");
+    st.style.minHeight = Math.max(260, slides[tIdx].offsetHeight) + "px";
+  }
+  function tAuto(){
+    clearInterval(tTimer);
+    if (!reduced) tTimer = setInterval(function(){ tGo(tIdx + 1); }, 6500);
+  }
+  document.getElementById("tNext").addEventListener("click", function(){ tGo(tIdx+1); tAuto(); });
+  document.getElementById("tPrev").addEventListener("click", function(){ tGo(tIdx-1); tAuto(); });
+  dots.forEach(function(d){ d.addEventListener("click", function(){ tGo(+d.dataset.i); tAuto(); }); });
+  window.addEventListener("resize", function(){ tGo(tIdx); });
+  tGo(0); tAuto();
+
+  /* ---------- Counters ---------- */
+  function runCounter(el){
+    var target = +el.dataset.count;
+    var dur = 1600, t0 = null;
+    function step(ts){
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 4);
+      el.textContent = Math.round(target * eased).toLocaleString("en-US");
+      if (p < 1) requestAnimationFrame(step);
+    }
+    if (reduced){ el.textContent = target.toLocaleString("en-US"); return; }
+    requestAnimationFrame(step);
+  }
+
+  /* ---------- GSAP ---------- */
+  if (!reduced && window.gsap && window.ScrollTrigger){
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* hero entrance + ken burns */
+    var heroLines = document.querySelectorAll(".hero .lm > span");
+    gsap.set(heroLines, {yPercent:115});
+    gsap.set(".hero [data-h]", {opacity:0, y:26});
+    var tl = gsap.timeline({defaults:{ease:"power4.out"}});
+    tl.from(".hero-img", {scale:1.14, duration:2.6, ease:"power2.out"}, 0)
+      .to(heroLines, {yPercent:0, duration:1.15, stagger:.14}, .35)
+      .to(".hero [data-h]", {opacity:1, y:0, duration:.9, stagger:.12}, "-=.7");
+
+    /* hero slow parallax on scroll */
+    gsap.to(".hero-img", {yPercent:9, ease:"none",
+      scrollTrigger:{trigger:".hero", start:"top top", end:"bottom top", scrub:true}});
+
+    /* band parallax */
+    gsap.fromTo(".band-img", {yPercent:-8}, {yPercent:8, ease:"none",
+      scrollTrigger:{trigger:".band", start:"top bottom", end:"bottom top", scrub:true}});
+
+    /* section heading line reveals */
+    document.querySelectorAll("main .lm > span").forEach(function(el){
+      gsap.fromTo(el, {yPercent:115}, {
+        yPercent:0, duration:1.05, ease:"power4.out",
+        scrollTrigger:{trigger:el.closest("h2") || el, start:"top 88%"}
+      });
+    });
+
+    /* generic reveals */
+    ScrollTrigger.batch("[data-reveal]", {
+      start:"top 90%",
+      onEnter: function(batch){
+        gsap.fromTo(batch, {opacity:0, y:36}, {opacity:1, y:0, duration:.95, stagger:.09, ease:"power3.out", overwrite:true});
+      },
+      once:true
+    });
+    gsap.set("[data-reveal]", {opacity:0});
+
+    /* counters */
+    document.querySelectorAll(".count").forEach(function(el){
+      ScrollTrigger.create({
+        trigger: el, start:"top 94%", once:true,
+        onEnter: function(){ runCounter(el); }
+      });
+    });
+
+    /* mock rows stagger */
+    gsap.fromTo("[data-mrow]", {opacity:0, x:26}, {
+      opacity:1, x:0, duration:.7, stagger:.12, ease:"power3.out",
+      scrollTrigger:{trigger:".mock", start:"top 75%"}
+    });
+
+    /* chips pop */
+    gsap.fromTo(".chip", {opacity:0, y:16, scale:.92}, {
+      opacity:1, y:0, scale:1, duration:.55, stagger:.045, ease:"back.out(1.6)",
+      scrollTrigger:{trigger:".chips", start:"top 88%"}
+    });
+
+    /* CTA underline draw */
+    var ctaPath = document.querySelector(".cta-big path");
+    if (ctaPath){
+      var len = ctaPath.getTotalLength();
+      gsap.set(ctaPath, {strokeDasharray:len, strokeDashoffset:len});
+      gsap.to(ctaPath, {strokeDashoffset:0, duration:1.2, ease:"power2.inOut",
+        scrollTrigger:{trigger:".cta-big", start:"top 75%"}});
+    }
+
+    /* CTA gentle scale scrub */
+    gsap.fromTo(".cta-in", {scale:.965, y:30}, {scale:1, y:0, ease:"none",
+      scrollTrigger:{trigger:".cta", start:"top 90%", end:"top 35%", scrub:1}});
+  } else {
+    document.querySelectorAll(".count").forEach(function(el){
+      el.textContent = (+el.dataset.count).toLocaleString("en-US");
+    });
+  }
+
+  /* ---------- Background video: robust autoplay with animated fallback ---------- */
+  /* Sandboxed previews can block video streaming or autoplay. Strategy:
+     try the mp4; if playback is rejected or no data arrives in time,
+     swap in the animated WebP (image pipeline — always renders).
+     Reduced-motion users get the static poster instead. */
+  function swapToFallback(v, src){
+    var img = document.createElement("img");
+    img.className = v.className;
+    img.alt = "";
+    img.setAttribute("aria-hidden","true");
+    img.src = src;
+    v.parentNode.replaceChild(img, v);
+  }
+  document.querySelectorAll("video[data-fallback]").forEach(function(v){
+    if (reduced){
+      swapToFallback(v, v.getAttribute("poster") || v.dataset.fallback);
+      return;
+    }
+    var swapped = false;
+    var t = setTimeout(function(){
+      if (!swapped && v.readyState < 2){ swapped = true; swapToFallback(v, v.dataset.fallback); }
+    }, 2600);
+    var p = v.play();
+    if (p && typeof p.catch === "function"){
+      p.catch(function(){
+        if (!swapped){ swapped = true; clearTimeout(t); swapToFallback(v, v.dataset.fallback); }
+      });
+    }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devnet Limited — Enterprise EDMS &amp; e-Governance Solutions</title>
+<meta name="description" content="Devnet Limited builds comprehensive, powerful and scalable e-governance solutions. DocuDEX EDMS — capture, manage, store and search your documents. Since 1997.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS — LIGHT & AIRY ============ */
+  :root{
+    --bg:         #ffffff;
+    --tint:       #f4faf6;
+    --tint-2:     #eef7f1;
+    --ink:        #0c2015;
+    --txt:        #24352b;
+    --mut:        #5f6f65;
+    --green:      #16a34a;
+    --green-deep: #0e7a36;
+    --green-soft: #e3f4e9;
+    --green-hot:  #2ee86c;
+    --red:        #e5484d;
+    --amber:      #b97f0a;
+    --line:       rgba(12,32,21,.09);
+    --line-2:     rgba(12,32,21,.14);
+    --disp: "Space Grotesk", sans-serif;
+    --body: "Inter", sans-serif;
+    --serif:"Instrument Serif", serif;
+    --mono: "IBM Plex Mono", monospace;
+    --r-lg: 24px;
+    --r-md: 16px;
+    --ease: cubic-bezier(.22,.68,.14,1);
+    --shadow-soft: 0 24px 60px rgba(14,60,34,.09);
+    --shadow-tiny: 0 8px 26px rgba(14,60,34,.07);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);
+    background:var(--bg);
+    color:var(--txt);
+    font-size:16px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--green);color:#fff}
+  h1,h2,h3,h4{font-family:var(--disp);font-weight:600;line-height:1.06;letter-spacing:-.02em;color:var(--ink)}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  section{scroll-margin-top:92px}
+  .wrap{width:min(1240px,92%);margin:0 auto}
+
+  /* ============ UTILITIES ============ */
+  .eyebrow{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:.6rem;color:var(--green-deep);font-weight:500;
+  }
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(22,163,74,.14)}
+  .sec-head{margin-bottom:4rem}
+  .sec-head h2{font-size:clamp(2.1rem,4.6vw,3.6rem);margin-top:1.2rem}
+  .sec-head p.lead{max-width:560px;color:var(--mut);margin-top:1.2rem;font-size:1.06rem}
+  .serif-i{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:0}
+
+  /* line mask reveal */
+  .lm{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+  .lm>span{display:block;will-change:transform}
+
+  /* ============ SCROLL PROGRESS ============ */
+  #progress{position:fixed;top:0;left:0;height:2.5px;width:0%;background:linear-gradient(90deg,var(--green-deep),var(--green));z-index:1000}
+
+  /* ============ NAV ============ */
+  nav{
+    position:fixed;inset:0 0 auto 0;z-index:990;
+    transition:transform .5s var(--ease),background .35s,border-color .35s,box-shadow .35s,backdrop-filter .35s;
+    border-bottom:1px solid transparent;
+  }
+  nav.scrolled{background:rgba(255,255,255,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line);box-shadow:0 8px 30px rgba(14,60,34,.05)}
+  nav.hidden-nav{transform:translateY(-100%)}
+  .nav-in{width:min(1240px,92%);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:1.05rem 0}
+  .logo{display:flex;align-items:center;gap:.6rem;font-family:var(--disp);font-weight:700;font-size:1.32rem;color:var(--ink);letter-spacing:-.02em}
+  .logo-mark{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--green) 0%,var(--green-deep) 100%);position:relative;flex:none;box-shadow:0 6px 16px rgba(22,163,74,.3)}
+  .logo-mark::before{content:"";position:absolute;inset:9px;border:2.5px solid #fff;border-radius:50%;border-right-color:transparent;transform:rotate(-45deg)}
+  .logo-mark::after{content:"";position:absolute;top:7px;right:7px;width:6px;height:6px;border-radius:50%;background:var(--red)}
+  .nav-links{display:flex;gap:2.1rem;align-items:center;list-style:none}
+  .nav-links a{color:var(--mut);font-size:.92rem;font-weight:500;position:relative;padding:.2rem 0;transition:color .25s}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:100%;height:1.5px;background:var(--green);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+  .btn{
+    display:inline-flex;align-items:center;gap:.55rem;font-family:var(--disp);font-weight:600;font-size:.95rem;
+    padding:.8rem 1.55rem;border-radius:100px;transition:transform .3s var(--ease),box-shadow .3s,background .3s,color .3s,border-color .3s;
+    cursor:pointer;border:none;
+  }
+  .btn .ar{transition:transform .3s var(--ease)}
+  .btn:hover .ar{transform:translateX(4px)}
+  .btn-green{background:var(--green-deep);color:#fff}
+  .btn-green:hover{background:var(--green);transform:translateY(-2px);box-shadow:0 14px 30px rgba(22,163,74,.28)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-2)}
+  .btn-ghost:hover{border-color:var(--green-deep);color:var(--green-deep);transform:translateY(-2px)}
+  .nav-cta{padding:.62rem 1.3rem;font-size:.88rem}
+  .burger{display:none;background:none;border:none;cursor:pointer;width:40px;height:40px;position:relative;z-index:1001}
+  .burger span{display:block;width:22px;height:2px;background:var(--ink);margin:5px auto;transition:.35s var(--ease)}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .m-menu{
+    position:fixed;inset:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);z-index:950;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2rem;
+    opacity:0;pointer-events:none;transition:opacity .4s;
+  }
+  .m-menu.open{opacity:1;pointer-events:auto}
+  .m-menu a{color:var(--ink);font-family:var(--disp);font-size:1.7rem;font-weight:600}
+  .m-menu a:hover{color:var(--green-deep)}
+
+  /* ============ HERO — LIGHT & AIRY ============ */
+  .hero{
+    position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+    background:
+      radial-gradient(1000px 560px at 82% 12%, rgba(22,163,74,.10), transparent 62%),
+      radial-gradient(700px 460px at 6% 92%, rgba(22,163,74,.06), transparent 60%),
+      var(--bg);
+    overflow:hidden;padding:9.5rem 0 0;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(14,122,54,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(14,122,54,.05) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(900px 640px at 62% 28%,#000 25%,transparent 75%);
+    -webkit-mask-image:radial-gradient(900px 640px at 62% 28%,#000 25%,transparent 75%);
+  }
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;z-index:2}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:.65rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--green-deep);border:1px solid rgba(22,163,74,.25);background:var(--green-soft);
+    padding:.5rem 1.05rem;border-radius:100px;margin-bottom:2.2rem;
+  }
+  .hero-badge .pulse{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2.2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(22,163,74,.45)}70%{box-shadow:0 0 0 9px rgba(22,163,74,0)}100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}}
+  .hero h1{font-size:clamp(3rem,7vw,6.2rem);font-weight:700}
+  .hero h1 .serif-i{color:var(--green-deep);font-size:1.04em}
+  .hero-sub{max-width:540px;color:var(--mut);font-size:1.12rem;margin:2rem 0 2.8rem}
+  .hero-sub strong{color:var(--ink);font-weight:600}
+  .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+  .hero-note{font-family:var(--mono);font-size:.72rem;color:var(--mut);letter-spacing:.06em;margin-top:1.5rem}
+
+  /* floating cards visual — white, soft-shadowed */
+  .hero-visual{position:relative;height:520px;perspective:1000px}
+  .hero-visual::before{
+    content:"";position:absolute;width:78%;height:78%;left:11%;top:11%;border-radius:50%;
+    background:radial-gradient(circle,rgba(22,163,74,.13),transparent 65%);filter:blur(10px);
+  }
+  .fcard{
+    position:absolute;border-radius:var(--r-md);
+    background:#fff;border:1px solid var(--line);
+    box-shadow:var(--shadow-soft);
+    will-change:transform;
+  }
+  .fcard-doc{width:min(330px,72%);top:6%;left:8%;padding:1.4rem;animation:float1 7s ease-in-out infinite}
+  .fcard-doc .doc-head{display:flex;align-items:center;gap:.7rem;margin-bottom:1.1rem}
+  .doc-ico{width:38px;height:38px;border-radius:10px;background:var(--green-soft);display:grid;place-items:center;flex:none}
+  .doc-ico svg{width:19px;height:19px;stroke:var(--green-deep)}
+  .doc-title{font-family:var(--disp);font-weight:600;font-size:.95rem;color:var(--ink)}
+  .doc-meta{font-family:var(--mono);font-size:.66rem;color:var(--mut);letter-spacing:.05em}
+  .skel{height:8px;border-radius:4px;background:var(--tint-2);margin-bottom:.65rem}
+  .skel.s1{width:92%}.skel.s2{width:74%}.skel.s3{width:84%}.skel.s4{width:56%}
+  .doc-foot{display:flex;align-items:center;gap:.5rem;margin-top:1.1rem;font-family:var(--mono);font-size:.68rem;color:var(--green-deep)}
+  .doc-foot svg{width:14px;height:14px;stroke:var(--green-deep)}
+  .fcard-search{width:min(300px,66%);top:52%;right:2%;padding:1.05rem 1.2rem;animation:float2 8s ease-in-out infinite}
+  .search-row{display:flex;align-items:center;gap:.65rem;background:var(--tint);border:1px solid var(--line);border-radius:100px;padding:.55rem 1rem;font-family:var(--mono);font-size:.72rem;color:var(--txt)}
+  .search-row svg{width:14px;height:14px;stroke:var(--green-deep);flex:none}
+  .search-caret{display:inline-block;width:7px;height:13px;background:var(--green);margin-left:2px;animation:blink 1.1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .search-res{margin-top:.8rem;font-family:var(--mono);font-size:.66rem;color:var(--mut);display:flex;justify-content:space-between}
+  .search-res b{color:var(--green-deep);font-weight:500}
+  .fcard-chip{top:78%;left:14%;padding:.7rem 1.15rem;display:flex;align-items:center;gap:.6rem;font-family:var(--mono);font-size:.7rem;color:var(--txt);border-radius:100px;animation:float3 6s ease-in-out infinite}
+  .fcard-chip b{color:var(--green-deep)}
+  .fcard-wf{top:-2%;right:4%;padding:.85rem 1.05rem;border-radius:14px;animation:float2 9s ease-in-out infinite reverse}
+  .wf-title{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:.55rem}
+  .wf-steps{display:flex;gap:.45rem;align-items:center}
+  .wf-dot{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--green-soft)}
+  .wf-dot svg{width:11px;height:11px;stroke:var(--green-deep)}
+  .wf-dot.pend{background:var(--tint-2)}
+  .wf-dot.pend svg{stroke:rgba(12,32,21,.3)}
+  .wf-line{width:16px;height:1.5px;background:rgba(22,163,74,.4)}
+  @keyframes float1{0%,100%{transform:translateY(0) rotate(-1.2deg)}50%{transform:translateY(-16px) rotate(-.4deg)}}
+  @keyframes float2{0%,100%{transform:translateY(0) rotate(1deg)}50%{transform:translateY(-13px) rotate(.2deg)}}
+  @keyframes float3{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+  /* trust bar */
+  .trust{position:relative;z-index:2;margin-top:5rem;border-top:1px solid var(--line);padding:1.6rem 0 1.8rem;background:rgba(255,255,255,.6)}
+  .trust-in{width:min(1240px,92%);margin:0 auto;display:flex;align-items:center;gap:2.2rem;flex-wrap:wrap}
+  .trust-label{font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);flex:none}
+  .trust-names{display:flex;gap:2.2rem;flex-wrap:wrap;font-family:var(--disp);font-weight:500;font-size:.92rem;color:rgba(12,32,21,.45)}
+  .trust-names span{transition:color .3s}
+  .trust-names span:hover{color:var(--green-deep)}
+  .scroll-hint{position:absolute;bottom:7.6rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.6rem;z-index:2;color:var(--mut);font-family:var(--mono);font-size:.62rem;letter-spacing:.3em}
+  .scroll-hint .line{width:1.5px;height:42px;background:linear-gradient(var(--green),transparent);animation:drop 1.8s var(--ease) infinite}
+  @keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* ============ STATS ============ */
+  .stats{background:var(--bg);padding:6rem 0 5.6rem;border-bottom:1px solid var(--line)}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+  .stat{position:relative;padding:0 1.6rem;border-left:1px solid var(--line)}
+  .stat:first-child{border-left:none;padding-left:0}
+  .stat-num{font-family:var(--disp);font-weight:700;font-size:clamp(2.6rem,4.6vw,4.1rem);color:var(--ink);letter-spacing:-.03em;line-height:1}
+  .stat-num em{font-style:normal;color:var(--green);font-size:.62em;vertical-align:.28em;margin-left:.06em}
+  .stat-lbl{margin-top:.9rem;color:var(--mut);font-size:.92rem;max-width:220px}
+
+  /* ============ SOLUTIONS ============ */
+  .solutions{background:var(--bg);padding:8rem 0}
+  .sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+  .sol-card{
+    position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
+    padding:2.2rem 2rem 2rem;display:flex;flex-direction:column;min-height:300px;overflow:hidden;
+    transition:transform .45s var(--ease),box-shadow .45s,border-color .45s;
+  }
+  .sol-card::after{
+    content:"";position:absolute;inset:auto 0 0 0;height:3px;background:linear-gradient(90deg,var(--green-deep),var(--green));
+    transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);
+  }
+  .sol-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-soft);border-color:rgba(22,163,74,.35)}
+  .sol-card:hover::after{transform:scaleX(1)}
+  .sol-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.6rem}
+  .sol-ico{width:52px;height:52px;border-radius:14px;background:var(--green-soft);display:grid;place-items:center;transition:background .4s,transform .4s var(--ease)}
+  .sol-ico svg{width:24px;height:24px;stroke:var(--green-deep);transition:stroke .4s}
+  .sol-card:hover .sol-ico{background:var(--green-deep);transform:rotate(-6deg) scale(1.05)}
+  .sol-card:hover .sol-ico svg{stroke:#fff}
+  .sol-idx{font-family:var(--mono);font-size:.7rem;color:rgba(12,32,21,.35);letter-spacing:.1em}
+  .sol-card h3{font-size:1.32rem;margin-bottom:.7rem;letter-spacing:-.01em}
+  .sol-card p{color:var(--mut);font-size:.94rem;flex:1}
+  .sol-link{display:inline-flex;align-items:center;gap:.45rem;margin-top:1.6rem;font-family:var(--disp);font-weight:600;font-size:.88rem;color:var(--green-deep)}
+  .sol-link .ar{transition:transform .3s var(--ease)}
+  .sol-card:hover .sol-link .ar{transform:translateX(5px)}
+
+  /* ============ DOCUDEX SPOTLIGHT — soft green tint ============ */
+  .docudex{background:var(--tint);padding:8rem 0;position:relative;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .docudex::before{content:"";position:absolute;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(22,163,74,.09),transparent 65%);top:-260px;right:-220px}
+  .dx-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:4.5rem;align-items:center;position:relative}
+  .dx-feats{margin-top:2.6rem;display:grid;gap:1.15rem}
+  .dx-feat{display:flex;gap:1rem;align-items:flex-start}
+  .dx-feat-ico{width:34px;height:34px;flex:none;border-radius:10px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;margin-top:.15rem;box-shadow:var(--shadow-tiny)}
+  .dx-feat-ico svg{width:16px;height:16px;stroke:var(--green-deep)}
+  .dx-feat b{display:block;font-family:var(--disp);font-weight:600;color:var(--ink);font-size:1.02rem;margin-bottom:.15rem}
+  .dx-feat p{color:var(--mut);font-size:.9rem}
+  .dx-cta{margin-top:2.8rem}
+  /* mock ui — light */
+  .mock{
+    background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;
+    box-shadow:0 40px 90px rgba(14,60,34,.13);transform:rotate(.8deg);
+  }
+  .mock-bar{display:flex;align-items:center;gap:.6rem;padding:.85rem 1.2rem;border-bottom:1px solid var(--line);background:var(--tint)}
+  .mdot{width:10px;height:10px;border-radius:50%}
+  .mdot.r{background:#ff5f57}.mdot.y{background:#febc2e}.mdot.g{background:#28c840}
+  .mock-title{font-family:var(--mono);font-size:.68rem;color:var(--mut);margin-left:.6rem;letter-spacing:.08em}
+  .mock-badge{margin-left:auto;font-family:var(--mono);font-size:.6rem;color:var(--green-deep);border:1px solid rgba(22,163,74,.4);background:var(--green-soft);padding:.18rem .6rem;border-radius:100px}
+  .mock-body{display:grid;grid-template-columns:56px 1fr;min-height:360px}
+  .mock-side{border-right:1px solid var(--line);padding:1rem 0;display:flex;flex-direction:column;align-items:center;gap:1.1rem}
+  .ms-ico{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:transparent;transition:background .3s}
+  .ms-ico svg{width:15px;height:15px;stroke:rgba(12,32,21,.35)}
+  .ms-ico.on{background:var(--green-soft)}
+  .ms-ico.on svg{stroke:var(--green-deep)}
+  .mock-main{padding:1.2rem 1.4rem}
+  .mock-search{display:flex;align-items:center;gap:.6rem;background:var(--tint);border:1px solid var(--line);border-radius:10px;padding:.6rem .9rem;font-family:var(--mono);font-size:.7rem;color:var(--mut);margin-bottom:1.1rem}
+  .mock-search svg{width:13px;height:13px;stroke:var(--mut)}
+  .mrow{
+    display:flex;align-items:center;gap:.85rem;padding:.72rem .8rem;border-radius:10px;margin-bottom:.4rem;
+    background:#fff;border:1px solid var(--line);
+    transition:background .3s,border-color .3s,transform .3s var(--ease),box-shadow .3s;
+  }
+  .mrow:hover{background:var(--green-soft);border-color:rgba(22,163,74,.3);transform:translateX(4px);box-shadow:var(--shadow-tiny)}
+  .mrow-ico{width:30px;height:30px;border-radius:8px;flex:none;display:grid;place-items:center;background:var(--tint)}
+  .mrow-ico svg{width:14px;height:14px;stroke:var(--txt)}
+  .mrow-name{font-family:var(--disp);font-size:.82rem;font-weight:500;color:var(--ink)}
+  .mrow-meta{font-family:var(--mono);font-size:.6rem;color:var(--mut);margin-top:.1rem}
+  .mchip{margin-left:auto;font-family:var(--mono);font-size:.58rem;padding:.22rem .6rem;border-radius:100px;flex:none}
+  .mchip.ok{color:var(--green-deep);background:var(--green-soft);border:1px solid rgba(22,163,74,.35)}
+  .mchip.rev{color:var(--amber);background:rgba(254,188,46,.12);border:1px solid rgba(185,127,10,.35)}
+  .mock-foot{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.6rem;color:var(--mut);padding-top:.9rem;letter-spacing:.06em}
+  .mock-foot b{color:var(--green-deep);font-weight:500}
+  /* product chips */
+  .dx-suite{margin-top:5.5rem;position:relative}
+  .dx-suite-label{font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mut);margin-bottom:1.4rem;display:block}
+  .chips{display:flex;flex-wrap:wrap;gap:.7rem}
+  .chip{
+    font-family:var(--disp);font-weight:500;font-size:.88rem;color:var(--txt);
+    background:#fff;border:1px solid var(--line-2);padding:.62rem 1.25rem;border-radius:100px;
+    transition:background .3s,color .3s,border-color .3s,transform .3s var(--ease),box-shadow .3s;cursor:default;
+  }
+  .chip:hover{background:var(--green-deep);color:#fff;border-color:var(--green-deep);transform:translateY(-3px);box-shadow:0 10px 24px rgba(14,122,54,.22)}
+
+  /* ============ MILESTONES ============ */
+  .miles{background:var(--bg);padding:8rem 0}
+  .miles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+  .mile{
+    position:relative;border-radius:var(--r-lg);padding:2.4rem 2.1rem;min-height:320px;display:flex;flex-direction:column;
+    background:#fff;border:1px solid var(--line);overflow:hidden;
+    transition:transform .45s var(--ease),box-shadow .45s;
+  }
+  .mile:hover{transform:translateY(-8px);box-shadow:var(--shadow-soft)}
+  .mile.feat{background:linear-gradient(150deg,var(--green-deep),var(--green) 80%);color:#fff;border:none}
+  .mile-tag{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--green-deep);margin-bottom:auto}
+  .mile.feat .mile-tag{color:rgba(255,255,255,.8)}
+  .mile-num{font-family:var(--disp);font-weight:700;font-size:clamp(2.6rem,3.6vw,3.6rem);letter-spacing:-.03em;color:var(--ink);margin:2.2rem 0 .4rem;line-height:1}
+  .mile.feat .mile-num{color:#fff}
+  .mile-num em{font-style:normal;font-size:.5em;vertical-align:.5em;color:var(--green)}
+  .mile.feat .mile-num em{color:rgba(255,255,255,.85)}
+  .mile h3{font-size:1.18rem;margin-bottom:.55rem}
+  .mile.feat h3{color:#fff}
+  .mile p{font-size:.9rem;color:var(--mut)}
+  .mile.feat p{color:rgba(255,255,255,.85)}
+  .mile-ico{position:absolute;right:1.7rem;top:1.8rem;width:44px;height:44px;border-radius:12px;background:var(--green-soft);display:grid;place-items:center}
+  .mile-ico svg{width:20px;height:20px;stroke:var(--green-deep)}
+  .mile.feat .mile-ico{background:rgba(255,255,255,.18)}
+  .mile.feat .mile-ico svg{stroke:#fff}
+
+  /* ============ VALUES ============ */
+  .values{background:var(--bg);padding:0 0 8rem}
+  .val-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+  .val{padding:2.8rem 2rem 0;border-left:1px solid var(--line);position:relative}
+  .val:first-child{border-left:none;padding-left:0}
+  .val-idx{font-family:var(--mono);font-size:.72rem;color:var(--green-deep);letter-spacing:.15em}
+  .val h3{font-size:1.22rem;margin:1.1rem 0 .6rem}
+  .val p{font-size:.9rem;color:var(--mut)}
+
+  /* ============ PARTNERS ============ */
+  .partners{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:3.8rem 0;overflow:hidden}
+  .partners-label{text-align:center;font-family:var(--mono);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mut);margin-bottom:2.4rem}
+  .marquee{position:relative;overflow:hidden;
+    mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);}
+  .marquee-track{display:flex;align-items:center;gap:4.5rem;width:max-content;animation:marq 30s linear infinite}
+  .marquee:hover .marquee-track{animation-play-state:paused}
+  @keyframes marq{to{transform:translateX(-50%)}}
+  .plogo{font-family:var(--disp);font-weight:700;font-size:1.55rem;letter-spacing:.02em;color:var(--ink);opacity:.4;white-space:nowrap;transition:opacity .3s,color .3s;display:flex;align-items:center;gap:4.5rem}
+  .plogo:hover{opacity:1;color:var(--green-deep)}
+  .pdot{width:6px;height:6px;border-radius:50%;background:var(--green);opacity:.45;flex:none}
+
+  /* ============ TESTIMONIALS ============ */
+  .voices{background:var(--bg);padding:8rem 0;position:relative;overflow:hidden}
+  .voices::before{content:"";position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(22,163,74,.07),transparent 65%);bottom:-320px;left:-220px}
+  .quote-mark{font-family:var(--serif);font-size:7rem;line-height:.6;color:var(--green);display:block;margin-bottom:1.8rem}
+  .t-stage{position:relative;min-height:300px}
+  .t-slide{position:absolute;top:0;left:0;width:100%;opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease);pointer-events:none}
+  .t-slide.active{opacity:1;transform:translateY(0);pointer-events:auto}
+  .t-quote{font-family:var(--disp);font-weight:500;font-size:clamp(1.25rem,2.5vw,1.9rem);line-height:1.42;letter-spacing:-.01em;color:var(--ink);max-width:900px}
+  .t-who{margin-top:2.4rem;display:flex;align-items:center;gap:1rem}
+  .t-ava{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--green-deep));display:grid;place-items:center;font-family:var(--disp);font-weight:700;color:#fff;font-size:.95rem;flex:none}
+  .t-name{font-family:var(--disp);font-weight:600;color:var(--ink);font-size:.98rem}
+  .t-role{font-family:var(--mono);font-size:.68rem;color:var(--mut);letter-spacing:.05em;margin-top:.15rem}
+  .t-ctrl{display:flex;align-items:center;gap:1.4rem;margin-top:3.2rem}
+  .t-dots{display:flex;gap:.5rem}
+  .t-dot{width:26px;height:3px;border-radius:3px;background:rgba(12,32,21,.14);cursor:pointer;border:none;padding:0;transition:background .3s}
+  .t-dot.on{background:var(--green-deep)}
+  .t-arrows{display:flex;gap:.6rem;margin-left:auto}
+  .t-btn{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line-2);background:#fff;color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:all .3s var(--ease)}
+  .t-btn:hover{background:var(--green-deep);border-color:var(--green-deep);color:#fff;transform:translateY(-2px)}
+  .t-btn svg{width:17px;height:17px}
+
+  /* ============ CTA — airy, centered ============ */
+  .cta{
+    background:
+      radial-gradient(760px 480px at 50% 30%, rgba(22,163,74,.10), transparent 72%),
+      var(--tint);
+    padding:9rem 0;text-align:center;position:relative;overflow:hidden;border-top:1px solid var(--line);
+  }
+  .cta::before{
+    content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(14,122,54,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(14,122,54,.045) 1px,transparent 1px);
+    background-size:56px 56px;
+    mask-image:radial-gradient(760px 480px at 50% 40%,#000,transparent 78%);
+    -webkit-mask-image:radial-gradient(760px 480px at 50% 40%,#000,transparent 78%);
+  }
+  .cta-in{position:relative}
+  .cta-eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--green-deep)}
+  .cta-big{font-size:clamp(3rem,9vw,7.6rem);font-weight:700;letter-spacing:-.03em;color:var(--ink);margin:1.7rem 0 1.3rem;line-height:1.02}
+  .cta-big .lm{padding-bottom:.3em;margin-bottom:-.3em}
+  .cta-big .serif-i{color:var(--green-deep);position:relative;display:inline-block}
+  .cta-big .serif-i svg{position:absolute;left:0;right:0;bottom:-.14em;width:100%;height:.22em;overflow:visible}
+  .cta-big .serif-i svg path{fill:none;stroke:var(--green);stroke-width:6;stroke-linecap:round;opacity:.9}
+  .cta-sub{color:var(--mut);max-width:520px;margin:0 auto 3.2rem;font-size:1.08rem}
+  .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .cta-mini{margin-top:2.8rem;font-family:var(--mono);font-size:.7rem;color:var(--mut);letter-spacing:.08em}
+
+  /* ============ FOOTER — light ============ */
+  footer{background:var(--bg);color:var(--mut);padding:5.5rem 0 2.6rem;border-top:1px solid var(--line)}
+  .f-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:3rem;padding-bottom:3.8rem;border-bottom:1px solid var(--line)}
+  .f-brand p{font-size:.92rem;margin:1.4rem 0;max-width:300px}
+  .f-assoc{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+  .f-assoc b{color:var(--green-deep);font-weight:500}
+  footer h4{font-family:var(--mono);font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);margin-bottom:1.4rem}
+  .f-list{list-style:none;display:grid;gap:.7rem;font-size:.9rem}
+  .f-list a,.f-list span{color:var(--mut);transition:color .25s;position:relative}
+  .f-list a:hover{color:var(--green-deep)}
+  .f-contact{display:grid;gap:1rem;font-size:.9rem}
+  .f-contact .row{display:flex;gap:.8rem;align-items:flex-start}
+  .f-contact svg{width:16px;height:16px;stroke:var(--green-deep);flex:none;margin-top:.25rem}
+  .f-contact a{color:var(--txt)}
+  .f-contact a:hover{color:var(--green-deep)}
+  .f-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding-top:2.4rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em}
+  .f-bottom .tag{color:var(--green-deep)}
+
+  /* ============ RESPONSIVE ============ */
+  @media(max-width:1024px){
+    .hero-grid{grid-template-columns:1fr;gap:4rem}
+    .hero-visual{height:440px;max-width:560px}
+    .sol-grid{grid-template-columns:repeat(2,1fr)}
+    .dx-grid{grid-template-columns:1fr;gap:3.5rem}
+    .miles-grid{grid-template-columns:1fr;max-width:560px;margin:0 auto}
+    .mile{min-height:auto}
+    .val-grid{grid-template-columns:repeat(2,1fr);gap:0}
+    .val{padding:2.2rem 1.6rem 1rem}
+    .val:nth-child(odd){border-left:none;padding-left:0}
+    .f-grid{grid-template-columns:1fr 1fr}
+    .stats-grid{grid-template-columns:repeat(2,1fr);gap:2.6rem 2rem}
+    .stat:nth-child(odd){border-left:none;padding-left:0}
+    .scroll-hint{display:none}
+  }
+  @media(max-width:768px){
+    .nav-links,.nav-cta{display:none}
+    .burger{display:block}
+    .hero{padding-top:7.5rem}
+    .hero h1{font-size:clamp(2.7rem,11.5vw,4rem)}
+    .sol-grid{grid-template-columns:1fr}
+    .sol-card{min-height:auto}
+    .hero-visual{height:400px}
+    .t-quote{font-size:1.25rem}
+    .f-grid{grid-template-columns:1fr;gap:2.6rem}
+    .val-grid{grid-template-columns:1fr}
+    .val{border-left:none;padding-left:0}
+    .cta-btns .btn{width:100%;justify-content:center}
+    .trust-in{gap:1.2rem}
+    .trust-names{gap:1.2rem;font-size:.82rem}
+  }
+
+  /* ============ REDUCED MOTION ============ */
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+    html{scroll-behavior:auto}
+  }
+  .btn:focus-visible,a:focus-visible,button:focus-visible{outline:2.5px solid var(--green-deep);outline-offset:3px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<div id="progress" aria-hidden="true"></div>
+
+<!-- ================= NAV ================= -->
+<nav id="nav" aria-label="Main navigation">
+  <div class="nav-in">
+    <a href="#top" class="logo" aria-label="Devnet Limited — home">
+      <span class="logo-mark" aria-hidden="true"></span>
+      devnet
+    </a>
+    <ul class="nav-links">
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#docudex">DocuDEX</a></li>
+      <li><a href="#milestones">Milestones</a></li>
+      <li><a href="#voices">Clients</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn btn-green nav-cta" href="mailto:info@devnetlimited.com">Get in touch <span class="ar">→</span></a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="m-menu" id="mmenu">
+  <a href="#solutions">Solutions</a>
+  <a href="#docudex">DocuDEX</a>
+  <a href="#milestones">Milestones</a>
+  <a href="#voices">Clients</a>
+  <a href="#contact">Contact</a>
+  <a class="btn btn-green" href="mailto:info@devnetlimited.com">Get in touch <span class="ar">→</span></a>
+</div>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="hero-badge" data-h><span class="pulse" aria-hidden="true"></span> Empowering Smart Bangladesh · Since 1997</div>
+      <h1>
+        <span class="lm"><span>Changing the</span></span>
+        <span class="lm"><span>way <em class="serif-i">we work</em>.</span></span>
+      </h1>
+      <p class="hero-sub" data-h>
+        <strong>DocuDEX</strong> — the flagship EDMS from Devnet Limited — helps organisations
+        capture, manage, store and search millions of documents. Comprehensive, powerful and
+        scalable e-governance, built in Dhaka for the region's largest institutions.
+      </p>
+      <div class="hero-ctas" data-h>
+        <a class="btn btn-green" href="https://devnetlimited.com/docudex-edms/" target="_blank" rel="noopener noreferrer">Explore DocuDEX <span class="ar">→</span></a>
+        <a class="btn btn-ghost" href="mailto:info@devnetlimited.com">Talk to our team</a>
+      </div>
+      <p class="hero-note" data-h>1st to introduce DMS &amp; ICR in Bangladesh — 25+ years on, still leading.</p>
+    </div>
+
+    <div class="hero-visual" id="heroVisual" aria-hidden="true">
+      <div class="fcard fcard-wf" data-depth="26">
+        <div class="wf-title">DocuDEX Workflow</div>
+        <div class="wf-steps">
+          <span class="wf-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <span class="wf-line"></span>
+          <span class="wf-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <span class="wf-line"></span>
+          <span class="wf-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <span class="wf-line"></span>
+          <span class="wf-dot pend"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round"><circle cx="12" cy="12" r="4"/></svg></span>
+        </div>
+      </div>
+
+      <div class="fcard fcard-doc" data-depth="14">
+        <div class="doc-head">
+          <span class="doc-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
+          <div>
+            <div class="doc-title">mouza-map_4521.tif</div>
+            <div class="doc-meta">DLRS · Land records · 4.2 MB</div>
+          </div>
+        </div>
+        <div class="skel s1"></div>
+        <div class="skel s2"></div>
+        <div class="skel s3"></div>
+        <div class="skel s4"></div>
+        <div class="doc-foot">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          OCR complete — indexed &amp; searchable
+        </div>
+      </div>
+
+      <div class="fcard fcard-search" data-depth="34">
+        <div class="search-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+          <span>plot files — Purbachal</span><span class="search-caret" aria-hidden="true"></span>
+        </div>
+        <div class="search-res"><span>2,847 documents</span><b>found in 0.3s</b></div>
+      </div>
+
+      <div class="fcard fcard-chip" data-depth="20"><b>70B</b> images processed &amp; counting</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">SCROLL<span class="line"></span></div>
+
+  <div class="trust" data-h>
+    <div class="trust-in">
+      <span class="trust-label">Trusted across government &amp; enterprise</span>
+      <div class="trust-names">
+        <span>DLRS</span><span>RAJUK</span><span>DGHS</span><span>Bangladesh National Library</span><span>Linde Bangladesh</span><span>10+ Banks</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= STATS ================= -->
+<section class="stats" aria-label="Key numbers">
+  <div class="wrap stats-grid">
+    <div class="stat" data-reveal>
+      <div class="stat-num"><span class="count" data-count="1">0</span><em>st</em></div>
+      <p class="stat-lbl">Introduced DMS &amp; ICR in Bangladesh</p>
+    </div>
+    <div class="stat" data-reveal>
+      <div class="stat-num"><span class="count" data-count="70">0</span><em>B</em></div>
+      <p class="stat-lbl">Images processed &amp; managed — and counting</p>
+    </div>
+    <div class="stat" data-reveal>
+      <div class="stat-num"><span class="count" data-count="63">0</span><em>K</em></div>
+      <p class="stat-lbl">Enterprise processes automated &amp; streamlined</p>
+    </div>
+    <div class="stat" data-reveal>
+      <div class="stat-num"><span class="count" data-count="30">0</span><em>M</em></div>
+      <p class="stat-lbl">Pages digitised every year</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOLUTIONS ================= -->
+<section class="solutions" id="solutions">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">01 — What we do</span>
+      <h2>
+        <span class="lm"><span>One platform,</span></span>
+        <span class="lm"><span>every <em class="serif-i" style="color:var(--green-deep)">document</em>.</span></span>
+      </h2>
+      <p class="lead" data-reveal>From capture to workflow to secure archive — grow bigger with high-tech solutions built for organisations that run on paper today and can't afford to tomorrow.</p>
+    </div>
+
+    <div class="sol-grid">
+      <article class="sol-card" data-reveal>
+        <div class="sol-top">
+          <span class="sol-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/></svg></span>
+          <span class="sol-idx">/ 01</span>
+        </div>
+        <h3>Document Management</h3>
+        <p>DocuDEX EDMS — our flagship — helps organisations capture, manage, store and search valuable documents with speed and total control.</p>
+        <a class="sol-link" href="https://devnetlimited.com/docudex-edms/" target="_blank" rel="noopener noreferrer">Explore DocuDEX EDMS <span class="ar">→</span></a>
+      </article>
+
+      <article class="sol-card" data-reveal>
+        <div class="sol-top">
+          <span class="sol-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+          <span class="sol-idx">/ 02</span>
+        </div>
+        <h3>Process Automation</h3>
+        <p>DocuDEX Workflow routes official activities and tasks automatically — so approvals move in hours, not weeks, and nothing gets lost.</p>
+        <a class="sol-link" href="https://devnetlimited.com/docudex-workflow/" target="_blank" rel="noopener noreferrer">Explore Workflow <span class="ar">→</span></a>
+      </article>
+
+      <article class="sol-card" data-reveal>
+        <div class="sol-top">
+          <span class="sol-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2"/><path d="M7 12h10M7 8.5h6M7 15.5h8"/></svg></span>
+          <span class="sol-idx">/ 03</span>
+        </div>
+        <h3>Capture Software</h3>
+        <p>Content intelligence that turns scanned paper into structured, data-driven insight — powering faster, sharper decisions across your business.</p>
+        <a class="sol-link" href="https://devnetlimited.com/capture-software/" target="_blank" rel="noopener noreferrer">Explore Capture <span class="ar">→</span></a>
+      </article>
+
+      <article class="sol-card" data-reveal>
+        <div class="sol-top">
+          <span class="sol-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></svg></span>
+          <span class="sol-idx">/ 04</span>
+        </div>
+        <h3>Record Management</h3>
+        <p>Move your business records offsite — secure, compliant storage and management for both electronic and hard-copy archives.</p>
+        <a class="sol-link" href="https://devnetlimited.com/record-management/" target="_blank" rel="noopener noreferrer">Explore Records <span class="ar">→</span></a>
+      </article>
+
+      <article class="sol-card" data-reveal>
+        <div class="sol-top">
+          <span class="sol-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M8 18v2M16 18v2"/></svg></span>
+          <span class="sol-idx">/ 05</span>
+        </div>
+        <h3>Document Scanners</h3>
+        <p>High-volume scanning hardware — robotic, book &amp; map, and microfilm scanners — that minimises downtime and keeps work flowing.</p>
+        <a class="sol-link" href="https://devnetlimited.com/document-scanner/" target="_blank" rel="noopener noreferrer">Explore Scanners <span class="ar">→</span></a>
+      </article>
+
+      <article class="sol-card" data-reveal>
+        <div class="sol-top">
+          <span class="sol-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.5V11h3a4 4 0 0 1 4 4 4 4 0 0 1-4 4h-.5"/><path d="M12 2a4 4 0 0 0-4 4c0 1.5.8 2.8 2 3.5V11H7a4 4 0 0 0-4 4 4 4 0 0 0 4 4h.5"/><path d="M12 11v11M9 19l3 3 3-3"/></svg></span>
+          <span class="sol-idx">/ 06</span>
+        </div>
+        <h3>AI &amp; Machine Learning</h3>
+        <p>ICR, OCR and RPA that read, classify and route documents automatically — the intelligence layer behind a truly paperless office.</p>
+        <span class="sol-link">Ask us how <span class="ar">→</span></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DOCUDEX SPOTLIGHT ================= -->
+<section class="docudex" id="docudex">
+  <div class="wrap">
+    <div class="dx-grid">
+      <div>
+        <div class="sec-head" style="margin-bottom:0">
+          <span class="eyebrow">02 — The flagship</span>
+          <h2>
+            <span class="lm"><span>Meet</span></span>
+            <span class="lm"><span><em class="serif-i" style="color:var(--green-deep)">DocuDEX</em>.</span></span>
+          </h2>
+        </div>
+        <div class="dx-feats">
+          <div class="dx-feat" data-reveal>
+            <span class="dx-feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+            <div><b>Capture</b><p>Scan and ingest at industrial scale — 30M+ pages a year, from loose leaf to century-old maps.</p></div>
+          </div>
+          <div class="dx-feat" data-reveal>
+            <span class="dx-feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></span>
+            <div><b>Manage</b><p>Version, permission and audit every file — with workflow that keeps official tasks moving.</p></div>
+          </div>
+          <div class="dx-feat" data-reveal>
+            <span class="dx-feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>
+            <div><b>Store</b><p>Secure onsite or offsite archives for electronic and hard-copy records alike.</p></div>
+          </div>
+          <div class="dx-feat" data-reveal>
+            <span class="dx-feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></span>
+            <div><b>Search</b><p>Full-text, ICR-powered retrieval across 70 billion images — answers in seconds, not storerooms.</p></div>
+          </div>
+        </div>
+        <div class="dx-cta" data-reveal>
+          <a class="btn btn-green" href="https://devnetlimited.com/docudex-edms/" target="_blank" rel="noopener noreferrer">See DocuDEX in detail <span class="ar">→</span></a>
+        </div>
+      </div>
+
+      <div class="mock" data-reveal aria-hidden="true">
+        <div class="mock-bar">
+          <span class="mdot r"></span><span class="mdot y"></span><span class="mdot g"></span>
+          <span class="mock-title">DocuDEX EDMS — Central Archive</span>
+          <span class="mock-badge">LIVE</span>
+        </div>
+        <div class="mock-body">
+          <div class="mock-side">
+            <span class="ms-ico on"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+            <span class="ms-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span>
+            <span class="ms-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.2 4.2l2.8 2.8M17 17l2.8 2.8M1 12h4M19 12h4M4.2 19.8L7 17M17 7l2.8-2.8"/></svg></span>
+            <span class="ms-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          </div>
+          <div class="mock-main">
+            <div class="mock-search">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+              Search 70,000,000,000 indexed images…
+            </div>
+            <div class="mrow" data-mrow>
+              <span class="mrow-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
+              <div><div class="mrow-name">RAJUK_plot-allotment_0117.pdf</div><div class="mrow-meta">Housing · scanned 09:41 · v3</div></div>
+              <span class="mchip ok">INDEXED</span>
+            </div>
+            <div class="mrow" data-mrow>
+              <span class="mrow-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span>
+              <div><div class="mrow-name">mouza-map_district-04.tif</div><div class="mrow-meta">DLRS · geo-tagged · 600 dpi</div></div>
+              <span class="mchip ok">OCR 99.2%</span>
+            </div>
+            <div class="mrow" data-mrow>
+              <span class="mrow-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M9 15l2 2 4-4"/></svg></span>
+              <div><div class="mrow-name">loan-file_AGB-2291.pdf</div><div class="mrow-meta">Banking · workflow step 3/4</div></div>
+              <span class="mchip rev">IN REVIEW</span>
+            </div>
+            <div class="mrow" data-mrow>
+              <span class="mrow-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+              <div><div class="mrow-name">national-library_archive-1954.tif</div><div class="mrow-meta">Heritage · newspaper · restored</div></div>
+              <span class="mchip ok">ARCHIVED</span>
+            </div>
+            <div class="mock-foot"><span>4 of 2,847 results</span><b>0.3s query time</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dx-suite">
+      <span class="dx-suite-label" data-reveal>The full product suite</span>
+      <div class="chips" data-reveal>
+        <span class="chip">DocuDEX EDMS</span>
+        <span class="chip">DocuDEX Workflow</span>
+        <span class="chip">Agile Audit</span>
+        <span class="chip">HRIS</span>
+        <span class="chip">Invoice Processing</span>
+        <span class="chip">Online Proctoring</span>
+        <span class="chip">Library Management</span>
+        <span class="chip">e-KYC Management</span>
+        <span class="chip">Land Management</span>
+        <span class="chip">RPA</span>
+        <span class="chip">Robotic Scanners</span>
+        <span class="chip">Book &amp; Map Scanners</span>
+        <span class="chip">Microfilm Scanners</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MILESTONES ================= -->
+<section class="miles" id="milestones">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">03 — Proven at national scale</span>
+      <h2>
+        <span class="lm"><span>Milestones that</span></span>
+        <span class="lm"><span>moved a <em class="serif-i" style="color:var(--green-deep)">nation</em>.</span></span>
+      </h2>
+    </div>
+    <div class="miles-grid">
+      <article class="mile feat" data-reveal>
+        <span class="mile-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4z"/><path d="M8 2v16M16 6v16"/></svg></span>
+        <span class="mile-tag">Land Management — DLRS</span>
+        <div class="mile-num"><span class="count" data-count="213">0</span><em>K</em></div>
+        <h3>Mouza maps scanned &amp; archived</h3>
+        <p>Digitising the land records of Bangladesh — one of the largest geospatial archiving programmes in the country's history.</p>
+      </article>
+      <article class="mile" data-reveal>
+        <span class="mile-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></span>
+        <span class="mile-tag">Banking sector</span>
+        <div class="mile-num"><span class="count" data-count="10">0</span><em>+</em></div>
+        <h3>Banks on DocuDEX DMS &amp; Workflow</h3>
+        <p>Loan files, KYC and approvals automated end-to-end — maximising efficiency and minimising cost across the financial sector.</p>
+      </article>
+      <article class="mile" data-reveal>
+        <span class="mile-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+        <span class="mile-tag">National heritage</span>
+        <div class="mile-num" style="font-size:clamp(1.7rem,2.4vw,2.2rem);margin-top:2.6rem">National Library</div>
+        <h3>A country's memory, digitised</h3>
+        <p>Old books, newspapers, magazines and maps converted through our imaging solution and customised Digital Library Management System.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VALUES ================= -->
+<section class="values" aria-label="Core values">
+  <div class="wrap">
+    <div class="val-grid">
+      <div class="val" data-reveal>
+        <span class="val-idx">01</span>
+        <h3>User-centred</h3>
+        <p>Iterative design and development that produces highly usable, accessible products people actually enjoy using.</p>
+      </div>
+      <div class="val" data-reveal>
+        <span class="val-idx">02</span>
+        <h3>Innovation &amp; creativity</h3>
+        <p>New ideas lead to better products, better services — and a richer, more dynamic society.</p>
+      </div>
+      <div class="val" data-reveal>
+        <span class="val-idx">03</span>
+        <h3>Agility &amp; adaptability</h3>
+        <p>In a fast-moving world, we continuously empower individuals and organisations to change course with confidence.</p>
+      </div>
+      <div class="val" data-reveal>
+        <span class="val-idx">04</span>
+        <h3>Collaboration</h3>
+        <p>Active participation and teamwork — long-term relationships that consistently deliver business value.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PARTNERS ================= -->
+<section class="partners" id="partners" aria-label="International partners">
+  <p class="partners-label" data-reveal>International partners powering world-class delivery</p>
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="plogo">ABBYY <span class="pdot"></span></span>
+      <span class="plogo">KODAK ALARIS <span class="pdot"></span></span>
+      <span class="plogo">AVISION <span class="pdot"></span></span>
+      <span class="plogo">ATIZ <span class="pdot"></span></span>
+      <span class="plogo">PIQL <span class="pdot"></span></span>
+      <span class="plogo">I2S <span class="pdot"></span></span>
+      <span class="plogo">GONSIN <span class="pdot"></span></span>
+      <span class="plogo">SMA <span class="pdot"></span></span>
+      <span class="plogo">ABBYY <span class="pdot"></span></span>
+      <span class="plogo">KODAK ALARIS <span class="pdot"></span></span>
+      <span class="plogo">AVISION <span class="pdot"></span></span>
+      <span class="plogo">ATIZ <span class="pdot"></span></span>
+      <span class="plogo">PIQL <span class="pdot"></span></span>
+      <span class="plogo">I2S <span class="pdot"></span></span>
+      <span class="plogo">GONSIN <span class="pdot"></span></span>
+      <span class="plogo">SMA <span class="pdot"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="voices" id="voices">
+  <div class="wrap">
+    <span class="eyebrow">04 — Client voices</span>
+    <span class="quote-mark serif-i" aria-hidden="true">"</span>
+
+    <div class="t-stage" id="tStage">
+      <div class="t-slide active">
+        <p class="t-quote">Digital archiving solutions provided by Devnet — their customised EDMS and scanning services — allowed us to preserve the files of plots and flats across RAJUK's housing model towns.</p>
+        <div class="t-who">
+          <span class="t-ava">KH</span>
+          <div>
+            <div class="t-name">Kazi Mohammad Mahabubul Hoque</div>
+            <div class="t-role">System Analyst &amp; Project Manager, MIS — RAJUK</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-slide">
+        <p class="t-quote">Devnet's strategic design of a pragmatic data capture and imaging solution — tailored for GR data entry, processing and optimisation — has yielded substantial benefits.</p>
+        <div class="t-who">
+          <span class="t-ava">AA</span>
+          <div>
+            <div class="t-name">Prof. Dr. Abul Kalam Azad</div>
+            <div class="t-role">ADG (Planning &amp; Development) &amp; Director MIS — Directorate General of Health Services</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-slide">
+        <p class="t-quote">Devnet, with ABBYY FlexiCapture, was willing to meet our individual needs — which ensured the success of project QUICKFILL.</p>
+        <div class="t-who">
+          <span class="t-ava">AS</span>
+          <div>
+            <div class="t-name">Abu Shair</div>
+            <div class="t-role">Information Services Head — Linde Bangladesh Limited</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="t-ctrl">
+      <div class="t-dots" role="tablist" aria-label="Testimonials">
+        <button class="t-dot on" data-i="0" aria-label="Testimonial 1"></button>
+        <button class="t-dot" data-i="1" aria-label="Testimonial 2"></button>
+        <button class="t-dot" data-i="2" aria-label="Testimonial 3"></button>
+      </div>
+      <div class="t-arrows">
+        <button class="t-btn" id="tPrev" aria-label="Previous testimonial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+        <button class="t-btn" id="tNext" aria-label="Next testimonial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta" id="contact">
+  <div class="wrap cta-in">
+    <span class="cta-eyebrow" data-reveal>Ready when you are</span>
+    <h2 class="cta-big" id="ctaBig">
+      <span class="lm"><span>Let's go</span></span>
+      <span class="lm"><span><em class="serif-i">paperless<svg viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 18 C 60 8, 150 6, 296 12" /></svg></em>.</span></span>
+    </h2>
+    <p class="cta-sub" data-reveal>Tell us what's buried in your filing rooms. Our team will show you how DocuDEX captures it, indexes it and puts it a search away — keeping you cool, in every step.</p>
+    <div class="cta-btns" data-reveal>
+      <a class="btn btn-green" href="mailto:info@devnetlimited.com">info@devnetlimited.com <span class="ar">→</span></a>
+      <a class="btn btn-ghost" href="tel:+8801713044055">+880 1713-044055</a>
+    </div>
+    <p class="cta-mini" data-reveal>Level-9 (East), BDBL Bhaban · 12 Kawran Bazar · Dhaka-1215, Bangladesh</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <a href="#top" class="logo" aria-label="Devnet Limited">
+          <span class="logo-mark" aria-hidden="true"></span>
+          devnet
+        </a>
+        <p>Comprehensive, powerful and scalable e-governance solutions — built in Dhaka since 1997. Empowering Smart Bangladesh, one document at a time.</p>
+        <p class="f-assoc">Member — <b>BASIS</b> · <b>DCCI</b> · <b>BGCCI</b></p>
+      </div>
+      <div>
+        <h4>Solutions</h4>
+        <ul class="f-list">
+          <li><a href="https://devnetlimited.com/docudex-edms/" target="_blank" rel="noopener noreferrer">DocuDEX EDMS</a></li>
+          <li><a href="https://devnetlimited.com/docudex-workflow/" target="_blank" rel="noopener noreferrer">DocuDEX Workflow</a></li>
+          <li><a href="https://devnetlimited.com/capture-software/" target="_blank" rel="noopener noreferrer">Capture Software</a></li>
+          <li><a href="https://devnetlimited.com/record-management/" target="_blank" rel="noopener noreferrer">Record Management</a></li>
+          <li><a href="https://devnetlimited.com/document-scanner/" target="_blank" rel="noopener noreferrer">Document Scanners</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul class="f-list">
+          <li><span>Document Scanning &amp; Archiving</span></li>
+          <li><span>Application Development</span></li>
+          <li><span>Mobile App Development</span></li>
+          <li><span>Data Processing &amp; BPO</span></li>
+          <li><span>Banking Solutions</span></li>
+          <li><span>AI &amp; Machine Learning</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div class="f-contact">
+          <div class="row">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Level-9 (East), BDBL Bhaban,<br>12 Kawran Bazar, Dhaka-1215, Bangladesh</span>
+          </div>
+          <div class="row">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span><a href="tel:+880255013964">+8802 55013964</a> · <a href="tel:+880255013965">65</a><br><a href="tel:+8801713044055">+880 1713-044055</a></span>
+          </div>
+          <div class="row">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            <span><a href="mailto:info@devnetlimited.com">info@devnetlimited.com</a></span>
+          </div>
+          <div class="row">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span><a href="https://devnetlimited.com" target="_blank" rel="noopener noreferrer">devnetlimited.com</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© 1997–2026 Devnet Limited. All rights reserved.</span>
+      <span class="tag">Keeping you cool, in every step.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Nav: glass + hide on scroll down ---------- */
+  var nav = document.getElementById("nav");
+  var lastY = 0;
+  function onScroll(){
+    var y = window.scrollY;
+    nav.classList.toggle("scrolled", y > 40);
+    if (y > 420 && y > lastY + 6) nav.classList.add("hidden-nav");
+    else if (y < lastY - 6 || y <= 420) nav.classList.remove("hidden-nav");
+    lastY = y;
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById("progress").style.width = (h > 0 ? (y / h) * 100 : 0) + "%";
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  /* ---------- Mobile menu ---------- */
+  var burger = document.getElementById("burger");
+  var mmenu = document.getElementById("mmenu");
+  burger.addEventListener("click", function(){
+    var open = mmenu.classList.toggle("open");
+    burger.classList.toggle("open", open);
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
+    document.body.style.overflow = open ? "hidden" : "";
+  });
+  mmenu.querySelectorAll("a").forEach(function(a){
+    a.addEventListener("click", function(){
+      mmenu.classList.remove("open");
+      burger.classList.remove("open");
+      burger.setAttribute("aria-expanded","false");
+      document.body.style.overflow = "";
+    });
+  });
+
+  /* ---------- Testimonial carousel ---------- */
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".t-slide"));
+  var dots = Array.prototype.slice.call(document.querySelectorAll(".t-dot"));
+  var tIdx = 0, tTimer = null;
+  function tGo(i){
+    tIdx = (i + slides.length) % slides.length;
+    slides.forEach(function(s, k){ s.classList.toggle("active", k === tIdx); });
+    dots.forEach(function(d, k){ d.classList.toggle("on", k === tIdx); });
+    var st = document.getElementById("tStage");
+    st.style.minHeight = Math.max(260, slides[tIdx].offsetHeight) + "px";
+  }
+  function tAuto(){
+    clearInterval(tTimer);
+    if (!reduced) tTimer = setInterval(function(){ tGo(tIdx + 1); }, 6500);
+  }
+  document.getElementById("tNext").addEventListener("click", function(){ tGo(tIdx+1); tAuto(); });
+  document.getElementById("tPrev").addEventListener("click", function(){ tGo(tIdx-1); tAuto(); });
+  dots.forEach(function(d){ d.addEventListener("click", function(){ tGo(+d.dataset.i); tAuto(); }); });
+  window.addEventListener("resize", function(){ tGo(tIdx); });
+  tGo(0); tAuto();
+
+  /* ---------- Counters ---------- */
+  function runCounter(el){
+    var target = +el.dataset.count;
+    var dur = 1600, t0 = null;
+    function step(ts){
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 4);
+      el.textContent = Math.round(target * eased).toLocaleString("en-US");
+      if (p < 1) requestAnimationFrame(step);
+    }
+    if (reduced){ el.textContent = target.toLocaleString("en-US"); return; }
+    requestAnimationFrame(step);
+  }
+
+  /* ---------- GSAP animations ---------- */
+  if (!reduced && window.gsap && window.ScrollTrigger){
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* hero entrance */
+    var heroLines = document.querySelectorAll(".hero .lm > span");
+    gsap.set(heroLines, {yPercent:115});
+    gsap.set(".hero [data-h]", {opacity:0, y:26});
+    gsap.set(".fcard", {opacity:0, y:40, scale:.94});
+    var tl = gsap.timeline({defaults:{ease:"power4.out"}});
+    tl.to(heroLines, {yPercent:0, duration:1.15, stagger:.14}, .15)
+      .to(".hero [data-h]", {opacity:1, y:0, duration:.9, stagger:.12}, "-=.7")
+      .to(".fcard", {opacity:1, y:0, scale:1, duration:1, stagger:.14, ease:"power3.out", clearProps:"scale"}, "-=.9");
+
+    /* section heading line reveals */
+    document.querySelectorAll("main .lm > span").forEach(function(el){
+      gsap.fromTo(el, {yPercent:115}, {
+        yPercent:0, duration:1.05, ease:"power4.out",
+        scrollTrigger:{trigger:el.closest("h2") || el, start:"top 88%"}
+      });
+    });
+
+    /* generic reveals */
+    ScrollTrigger.batch("[data-reveal]", {
+      start:"top 90%",
+      onEnter: function(batch){
+        gsap.fromTo(batch, {opacity:0, y:34}, {opacity:1, y:0, duration:.95, stagger:.09, ease:"power3.out", overwrite:true});
+      },
+      once:true
+    });
+    gsap.set("[data-reveal]", {opacity:0});
+
+    /* counters on enter */
+    document.querySelectorAll(".count").forEach(function(el){
+      ScrollTrigger.create({
+        trigger: el, start:"top 92%", once:true,
+        onEnter: function(){ runCounter(el); }
+      });
+    });
+
+    /* mock rows stagger */
+    gsap.fromTo("[data-mrow]", {opacity:0, x:26}, {
+      opacity:1, x:0, duration:.7, stagger:.12, ease:"power3.out",
+      scrollTrigger:{trigger:".mock", start:"top 75%"}
+    });
+
+    /* chips pop */
+    gsap.fromTo(".chip", {opacity:0, y:16, scale:.92}, {
+      opacity:1, y:0, scale:1, duration:.55, stagger:.045, ease:"back.out(1.6)",
+      scrollTrigger:{trigger:".chips", start:"top 88%"}
+    });
+
+    /* CTA underline draw */
+    var ctaPath = document.querySelector(".cta-big path");
+    if (ctaPath){
+      var len = ctaPath.getTotalLength();
+      gsap.set(ctaPath, {strokeDasharray:len, strokeDashoffset:len});
+      gsap.to(ctaPath, {strokeDashoffset:0, duration:1.2, ease:"power2.inOut",
+        scrollTrigger:{trigger:".cta-big", start:"top 75%"}});
+    }
+
+    /* CTA gentle scale scrub */
+    gsap.fromTo(".cta-in", {scale:.965, y:30}, {scale:1, y:0, ease:"none",
+      scrollTrigger:{trigger:".cta", start:"top 90%", end:"top 35%", scrub:1}});
+
+    /* hero visual mouse parallax (desktop only) */
+    var hv = document.getElementById("heroVisual");
+    if (hv && window.matchMedia("(pointer:fine)").matches){
+      var hero = document.querySelector(".hero");
+      hero.addEventListener("pointermove", function(e){
+        var r = hero.getBoundingClientRect();
+        var dx = (e.clientX - r.left) / r.width - .5;
+        var dy = (e.clientY - r.top) / r.height - .5;
+        hv.querySelectorAll(".fcard").forEach(function(c){
+          var d = +c.dataset.depth || 16;
+          gsap.to(c, {x: dx * d, y: dy * d, duration:1.1, ease:"power2.out"});
+        });
+      });
+      hero.addEventListener("pointerleave", function(){
+        hv.querySelectorAll(".fcard").forEach(function(c){
+          gsap.to(c, {x:0, y:0, duration:1.2, ease:"power3.out"});
+        });
+      });
+    }
+  } else {
+    document.querySelectorAll(".count").forEach(function(el){
+      el.textContent = (+el.dataset.count).toLocaleString("en-US");
+    });
+  }
+})();
+</script>
+</body>
+</html>

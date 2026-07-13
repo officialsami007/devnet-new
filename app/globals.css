@@ -64,6 +64,7 @@ nav.hidden-nav{transform:translateY(-100%)}
 .logo-mark{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--green) 0%,var(--green-deep) 100%);position:relative;flex:none;box-shadow:0 4px 14px rgba(22,163,74,.4)}
 .logo-mark::before{content:"";position:absolute;inset:9px;border:2.5px solid #fff;border-radius:50%;border-right-color:transparent;transform:rotate(-45deg)}
 .logo-mark::after{content:"";position:absolute;top:7px;right:7px;width:6px;height:6px;border-radius:50%;background:var(--red)}
+.logo-img{height:32px;width:auto;display:block}
 .nav-links{display:flex;gap:2.1rem;align-items:center;list-style:none}
 .nav-links a{color:rgba(255,255,255,.8);font-size:.92rem;font-weight:500;position:relative;padding:.2rem 0;transition:color .25s}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:100%;height:1.5px;background:var(--green-hot);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}

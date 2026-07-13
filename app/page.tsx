@@ -362,22 +362,25 @@ export default function Home() {
           </a>
           <ul className="nav-links">
             <li>
-              <a href="/products">Products</a>
-            </li>
-            <li>
-              <a href="/services">Services</a>
+              <a href="#solutions">Solutions</a>
             </li>
             <li>
               <a href="#docudex">DocuDEX</a>
             </li>
             <li>
-              <a href="/about">About</a>
+              <a href="#milestones">Milestones</a>
             </li>
             <li>
-              <a href="/contact">Contact</a>
+              <a href="#voices">Clients</a>
+            </li>
+            <li>
+              <a href="#contact">Contact</a>
             </li>
           </ul>
-          <a className="btn btn-hot nav-cta" href="/contact">
+          <a
+            className="btn btn-hot nav-cta"
+            href="mailto:info@devnetlimited.com"
+          >
             Get in touch <span className="ar">→</span>
           </a>
           <button
@@ -393,12 +396,12 @@ export default function Home() {
         </div>
       </nav>
       <div className="m-menu" id="mmenu">
-        <a href="/products">Products</a>
-        <a href="/services">Services</a>
+        <a href="#solutions">Solutions</a>
         <a href="#docudex">DocuDEX</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-        <a className="btn btn-hot" href="/contact">
+        <a href="#milestones">Milestones</a>
+        <a href="#voices">Clients</a>
+        <a href="#contact">Contact</a>
+        <a className="btn btn-hot" href="mailto:info@devnetlimited.com">
           Get in touch <span className="ar">→</span>
         </a>
       </div>

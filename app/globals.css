@@ -383,8 +383,10 @@ footer h4{font-family:var(--mono);font-size:.68rem;font-weight:500;letter-spacin
   .hero-in{padding:8rem 0 11rem}
   .hero h1{font-size:clamp(2.8rem,12vw,4.2rem)}
   .bento{grid-template-columns:1fr}
-  .b-imgcard{grid-column:auto;min-height:380px}
   .b-card{min-height:auto}
+  .b-imgcard{grid-column:auto;min-height:340px}
+  .b-imgbody{padding-top:4.2rem}
+  .b-one .b-imgbody{padding-top:4rem}
   .sb-grid{grid-template-columns:1fr 1fr;gap:.8rem}
   .sb-card{padding:1.3rem 1.2rem 1.2rem}
   .t-quote{font-size:1.25rem}

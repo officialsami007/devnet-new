@@ -2,15 +2,25 @@
 Concept redesign of devnetlimited.com · prepared July 2026
 
 ## Quick start
-Open `index.html` in any modern browser (or drop the whole folder on any static host / your CMS's public directory). All images and videos are local; only two things load from CDN and require internet:
+This is a [Next.js](https://nextjs.org) (App Router, TypeScript) project.
 
-- **Google Fonts** — Archivo (500–800), Inter (400–600), IBM Plex Mono (400/500)
-- **GSAP 3.12 + ScrollTrigger** — jsdelivr CDN (scroll animations)
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm start        # serve the production build
+```
+
+Fonts (Archivo, Inter, IBM Plex Mono) are self-hosted at build time via `next/font/google`, and GSAP + ScrollTrigger are bundled as npm dependencies — so the site needs no runtime CDN access.
 
 ## Folder structure
 ```
-index.html                     The full homepage (single self-contained file: HTML + CSS + JS)
-assets/
+app/
+  layout.tsx                   Root layout — fonts + metadata
+  page.tsx                     The full homepage (markup + client-side animations)
+  globals.css                  All styles (design tokens + components)
+next.config.mjs                Next.js config
+public/assets/
   img/
     hero-poster.jpg            Hero poster frame (shows while hero video loads)
     scanner-macro.jpg          Bento — Document Management card

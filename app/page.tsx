@@ -362,25 +362,22 @@ export default function Home() {
           </a>
           <ul className="nav-links">
             <li>
-              <a href="#solutions">Solutions</a>
+              <a href="/products">Products</a>
+            </li>
+            <li>
+              <a href="/services">Services</a>
             </li>
             <li>
               <a href="#docudex">DocuDEX</a>
             </li>
             <li>
-              <a href="#milestones">Milestones</a>
+              <a href="/about">About</a>
             </li>
             <li>
-              <a href="#voices">Clients</a>
-            </li>
-            <li>
-              <a href="#contact">Contact</a>
+              <a href="/contact">Contact</a>
             </li>
           </ul>
-          <a
-            className="btn btn-hot nav-cta"
-            href="mailto:info@devnetlimited.com"
-          >
+          <a className="btn btn-hot nav-cta" href="/contact">
             Get in touch <span className="ar">→</span>
           </a>
           <button
@@ -396,12 +393,12 @@ export default function Home() {
         </div>
       </nav>
       <div className="m-menu" id="mmenu">
-        <a href="#solutions">Solutions</a>
+        <a href="/products">Products</a>
+        <a href="/services">Services</a>
         <a href="#docudex">DocuDEX</a>
-        <a href="#milestones">Milestones</a>
-        <a href="#voices">Clients</a>
-        <a href="#contact">Contact</a>
-        <a className="btn btn-hot" href="mailto:info@devnetlimited.com">
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a className="btn btn-hot" href="/contact">
           Get in touch <span className="ar">→</span>
         </a>
       </div>
@@ -546,13 +543,7 @@ export default function Home() {
 
             <div className="bento">
               {/* Image card 1 */}
-              <a
-                className="b-card b-imgcard"
-                data-reveal
-                href="https://devnetlimited.com/docudex-edms/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a className="b-card b-imgcard" data-reveal href="/docudex-edms">
                 <img
                   src="/assets/img/scanner-macro.jpg"
                   alt="High-speed production document scanner in operation"
@@ -587,9 +578,7 @@ export default function Home() {
               <a
                 className="b-card b-imgcard b-one"
                 data-reveal
-                href="https://devnetlimited.com/docudex-workflow/"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/docudex-workflow"
               >
                 <img
                   src="/assets/img/workflow-approval.jpg"
@@ -624,9 +613,7 @@ export default function Home() {
               <a
                 className="b-card b-imgcard b-one"
                 data-reveal
-                href="https://devnetlimited.com/capture-software/"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/capture-software"
               >
                 <img
                   src="/assets/img/capture-analysis.jpg"
@@ -661,9 +648,7 @@ export default function Home() {
               <a
                 className="b-card b-imgcard"
                 data-reveal
-                href="https://devnetlimited.com/record-management/"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/record-management"
               >
                 <img
                   src="/assets/img/records-vault.jpg"
@@ -699,9 +684,7 @@ export default function Home() {
               <a
                 className="b-card b-imgcard b-one"
                 data-reveal
-                href="https://devnetlimited.com/document-scanner/"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/document-scanner"
               >
                 <img
                   src="/assets/img/scanner-hardware.jpg"
@@ -1554,49 +1537,19 @@ export default function Home() {
               <h4>Solutions</h4>
               <ul className="f-list">
                 <li>
-                  <a
-                    href="https://devnetlimited.com/docudex-edms/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    DocuDEX EDMS
-                  </a>
+                  <a href="/docudex-edms">DocuDEX EDMS</a>
                 </li>
                 <li>
-                  <a
-                    href="https://devnetlimited.com/docudex-workflow/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    DocuDEX Workflow
-                  </a>
+                  <a href="/docudex-workflow">DocuDEX Workflow</a>
                 </li>
                 <li>
-                  <a
-                    href="https://devnetlimited.com/capture-software/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Capture Software
-                  </a>
+                  <a href="/capture-software">Capture Software</a>
                 </li>
                 <li>
-                  <a
-                    href="https://devnetlimited.com/record-management/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Record Management
-                  </a>
+                  <a href="/record-management">Record Management</a>
                 </li>
                 <li>
-                  <a
-                    href="https://devnetlimited.com/document-scanner/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Document Scanners
-                  </a>
+                  <a href="/document-scanner">Document Scanners</a>
                 </li>
               </ul>
             </div>

@@ -13,12 +13,31 @@ npm start        # serve the production build
 
 Fonts (Archivo, Inter, IBM Plex Mono) are self-hosted at build time via `next/font/google`, and GSAP + ScrollTrigger are bundled as npm dependencies — so the site needs no runtime CDN access.
 
+## Site structure
+Beyond the animated homepage, the site has full product/service pages driven by a
+single content source (`data/site-content.ts`, adapted from devnetlimited.com):
+
+- `/` — animated homepage
+- `/products`, `/services` — catalog pages
+- `/<slug>` — 23 product & service detail pages (e.g. `/docudex-edms`, `/rpa`,
+  `/digital-archiving`), generated statically from the content data
+- `/about` — vision, mission, leadership, team, certifications
+- `/contact` — contact form (posts to `/api/contact`)
+- `/api/contact`, `/api/newsletter` — form handlers. The contact route runs in
+  "demo mode" (logs and validates) unless `RESEND_API_KEY` is set; see `.env.example`.
+
 ## Folder structure
 ```
 app/
   layout.tsx                   Root layout — fonts + metadata
   page.tsx                     The full homepage (markup + client-side animations)
-  globals.css                  All styles (design tokens + components)
+  globals.css                  All styles (design tokens + components + interior pages)
+  [slug]/page.tsx              Product/service detail pages (generateStaticParams)
+  products/, services/         Catalog pages
+  about/, contact/             Company pages
+  api/contact/, api/newsletter/  Form handler routes
+components/                    SiteNav, SiteFooter, SolutionPage, ContactForm, NewsletterForm, Icon
+data/site-content.ts          All company content (products, services, testimonials, contacts)
 next.config.mjs                Next.js config
 public/assets/
   img/

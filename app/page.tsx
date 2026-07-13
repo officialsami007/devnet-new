@@ -357,14 +357,8 @@ export default function Home() {
       <nav id="nav" aria-label="Main navigation">
         <div className="nav-in">
           <a href="#top" className="logo" aria-label="Devnet Limited — home">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="logo-img"
-              src="/devnet-logo.png"
-              alt="Devnet Limited"
-              width={120}
-              height={38}
-            />
+            <span className="logo-mark" aria-hidden="true"></span>
+            devnet
           </a>
           <ul className="nav-links">
             <li>
@@ -1527,14 +1521,8 @@ export default function Home() {
           <div className="f-grid">
             <div className="f-brand">
               <a href="#top" className="logo" aria-label="Devnet Limited">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  className="logo-img"
-                  src="/devnet-logo.png"
-                  alt="Devnet Limited"
-                  width={120}
-                  height={38}
-                />
+                <span className="logo-mark" aria-hidden="true"></span>
+                devnet
               </a>
               <p>
                 Comprehensive, powerful and scalable e-governance solutions —

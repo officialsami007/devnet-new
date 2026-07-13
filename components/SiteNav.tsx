@@ -33,14 +33,8 @@ export function SiteNav() {
       <nav className="sitenav" aria-label="Main navigation">
         <div className="nav-in">
           <Link href="/" className="logo" aria-label="Devnet Limited — home">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="logo-img"
-              src="/devnet-logo.png"
-              alt="Devnet Limited"
-              width={120}
-              height={38}
-            />
+            <span className="logo-mark" aria-hidden="true"></span>
+            devnet
           </Link>
           <div className="sitenav-links">{links}</div>
           <Link className="btn btn-hot nav-cta" href="/contact">

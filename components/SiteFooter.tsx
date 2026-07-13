@@ -9,8 +9,14 @@ export function SiteFooter() {
         <div className="f-grid f-grid-wide">
           <div className="f-brand">
             <Link href="/" className="logo" aria-label="Devnet Limited">
-              <span className="logo-mark" aria-hidden="true"></span>
-              devnet
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                className="logo-img"
+                src="/devnet-logo.png"
+                alt="Devnet Limited"
+                width={120}
+                height={38}
+              />
             </Link>
             <p>
               Comprehensive, powerful and scalable e-governance solutions —

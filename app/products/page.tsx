@@ -2,18 +2,35 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
-import { productPages } from "@/data/site-content";
+import {
+  docudexCoreSlugs,
+  docudexExtendedSlugs,
+  getContentPage,
+  productPages,
+  type SitePage,
+} from "@/data/site-content";
 
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "Explore Devnet document management, workflow, capture, business solutions and scanning hardware.",
+    "Explore the DocuDEX platform — document management, workflow, capture — plus business solutions and scanning hardware from Devnet.",
 };
 
+const bySlugs = (slugs: string[]) =>
+  slugs.map(getContentPage).filter(Boolean) as SitePage[];
+
+const docudexSlugSet = new Set([...docudexCoreSlugs, ...docudexExtendedSlugs]);
+
 const groups = [
-  { label: "Content & workflow", items: productPages.slice(0, 4) },
-  { label: "Business systems", items: productPages.slice(4, 12) },
-  { label: "Scanning hardware", items: productPages.slice(12) },
+  { label: "The DocuDEX platform", items: bySlugs(docudexCoreSlugs) },
+  {
+    label: "Business solutions",
+    items: bySlugs(docudexExtendedSlugs),
+  },
+  {
+    label: "Scanning hardware",
+    items: productPages.filter((p) => !docudexSlugSet.has(p.slug)),
+  },
 ];
 
 export default function ProductsPage() {
@@ -26,19 +43,23 @@ export default function ProductsPage() {
             <div data-reveal>
               <span className="eyebrow">Devnet product portfolio</span>
               <h1>
-                One connected foundation for content, process and intelligent
-                operations.
+                Sixteen products, one standard — led by the DocuDEX platform.
               </h1>
             </div>
             <div data-reveal>
               <p className="lead">
-                Explore enterprise software and capture hardware designed for
-                document-heavy, regulated and public-service environments.
+                From our flagship DocuDEX document platform to business
+                solutions for audit, HR, identity and land — plus the scanning
+                hardware that feeds them — every Devnet product is built for
+                document-heavy, regulated operations.
               </p>
               <div className="catalog-hero-stat">
                 <strong>{productPages.length}</strong>
-                <span>product families</span>
+                <span>product families, one platform</span>
               </div>
+              <Link className="btn btn-hot" href="/docudex">
+                Explore the DocuDEX platform <span className="ar">→</span>
+              </Link>
             </div>
           </div>
         </section>
@@ -58,7 +79,11 @@ export default function ProductsPage() {
                       key={item.slug}
                       data-reveal
                     >
-                      <small className="b-idx">{item.category}</small>
+                      <small className="b-idx">
+                        {docudexCoreSlugs.includes(item.slug)
+                          ? "DocuDEX"
+                          : item.category}
+                      </small>
                       <span className="catalog-eyebrow">{item.eyebrow}</span>
                       <h3>{item.navTitle}</h3>
                       <p>{item.description}</p>

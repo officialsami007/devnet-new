@@ -21,6 +21,7 @@ export function SiteNav() {
   const links = (
     <>
       <Link href="/products">Products</Link>
+      <Link href="/docudex">DocuDEX</Link>
       <Link href="/services">Services</Link>
       <Link href="/about">About</Link>
       <Link href="/#voices">Clients</Link>

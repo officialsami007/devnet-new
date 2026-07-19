@@ -240,6 +240,25 @@ nav.hidden-nav{transform:translateY(-100%)}
   transition:background .3s,color .3s,border-color .3s,transform .3s var(--ease);cursor:default;
 }
 .chip:hover{background:var(--green-hot);color:var(--ink);border-color:var(--green-hot);transform:translateY(-3px)}
+a.chip{cursor:pointer}
+
+/* ============ PRODUCT FAMILY ============ */
+.family{background:var(--paper);padding:8rem 0 7rem}
+.family-group{margin-top:2.8rem}
+.family-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green-deep);margin-bottom:1.1rem;padding-bottom:.7rem;border-bottom:1px solid var(--line)}
+.family-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.family-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.5rem 1.4rem 1.3rem;display:flex;flex-direction:column;gap:.55rem;transition:transform .35s var(--ease),box-shadow .35s,border-color .35s}
+.family-card:hover{transform:translateY(-5px);border-color:var(--green-deep);box-shadow:0 18px 40px rgba(9,32,19,.10)}
+.family-card b{font-family:var(--disp);font-weight:700;font-size:1.02rem;color:var(--ink);letter-spacing:-.01em}
+.family-card p{font-size:.86rem;color:var(--mut);line-height:1.5;margin:0}
+.family-ico{width:38px;height:38px;border-radius:11px;background:var(--green-soft);display:flex;align-items:center;justify-content:center;color:var(--green-deep);margin-bottom:.3rem}
+.family-ico svg{width:19px;height:19px}
+.family-go{margin-top:auto;padding-top:.55rem;font-family:var(--disp);font-weight:600;font-size:.85rem;color:var(--green-deep)}
+.family-card:hover .family-go .ar{transform:translateX(4px)}
+.family-go .ar{display:inline-block;transition:transform .3s var(--ease)}
+.family-cta{display:flex;gap:.9rem;margin-top:3.2rem;justify-content:center;flex-wrap:wrap}
+@media(max-width:1020px){.family-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.family{padding:5rem 0}.family-grid{grid-template-columns:1fr}}
 
 /* ============ MILESTONES — IMAGE CARDS ============ */
 .miles{background:var(--paper);padding:8rem 0}

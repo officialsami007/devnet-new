@@ -721,6 +721,31 @@ export const servicePages: SitePage[] = [
 
 export const allContentPages = [...productPages, ...servicePages];
 
+/* DocuDEX platform grouping — the core lifecycle modules and the extended
+   application family built on the same platform. Order is presentation order. */
+export const docudexCoreSlugs = [
+  "capture-software",
+  "docudex-edms",
+  "docudex-workflow",
+  "record-management",
+  "invoice-processing"
+];
+
+export const docudexExtendedSlugs = [
+  "agile-audit",
+  "hrms",
+  "e-kyc-and-cim-solution",
+  "land-management-solution",
+  "library-management",
+  "online-proctoring",
+  "rpa"
+];
+
+export const docudexSuitePages = docudexCoreSlugs
+  .concat(docudexExtendedSlugs)
+  .map((slug) => productPages.find((p) => p.slug === slug))
+  .filter(Boolean) as SitePage[];
+
 export const productNavGroups = [
   {
     title: "Content & workflow",

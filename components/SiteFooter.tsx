@@ -30,7 +30,10 @@ export function SiteFooter() {
           <div>
             <h4>Products</h4>
             <ul className="f-list">
-              {productPages.slice(0, 7).map((page) => (
+              <li>
+                <Link href="/docudex">DocuDEX Platform</Link>
+              </li>
+              {productPages.slice(0, 6).map((page) => (
                 <li key={page.slug}>
                   <Link href={`/${page.slug}`}>{page.navTitle}</Link>
                 </li>

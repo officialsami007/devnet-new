@@ -1,6 +1,47 @@
 "use client";
 
 import { useEffect } from "react";
+import { Icon } from "@/components/Icon";
+import {
+  docudexCoreSlugs,
+  docudexExtendedSlugs,
+  productPages,
+} from "@/data/site-content";
+
+const familyIcons: Record<string, string> = {
+  "capture-software": "scan",
+  "docudex-edms": "layers",
+  "docudex-workflow": "workflow",
+  "record-management": "archive",
+  "invoice-processing": "wallet",
+  "agile-audit": "check",
+  hrms: "users",
+  "e-kyc-and-cim-solution": "fingerprint",
+  "land-management-solution": "map",
+  "library-management": "book",
+  "online-proctoring": "video",
+  rpa: "bot",
+  "document-scanner": "scanner",
+  "robotic-scanner": "factory",
+  "book-map-scanner": "book",
+  "microfilm-scanners": "film",
+};
+
+const familyGroups = [
+  { label: "The DocuDEX platform", slugs: docudexCoreSlugs },
+  { label: "Business solutions", slugs: docudexExtendedSlugs },
+  {
+    label: "Scanning hardware",
+    slugs: [
+      "document-scanner",
+      "robotic-scanner",
+      "book-map-scanner",
+      "microfilm-scanners",
+    ],
+  },
+];
+
+const pageBySlug = (slug: string) => productPages.find((p) => p.slug === slug);
 
 export default function Home() {
   useEffect(() => {
@@ -371,10 +412,10 @@ export default function Home() {
               <a href="/products">Products</a>
             </li>
             <li>
-              <a href="/services">Services</a>
+              <a href="/docudex">DocuDEX</a>
             </li>
             <li>
-              <a href="#docudex">DocuDEX</a>
+              <a href="/services">Services</a>
             </li>
             <li>
               <a href="/about">About</a>
@@ -400,8 +441,8 @@ export default function Home() {
       </nav>
       <div className="m-menu" id="mmenu">
         <a href="/products">Products</a>
+        <a href="/docudex">DocuDEX</a>
         <a href="/services">Services</a>
-        <a href="#docudex">DocuDEX</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
         <a className="btn btn-hot" href="/contact">
@@ -442,22 +483,17 @@ export default function Home() {
             </span>
           </h1>
           <p className="hero-sub" data-h>
-            <strong>DocuDEX</strong> — the flagship EDMS from Devnet Limited —
-            helps organisations capture, manage, store and search millions of
-            documents. Comprehensive, powerful and scalable e-governance, built
+            From <strong>DocuDEX</strong> — our flagship EDMS — to workflow
+            automation, e-KYC, HRIS and industrial scanning hardware, Devnet
+            builds comprehensive, powerful and scalable e-governance products
             in Dhaka for the region&apos;s largest institutions.
           </p>
           <div className="hero-ctas" data-h>
-            <a
-              className="btn btn-hot"
-              href="https://devnetlimited.com/docudex-edms/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Explore DocuDEX <span className="ar">→</span>
+            <a className="btn btn-hot" href="/products">
+              Explore our products <span className="ar">→</span>
             </a>
-            <a className="btn btn-glass" href="mailto:info@devnetlimited.com">
-              Talk to our team
+            <a className="btn btn-glass" href="/docudex">
+              Meet DocuDEX
             </a>
           </div>
           <p className="hero-note" data-h>
@@ -741,16 +777,17 @@ export default function Home() {
               </article>
 
               {/* Green CTA card */}
-              <a className="b-card b-cta" data-reveal href="#docudex">
+              <a className="b-card b-cta" data-reveal href="/products">
                 <div className="b-cta-num">
-                  13<em>+</em>
+                  16<em>+</em>
                 </div>
                 <p>
-                  Products in the DocuDEX family — from Agile Audit and HRIS to
-                  e-KYC, Land Management and RPA.
+                  Products in the Devnet family — the DocuDEX platform out
+                  front, with Agile Audit, HRIS, e-KYC, Land Management, RPA
+                  and more beside it.
                 </p>
                 <span className="go">
-                  See the full suite <span className="ar">→</span>
+                  See the full portfolio <span className="ar">→</span>
                 </span>
               </a>
             </div>
@@ -864,12 +901,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="dx-cta" data-reveal>
-                  <a
-                    className="btn btn-hot"
-                    href="https://devnetlimited.com/docudex-edms/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a className="btn btn-hot" href="/docudex">
                     See DocuDEX in detail <span className="ar">→</span>
                   </a>
                 </div>
@@ -1048,23 +1080,87 @@ export default function Home() {
 
             <div className="dx-suite">
               <span className="dx-suite-label" data-reveal>
-                The full product suite
+                The DocuDEX suite
               </span>
               <div className="chips" data-reveal>
-                <span className="chip">DocuDEX EDMS</span>
-                <span className="chip">DocuDEX Workflow</span>
-                <span className="chip">Agile Audit</span>
-                <span className="chip">HRIS</span>
-                <span className="chip">Invoice Processing</span>
-                <span className="chip">Online Proctoring</span>
-                <span className="chip">Library Management</span>
-                <span className="chip">e-KYC Management</span>
-                <span className="chip">Land Management</span>
-                <span className="chip">RPA</span>
-                <span className="chip">Robotic Scanners</span>
-                <span className="chip">Book &amp; Map Scanners</span>
-                <span className="chip">Microfilm Scanners</span>
+                <a className="chip" href="/capture-software">Captura Capture</a>
+                <a className="chip" href="/docudex-edms">DocuDEX EDMS</a>
+                <a className="chip" href="/docudex-workflow">DocuDEX Workflow</a>
+                <a className="chip" href="/record-management">Record Management</a>
+                <a className="chip" href="/invoice-processing">Invoice Processing</a>
+                <a className="chip" href="/docudex">Full platform →</a>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ================= PRODUCT FAMILY ================= */}
+        <section className="family" id="products">
+          <div className="wrap">
+            <div className="sec-head">
+              <span className="eyebrow">03 — The product family</span>
+              <h2>
+                <span className="lm">
+                  <span>One family,</span>
+                </span>
+                <span className="lm">
+                  <span>
+                    sixteen{" "}
+                    <em
+                      className="serif-i"
+                      style={{ color: "var(--green-deep)" }}
+                    >
+                      products
+                    </em>
+                    .
+                  </span>
+                </span>
+              </h2>
+              <p className="lead" data-reveal>
+                DocuDEX leads the line-up — but it&apos;s one of many. Every
+                Devnet product is engineered to the same standard, for
+                organisations that live and breathe documents.
+              </p>
+            </div>
+
+            {familyGroups.map((group) => (
+              <div className="family-group" key={group.label}>
+                <h3 className="family-label" data-reveal>
+                  {group.label}
+                </h3>
+                <div className="family-grid">
+                  {group.slugs.map((slug) => {
+                    const item = pageBySlug(slug);
+                    if (!item) return null;
+                    return (
+                      <a
+                        className="family-card"
+                        href={`/${slug}`}
+                        key={slug}
+                        data-reveal
+                      >
+                        <span className="family-ico">
+                          <Icon name={familyIcons[slug]} />
+                        </span>
+                        <b>{item.navTitle}</b>
+                        <p>{item.subtitle}</p>
+                        <span className="family-go">
+                          Explore <span className="ar">→</span>
+                        </span>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+
+            <div className="family-cta" data-reveal>
+              <a className="btn btn-hot" href="/products">
+                View all products <span className="ar">→</span>
+              </a>
+              <a className="btn btn-outline dark" href="/services">
+                Explore our services
+              </a>
             </div>
           </div>
         </section>
@@ -1073,7 +1169,7 @@ export default function Home() {
         <section className="miles" id="milestones">
           <div className="wrap">
             <div className="sec-head">
-              <span className="eyebrow">03 — Proven at national scale</span>
+              <span className="eyebrow">04 — Proven at national scale</span>
               <h2>
                 <span className="lm">
                   <span>Milestones that</span>
@@ -1780,6 +1876,9 @@ export default function Home() {
             <div>
               <h4>Solutions</h4>
               <ul className="f-list">
+                <li>
+                  <a href="/docudex">DocuDEX Platform</a>
+                </li>
                 <li>
                   <a href="/docudex-edms">DocuDEX EDMS</a>
                 </li>

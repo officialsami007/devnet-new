@@ -1,6 +1,12 @@
 import Link from "next/link";
-import { contactDetails, productPages, servicePages } from "@/data/site-content";
+import {
+  contactDetails,
+  productPages,
+  servicePages,
+  socialLinks,
+} from "@/data/site-content";
 import { NewsletterForm } from "./NewsletterForm";
+import { Icon } from "./Icon";
 
 export function SiteFooter() {
   return (
@@ -26,6 +32,19 @@ export function SiteFooter() {
             <p className="f-assoc">
               Member — <b>BASIS</b> · <b>DCCI</b> · <b>BGCCI</b>
             </p>
+            <div className="f-social">
+              {socialLinks.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.name}
+                >
+                  <Icon name={s.icon} />
+                </a>
+              ))}
+            </div>
           </div>
           <div>
             <h4>Products</h4>

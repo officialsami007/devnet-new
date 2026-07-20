@@ -419,6 +419,10 @@ footer{background:var(--ink);color:var(--mut-inv);padding:5.5rem 0 2.6rem}
 .f-brand p{font-size:.92rem;margin:1.4rem 0;max-width:300px}
 .f-assoc{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase}
 .f-assoc b{color:var(--green-hot);font-weight:500}
+.f-social{display:flex;gap:.6rem;margin-top:1.5rem}
+.f-social a{width:36px;height:36px;border-radius:50%;border:1px solid var(--line-inv);display:flex;align-items:center;justify-content:center;color:var(--txt-inv);transition:background .25s,color .25s,border-color .25s,transform .25s var(--ease)}
+.f-social a:hover{background:var(--green-hot);border-color:var(--green-hot);color:var(--ink);transform:translateY(-3px)}
+.f-social svg{width:16px;height:16px}
 footer h4{font-family:var(--mono);font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#fff;margin-bottom:1.4rem}
 .f-list{list-style:none;display:grid;gap:.7rem;font-size:.9rem}
 .f-list a,.f-list span{color:var(--mut-inv);transition:color .25s}

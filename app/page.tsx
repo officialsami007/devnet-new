@@ -6,6 +6,7 @@ import {
   docudexCoreSlugs,
   docudexExtendedSlugs,
   productPages,
+  socialLinks,
 } from "@/data/site-content";
 
 const familyIcons: Record<string, string> = {
@@ -1872,6 +1873,19 @@ export default function Home() {
               <p className="f-assoc">
                 Member — <b>BASIS</b> · <b>DCCI</b> · <b>BGCCI</b>
               </p>
+              <div className="f-social">
+                {socialLinks.map((s) => (
+                  <a
+                    key={s.name}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.name}
+                  >
+                    <Icon name={s.icon} />
+                  </a>
+                ))}
+              </div>
             </div>
             <div>
               <h4>Solutions</h4>

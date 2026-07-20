@@ -795,3 +795,9 @@ export const contactDetails = {
   fax: "+8802 55013958",
   email: "info@devnetlimited.com"
 };
+
+export const socialLinks = [
+  { name: "Facebook", icon: "facebook", href: "https://www.facebook.com/WeAreDevnet" },
+  { name: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com/company/devnet-limited/" },
+  { name: "WhatsApp", icon: "whatsapp", href: "https://web.whatsapp.com/" }
+];

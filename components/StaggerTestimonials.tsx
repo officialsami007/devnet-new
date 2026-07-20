@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export type Testimonial = {
   quote: string;
@@ -53,8 +53,8 @@ export const realTestimonials: Testimonial[] = [
 
 /**
  * Staggered, overlapping testimonial card stack. The center card is active;
- * side cards fan out and rotate. Click a side card, use the arrows, or wait
- * for the pointer to leave to advance/rewind.
+ * side cards fan out and rotate. Click a side card, use the arrows, or the
+ * dots to navigate — static until the user interacts.
  */
 export function StaggerTestimonials({
   testimonials = realTestimonials,
@@ -62,19 +62,6 @@ export function StaggerTestimonials({
   testimonials?: Testimonial[];
 }) {
   const [active, setActive] = useState(0);
-  const [reduced, setReduced] = useState(false);
-
-  useEffect(() => {
-    setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  }, []);
-
-  useEffect(() => {
-    if (reduced) return;
-    const id = setInterval(() => {
-      setActive((i) => (i + 1) % testimonials.length);
-    }, 6500);
-    return () => clearInterval(id);
-  }, [reduced, testimonials.length]);
 
   const move = (steps: number) => {
     setActive((i) => (i + steps + testimonials.length) % testimonials.length);

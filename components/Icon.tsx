@@ -67,6 +67,7 @@ export function Icon({ name = "spark", ...props }: IconProps) {
       case "facebook": return <path d="M14 9h3V5h-3a4 4 0 0 0-4 4v2H7v4h3v6h4v-6h3l1-4h-4v-2a1 1 0 0 1 1-1z" fill="currentColor" stroke="none"/>;
       case "linkedin": return <><rect x="3" y="9" width="4" height="12" fill="currentColor" stroke="none"/><circle cx="5" cy="4.5" r="2.3" fill="currentColor" stroke="none"/><path d="M11 9h4v2c.7-1.3 2-2.3 4-2.3 3 0 5 2 5 5.7V21h-4v-6c0-1.7-.6-2.8-2.2-2.8-1.2 0-1.9.8-2.2 1.6-.1.3-.1.7-.1 1.1V21h-4z" fill="currentColor" stroke="none"/></>;
       case "whatsapp": return <path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.6.1-.7.8-.9 1-.3.2-.6.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.5-1.3.1-.1.1-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3 1 2.6 1.1 2.8.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1s-.2-.2-.5-.3z" fill="currentColor" stroke="none"/>;
+      case "chevron": return <path d="m6 9 6 6 6-6"/>;
       default: return <><path d="m12 2 1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/><path d="m19 16 .8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></>;
     }
   })();

@@ -769,24 +769,6 @@ export function getContentPage(slug: string) {
 
 export const partners = ["ABBYY", "KODAK ALARIS", "AVISION", "ATIZ", "PIQL", "GONSIN", "I2S", "SMA"];
 
-export const testimonials = [
-  {
-    quote: "Devnet's document imaging, archiving and customized Digital Library Management System helped modernize Bangladesh National Library and preserve books, newspapers, magazines and maps.",
-    name: "Wadudul Bari Chowdhury",
-    role: "Directorate of Archives & Libraries"
-  },
-  {
-    quote: "Scanning and archiving mouza maps helped the Department of Land Records & Surveys deliver printed copies to citizens with strong accuracy.",
-    name: "Kongkham Nilmani Singha",
-    role: "Project Director & Deputy Director (Admin)"
-  },
-  {
-    quote: "Devnet's tailored data capture and imaging approach delivered meaningful value for data entry, processing and optimization.",
-    name: "Prof. Dr. Abul Kalam Azad",
-    role: "Directorate General of Health Services"
-  }
-];
-
 export const contactDetails = {
   address: "Level-9 (East), BDBL Bhaban, 12 Kawran Bazar, Dhaka-1215, Bangladesh",
   phone: "+8802 55013964",
@@ -795,6 +777,14 @@ export const contactDetails = {
   fax: "+8802 55013958",
   email: "info@devnetlimited.com"
 };
+
+export const mobileNavLinks = [
+  { label: "Products", href: "/products" },
+  { label: "DocuDEX", href: "/docudex" },
+  { label: "Services", href: "/services" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" }
+];
 
 export const socialLinks = [
   { name: "Facebook", icon: "facebook", href: "https://www.facebook.com/WeAreDevnet" },

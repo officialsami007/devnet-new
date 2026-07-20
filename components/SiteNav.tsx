@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { NavMenu } from "./NavMenu";
+import { mobileNavLinks } from "@/data/site-content";
 
 /**
  * Static navigation used on interior (non-home) pages. The homepage keeps its
@@ -18,17 +20,6 @@ export function SiteNav() {
     };
   }, [open]);
 
-  const links = (
-    <>
-      <Link href="/products">Products</Link>
-      <Link href="/docudex">DocuDEX</Link>
-      <Link href="/services">Services</Link>
-      <Link href="/about">About</Link>
-      <Link href="/#voices">Clients</Link>
-      <Link href="/contact">Contact</Link>
-    </>
-  );
-
   return (
     <>
       <nav className="sitenav" aria-label="Main navigation">
@@ -43,7 +34,7 @@ export function SiteNav() {
               height={38}
             />
           </Link>
-          <div className="sitenav-links">{links}</div>
+          <NavMenu className="sitenav-links" />
           <Link className="btn btn-hot nav-cta" href="/contact">
             Get in touch <span className="ar">→</span>
           </Link>
@@ -63,7 +54,11 @@ export function SiteNav() {
         className={`m-menu ${open ? "open" : ""}`}
         onClick={() => setOpen(false)}
       >
-        {links}
+        {mobileNavLinks.map((link) => (
+          <Link href={link.href} key={link.href}>
+            {link.label}
+          </Link>
+        ))}
         <Link className="btn btn-hot" href="/contact">
           Get in touch <span className="ar">→</span>
         </Link>

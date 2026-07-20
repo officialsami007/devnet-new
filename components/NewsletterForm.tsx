@@ -2,7 +2,15 @@
 
 import { FormEvent, useState } from "react";
 
-export function NewsletterForm() {
+export function NewsletterForm({
+  variant = "dark",
+  label = "Get occasional Devnet updates",
+  buttonLabel,
+}: {
+  variant?: "dark" | "light";
+  label?: string;
+  buttonLabel?: string;
+}) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle"
@@ -33,8 +41,11 @@ export function NewsletterForm() {
   }
 
   return (
-    <form className="newsletter-form" onSubmit={submit}>
-      <label htmlFor="newsletter-email">Get occasional Devnet updates</label>
+    <form
+      className={`newsletter-form ${variant === "light" ? "newsletter-form-light" : ""}`}
+      onSubmit={submit}
+    >
+      {label && <label htmlFor="newsletter-email">{label}</label>}
       <div>
         <input
           id="newsletter-email"
@@ -49,7 +60,7 @@ export function NewsletterForm() {
           disabled={status === "loading"}
           aria-label="Subscribe"
         >
-          {status === "loading" ? "…" : "→"}
+          {buttonLabel || (status === "loading" ? "…" : "→")}
         </button>
       </div>
       {message && <p className={`form-note ${status}`}>{message}</p>}

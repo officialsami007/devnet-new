@@ -2,45 +2,16 @@
 
 import { useEffect } from "react";
 import { Icon } from "@/components/Icon";
+import { NavMenu } from "@/components/NavMenu";
+import { NewsletterForm } from "@/components/NewsletterForm";
+import { StaggerTestimonials } from "@/components/StaggerTestimonials";
 import {
   docudexCoreSlugs,
   docudexExtendedSlugs,
+  mobileNavLinks,
   productPages,
   socialLinks,
 } from "@/data/site-content";
-
-const familyIcons: Record<string, string> = {
-  "capture-software": "scan",
-  "docudex-edms": "layers",
-  "docudex-workflow": "workflow",
-  "record-management": "archive",
-  "invoice-processing": "wallet",
-  "agile-audit": "check",
-  hrms: "users",
-  "e-kyc-and-cim-solution": "fingerprint",
-  "land-management-solution": "map",
-  "library-management": "book",
-  "online-proctoring": "video",
-  rpa: "bot",
-  "document-scanner": "scanner",
-  "robotic-scanner": "factory",
-  "book-map-scanner": "book",
-  "microfilm-scanners": "film",
-};
-
-const familyGroups = [
-  { label: "The DocuDEX platform", slugs: docudexCoreSlugs },
-  { label: "Business solutions", slugs: docudexExtendedSlugs },
-  {
-    label: "Scanning hardware",
-    slugs: [
-      "document-scanner",
-      "robotic-scanner",
-      "book-map-scanner",
-      "microfilm-scanners",
-    ],
-  },
-];
 
 const pageBySlug = (slug: string) => productPages.find((p) => p.slug === slug);
 
@@ -92,66 +63,6 @@ export default function Home() {
     cleanupFns.push(() =>
       mLinks.forEach((a) => a.removeEventListener("click", onMLink))
     );
-
-    /* ---------- Testimonial carousel ---------- */
-    const slides = Array.prototype.slice.call(
-      document.querySelectorAll(".t-slide")
-    ) as HTMLElement[];
-    const dots = Array.prototype.slice.call(
-      document.querySelectorAll(".t-dot")
-    ) as HTMLElement[];
-    let tIdx = 0;
-    let tTimer: ReturnType<typeof setInterval> | null = null;
-    function tGo(i: number) {
-      tIdx = (i + slides.length) % slides.length;
-      slides.forEach((s, k) => {
-        s.classList.toggle("active", k === tIdx);
-      });
-      dots.forEach((d, k) => {
-        d.classList.toggle("on", k === tIdx);
-      });
-      const st = document.getElementById("tStage")!;
-      st.style.minHeight = Math.max(260, slides[tIdx].offsetHeight) + "px";
-    }
-    function tAuto() {
-      if (tTimer) clearInterval(tTimer);
-      if (!reduced)
-        tTimer = setInterval(function () {
-          tGo(tIdx + 1);
-        }, 6500);
-    }
-    const tNext = document.getElementById("tNext")!;
-    const tPrev = document.getElementById("tPrev")!;
-    const onNext = () => {
-      tGo(tIdx + 1);
-      tAuto();
-    };
-    const onPrev = () => {
-      tGo(tIdx - 1);
-      tAuto();
-    };
-    tNext.addEventListener("click", onNext);
-    tPrev.addEventListener("click", onPrev);
-    const onDot = (d: HTMLElement) => () => {
-      tGo(+(d.dataset.i as string));
-      tAuto();
-    };
-    const dotHandlers = dots.map((d) => {
-      const fn = onDot(d);
-      d.addEventListener("click", fn);
-      return { d, fn };
-    });
-    const onResize = () => tGo(tIdx);
-    window.addEventListener("resize", onResize);
-    tGo(0);
-    tAuto();
-    cleanupFns.push(() => {
-      tNext.removeEventListener("click", onNext);
-      tPrev.removeEventListener("click", onPrev);
-      dotHandlers.forEach(({ d, fn }) => d.removeEventListener("click", fn));
-      window.removeEventListener("resize", onResize);
-      if (tTimer) clearInterval(tTimer);
-    });
 
     /* ---------- Counters ---------- */
     function runCounter(el: HTMLElement) {
@@ -408,23 +319,7 @@ export default function Home() {
               height={38}
             />
           </a>
-          <ul className="nav-links">
-            <li>
-              <a href="/products">Products</a>
-            </li>
-            <li>
-              <a href="/docudex">DocuDEX</a>
-            </li>
-            <li>
-              <a href="/services">Services</a>
-            </li>
-            <li>
-              <a href="/about">About</a>
-            </li>
-            <li>
-              <a href="/contact">Contact</a>
-            </li>
-          </ul>
+          <NavMenu />
           <a className="btn btn-hot nav-cta" href="/contact">
             Get in touch <span className="ar">→</span>
           </a>
@@ -441,11 +336,11 @@ export default function Home() {
         </div>
       </nav>
       <div className="m-menu" id="mmenu">
-        <a href="/products">Products</a>
-        <a href="/docudex">DocuDEX</a>
-        <a href="/services">Services</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
+        {mobileNavLinks.map((link) => (
+          <a href={link.href} key={link.href}>
+            {link.label}
+          </a>
+        ))}
         <a className="btn btn-hot" href="/contact">
           Get in touch <span className="ar">→</span>
         </a>
@@ -470,8 +365,8 @@ export default function Home() {
         <div className="hero-ol2" aria-hidden="true"></div>
         <div className="hero-in">
           <div className="hero-badge" data-h>
-            <span className="pulse" aria-hidden="true"></span> Empowering Smart
-            Bangladesh · Since 1997
+            <span className="pulse" aria-hidden="true"></span> Devnet Limited ·
+            Empowering Smart Bangladesh Since 1997
           </div>
           <h1>
             <span className="lm">
@@ -484,17 +379,18 @@ export default function Home() {
             </span>
           </h1>
           <p className="hero-sub" data-h>
-            From <strong>DocuDEX</strong> — our flagship EDMS — to workflow
-            automation, e-KYC, HRIS and industrial scanning hardware, Devnet
-            builds comprehensive, powerful and scalable e-governance products
-            in Dhaka for the region&apos;s largest institutions.
+            Devnet builds comprehensive, powerful and scalable e-governance
+            products from Dhaka — led by <strong>DocuDEX</strong>, our
+            flagship EDMS, alongside workflow automation, e-KYC, HRIS and
+            industrial scanning hardware for the region&apos;s largest
+            institutions.
           </p>
           <div className="hero-ctas" data-h>
             <a className="btn btn-hot" href="/products">
               Explore our products <span className="ar">→</span>
             </a>
-            <a className="btn btn-glass" href="/docudex">
-              Meet DocuDEX
+            <a className="btn btn-glass" href="/about">
+              About Devnet
             </a>
           </div>
           <p className="hero-note" data-h>
@@ -725,7 +621,7 @@ export default function Home() {
 
               {/* Image card */}
               <a
-                className="b-card b-imgcard b-one"
+                className="b-card b-imgcard"
                 data-reveal
                 href="/document-scanner"
               >
@@ -759,7 +655,7 @@ export default function Home() {
               </a>
 
               {/* Image card */}
-              <article className="b-card b-imgcard b-one" data-reveal>
+              <article className="b-card b-imgcard" data-reveal>
                 <img
                   src="/assets/img/data-center.jpg"
                   alt="Modern data center aisle with green status lighting"
@@ -795,13 +691,94 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ================= ABOUT / VALUES ================= */}
+        <section className="about" id="about" aria-label="Who we are">
+          <div className="wrap about-grid">
+            <figure className="about-img" data-reveal>
+              <img
+                src="/assets/img/team-devnet.jpg"
+                alt="The Devnet team collaborating at the Dhaka office"
+                loading="lazy"
+                decoding="async"
+              />
+              <span className="about-chip">
+                <b>Since 1997</b> · Dhaka, Bangladesh
+              </span>
+            </figure>
+            <div className="about-copy">
+              <div className="sec-head" style={{ marginBottom: 0 }}>
+                <span className="eyebrow">02 — Who we are</span>
+                <h2>
+                  <span className="lm">
+                    <span>Devnet Limited —</span>
+                  </span>
+                  <span className="lm">
+                    <span>
+                      built for the{" "}
+                      <em
+                        className="serif-i"
+                        style={{ color: "var(--green-deep)" }}
+                      >
+                        long term
+                      </em>
+                      .
+                    </span>
+                  </span>
+                </h2>
+              </div>
+              <p className="lead" data-reveal>
+                Since 1997 we&apos;ve grown from Bangladesh&apos;s first DMS
+                &amp; ICR provider into a team of engineers, designers and
+                consultants building the software, hardware and services that
+                run the country&apos;s biggest institutions — DocuDEX among
+                them, not instead of them.
+              </p>
+              <div className="about-vals">
+                <div className="av" data-reveal>
+                  <span className="av-idx">01</span>
+                  <b>User-centred</b>
+                  <p>
+                    Iterative design that produces highly usable, accessible
+                    products.
+                  </p>
+                </div>
+                <div className="av" data-reveal>
+                  <span className="av-idx">02</span>
+                  <b>Innovation &amp; creativity</b>
+                  <p>
+                    New ideas that lead to better products and a more dynamic
+                    society.
+                  </p>
+                </div>
+                <div className="av" data-reveal>
+                  <span className="av-idx">03</span>
+                  <b>Agility &amp; adaptability</b>
+                  <p>
+                    Empowering organisations to change course with confidence.
+                  </p>
+                </div>
+                <div className="av" data-reveal>
+                  <span className="av-idx">04</span>
+                  <b>Collaboration</b>
+                  <p>Active participation and teamwork, project after project.</p>
+                </div>
+              </div>
+              <div className="dx-cta" data-reveal>
+                <a className="btn btn-outline dark" href="/about">
+                  More about Devnet <span className="ar">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ================= DOCUDEX SPOTLIGHT ================= */}
         <section className="docudex" id="docudex">
           <div className="wrap">
             <div className="dx-grid">
               <div>
                 <div className="sec-head" style={{ marginBottom: 0 }}>
-                  <span className="eyebrow inv">02 — The flagship</span>
+                  <span className="eyebrow inv">03 — Our flagship product</span>
                   <h2>
                     <span className="lm">
                       <span>Meet</span>
@@ -1099,7 +1076,7 @@ export default function Home() {
         <section className="family" id="products">
           <div className="wrap">
             <div className="sec-head">
-              <span className="eyebrow">03 — The product family</span>
+              <span className="eyebrow">04 — The product family</span>
               <h2>
                 <span className="lm">
                   <span>One family,</span>
@@ -1124,44 +1101,128 @@ export default function Home() {
               </p>
             </div>
 
-            {familyGroups.map((group) => (
-              <div className="family-group" key={group.label}>
-                <h3 className="family-label" data-reveal>
-                  {group.label}
+            <div className="family-bento">
+              <article className="fb-cell fb-flagship" data-reveal>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/assets/img/scanner-macro.jpg"
+                  alt="High-speed production document scanner in operation"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span className="fb-ol" aria-hidden="true"></span>
+                <span className="fb-tag">The DocuDEX Platform</span>
+                <h3>
+                  <a href="/docudex" className="fb-title-link">
+                    One platform, every document.
+                  </a>
                 </h3>
-                <div className="family-grid">
-                  {group.slugs.map((slug) => {
+                <p className="fb-desc">
+                  Capture, manage, automate and store — the flagship EDMS
+                  suite behind 10+ banks and the nation&apos;s largest
+                  archives.
+                </p>
+                <div className="fb-chips">
+                  {docudexCoreSlugs.map((slug) => {
                     const item = pageBySlug(slug);
-                    if (!item) return null;
-                    return (
-                      <a
-                        className="family-card"
-                        href={`/${slug}`}
-                        key={slug}
-                        data-reveal
-                      >
-                        <span className="family-ico">
-                          <Icon name={familyIcons[slug]} />
-                        </span>
-                        <b>{item.navTitle}</b>
-                        <p>{item.subtitle}</p>
-                        <span className="family-go">
-                          Explore <span className="ar">→</span>
-                        </span>
+                    return item ? (
+                      <a className="fb-chip" href={`/${slug}`} key={slug}>
+                        {item.navTitle}
                       </a>
-                    );
+                    ) : null;
                   })}
                 </div>
-              </div>
-            ))}
+                <a href="/docudex" className="fb-go">
+                  Explore the platform <span className="ar">→</span>
+                </a>
+              </article>
 
-            <div className="family-cta" data-reveal>
-              <a className="btn btn-hot" href="/products">
-                View all products <span className="ar">→</span>
-              </a>
-              <a className="btn btn-outline dark" href="/services">
-                Explore our services
-              </a>
+              <article className="fb-cell fb-biz" data-reveal>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/assets/img/workflow-approval.jpg"
+                  alt="Professional approving documents in a workflow app on a tablet"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span className="fb-ol" aria-hidden="true"></span>
+                <span className="fb-tag">Business Solutions</span>
+                <h3>
+                  <a href="/products" className="fb-title-link">
+                    Beyond documents.
+                  </a>
+                </h3>
+                <p className="fb-desc">
+                  Audit, HR, identity, land and more — built on the same
+                  platform standard.
+                </p>
+                <div className="fb-chips">
+                  {docudexExtendedSlugs.map((slug) => {
+                    const item = pageBySlug(slug);
+                    return item ? (
+                      <a className="fb-chip" href={`/${slug}`} key={slug}>
+                        {item.navTitle}
+                      </a>
+                    ) : null;
+                  })}
+                </div>
+              </article>
+
+              <article className="fb-cell fb-hw" data-reveal>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/assets/img/scanner-hardware.jpg"
+                  alt="Large-format production document scanner in a digitization facility"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span className="fb-ol" aria-hidden="true"></span>
+                <span className="fb-tag">Scanning Hardware</span>
+                <h3>
+                  <a href="/document-scanner" className="fb-title-link">
+                    Capture at any scale.
+                  </a>
+                </h3>
+                <p className="fb-desc">
+                  From desktop scanners to robotic book digitization and
+                  archival microfilm.
+                </p>
+                <div className="fb-chips">
+                  {[
+                    "document-scanner",
+                    "robotic-scanner",
+                    "book-map-scanner",
+                    "microfilm-scanners",
+                  ].map((slug) => {
+                    const item = pageBySlug(slug);
+                    return item ? (
+                      <a className="fb-chip" href={`/${slug}`} key={slug}>
+                        {item.navTitle}
+                      </a>
+                    ) : null;
+                  })}
+                </div>
+              </article>
+
+              <div className="fb-cell fb-stat" data-reveal>
+                <span className="fb-tag">The full portfolio</span>
+                <div>
+                  <div className="fb-stat-num">
+                    16<em>products</em>
+                  </div>
+                  <p className="fb-desc" style={{ marginTop: ".6rem" }}>
+                    One engineering standard, sixteen ways to go paperless.
+                  </p>
+                </div>
+                <div className="fb-stat-btns">
+                  <a className="btn btn-paper" href="/products">
+                    View all products <span className="ar">→</span>
+                  </a>
+                  <a className="btn btn-outline" href="/services">
+                    Explore services
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -1170,7 +1231,7 @@ export default function Home() {
         <section className="miles" id="milestones">
           <div className="wrap">
             <div className="sec-head">
-              <span className="eyebrow">04 — Proven at national scale</span>
+              <span className="eyebrow">05 — Proven at national scale</span>
               <h2>
                 <span className="lm">
                   <span>Milestones that</span>
@@ -1311,80 +1372,6 @@ export default function Home() {
               <span className="band-chip">
                 <b>30M</b> pages every year
               </span>
-            </div>
-          </div>
-        </section>
-
-        {/* ================= ABOUT / VALUES ================= */}
-        <section className="about" id="about" aria-label="Who we are">
-          <div className="wrap about-grid">
-            <figure className="about-img" data-reveal>
-              <img
-                src="/assets/img/team-devnet.jpg"
-                alt="The Devnet team collaborating at the Dhaka office"
-                loading="lazy"
-                decoding="async"
-              />
-              <span className="about-chip">
-                <b>Since 1997</b> · Dhaka, Bangladesh
-              </span>
-            </figure>
-            <div className="about-copy">
-              <div className="sec-head" style={{ marginBottom: 0 }}>
-                <span className="eyebrow">05 — Who we are</span>
-                <h2>
-                  <span className="lm">
-                    <span>A team built for</span>
-                  </span>
-                  <span className="lm">
-                    <span>
-                      the{" "}
-                      <em
-                        className="serif-i"
-                        style={{ color: "var(--green-deep)" }}
-                      >
-                        long term
-                      </em>
-                      .
-                    </span>
-                  </span>
-                </h2>
-              </div>
-              <p className="lead" data-reveal>
-                Our philosophy is simple: long-term, collaborative relationships
-                that consistently deliver business value to our clients — and
-                real opportunity for our people.
-              </p>
-              <div className="about-vals">
-                <div className="av" data-reveal>
-                  <span className="av-idx">01</span>
-                  <b>User-centred</b>
-                  <p>
-                    Iterative design that produces highly usable, accessible
-                    products.
-                  </p>
-                </div>
-                <div className="av" data-reveal>
-                  <span className="av-idx">02</span>
-                  <b>Innovation &amp; creativity</b>
-                  <p>
-                    New ideas that lead to better products and a more dynamic
-                    society.
-                  </p>
-                </div>
-                <div className="av" data-reveal>
-                  <span className="av-idx">03</span>
-                  <b>Agility &amp; adaptability</b>
-                  <p>
-                    Empowering organisations to change course with confidence.
-                  </p>
-                </div>
-                <div className="av" data-reveal>
-                  <span className="av-idx">04</span>
-                  <b>Collaboration</b>
-                  <p>Active participation and teamwork, project after project.</p>
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -1611,195 +1598,7 @@ export default function Home() {
                 </span>
               </h2>
             </div>
-            <span className="quote-mark serif-i" aria-hidden="true">
-              &quot;
-            </span>
-
-            <div className="t-stage" id="tStage">
-              <div className="t-slide active">
-                <p className="t-quote">
-                  Digital archiving solutions provided by Devnet — their
-                  customised EDMS and scanning services — allowed us to preserve
-                  the files of plots and flats across RAJUK&apos;s housing model
-                  towns.
-                </p>
-                <div className="t-who">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className="t-photo"
-                    src="/assets/img/clients/mahabubul.jpg"
-                    alt="Kazi Mohammad Mahabubul Hoque"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div>
-                    <div className="t-name">
-                      Kazi Mohammad Mahabubul Hoque
-                    </div>
-                    <div className="t-role">
-                      System Analyst &amp; Project Manager, MIS — RAJUK
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="t-slide">
-                <p className="t-quote">
-                  Document imaging &amp; archiving solution and a customised
-                  Digital Library Management System from Devnet let us preserve
-                  and digitise our national heritage collection with confidence.
-                </p>
-                <div className="t-who">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className="t-photo"
-                    src="/assets/img/clients/wadudul.jpg"
-                    alt="Wadudul Bari Chowdhury"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div>
-                    <div className="t-name">Wadudul Bari Chowdhury</div>
-                    <div className="t-role">
-                      Directorate of Archives &amp; Libraries
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="t-slide">
-                <p className="t-quote">
-                  Scanning and archiving of 1,15,000 CS, SA &amp; RS mouza maps
-                  has immensely benefited the Directorate of Land Records &amp;
-                  Surveys — a milestone for the nation&apos;s land management.
-                </p>
-                <div className="t-who">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className="t-photo"
-                    src="/assets/img/clients/nilmani.jpg"
-                    alt="Kongkham Nilmani Singha"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div>
-                    <div className="t-name">Kongkham Nilmani Singha</div>
-                    <div className="t-role">
-                      Project Director — DLRS
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="t-slide">
-                <p className="t-quote">
-                  Devnet&apos;s strategic design of a pragmatic data capture and
-                  imaging solution — tailored for GR data entry, processing and
-                  optimisation — has yielded substantial benefits.
-                </p>
-                <div className="t-who">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className="t-photo"
-                    src="/assets/img/clients/azad.jpg"
-                    alt="Prof. Dr. Abul Kalam Azad"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div>
-                    <div className="t-name">Prof. Dr. Abul Kalam Azad</div>
-                    <div className="t-role">
-                      ADG (Planning &amp; Development) &amp; Director MIS —
-                      Directorate General of Health Services
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="t-slide">
-                <p className="t-quote">
-                  Devnet, with ABBYY FlexiCapture, was willing to meet our
-                  individual needs — which ensured the success of project
-                  QUICKFILL.
-                </p>
-                <div className="t-who">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className="t-photo"
-                    src="/assets/img/clients/abushair.jpg"
-                    alt="Abu Shair"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div>
-                    <div className="t-name">Abu Shair</div>
-                    <div className="t-role">
-                      Information Services Head — Linde Bangladesh Limited
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="t-ctrl">
-              <div className="t-dots" role="tablist" aria-label="Testimonials">
-                <button
-                  className="t-dot on"
-                  data-i="0"
-                  aria-label="Testimonial 1"
-                ></button>
-                <button
-                  className="t-dot"
-                  data-i="1"
-                  aria-label="Testimonial 2"
-                ></button>
-                <button
-                  className="t-dot"
-                  data-i="2"
-                  aria-label="Testimonial 3"
-                ></button>
-                <button
-                  className="t-dot"
-                  data-i="3"
-                  aria-label="Testimonial 4"
-                ></button>
-                <button
-                  className="t-dot"
-                  data-i="4"
-                  aria-label="Testimonial 5"
-                ></button>
-              </div>
-              <div className="t-arrows">
-                <button
-                  className="t-btn"
-                  id="tPrev"
-                  aria-label="Previous testimonial"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M19 12H5M12 19l-7-7 7-7" />
-                  </svg>
-                </button>
-                <button
-                  className="t-btn"
-                  id="tNext"
-                  aria-label="Next testimonial"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
-            </div>
+            <StaggerTestimonials />
           </div>
         </section>
 
@@ -1846,6 +1645,38 @@ export default function Home() {
               Level-9 (East), BDBL Bhaban · 12 Kawran Bazar · Dhaka-1215,
               Bangladesh
             </p>
+          </div>
+        </section>
+
+        {/* ================= CONTACT + NEWSLETTER STRIP ================= */}
+        <section className="reach" aria-label="Contact and newsletter">
+          <div className="wrap reach-grid">
+            <div className="reach-contact" data-reveal>
+              <span className="reach-phone-ico" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+              </span>
+              <div>
+                <span className="reach-label">Contact With Us</span>
+                <a className="reach-number" href="tel:+8801713044055">
+                  +88 01713-044055
+                </a>
+              </div>
+            </div>
+            <div className="reach-news" data-reveal>
+              <h3>Sign Up For Our Newsletter</h3>
+              <NewsletterForm variant="light" label="" buttonLabel="Sign Up" />
+              <p className="reach-tagline">
+                We are waiting to hear from you — please get in touch.
+              </p>
+            </div>
           </div>
         </section>
       </main>

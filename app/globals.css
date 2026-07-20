@@ -529,7 +529,14 @@ a.chip{cursor:pointer}
 .stagger-photo{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none;margin-bottom:1.2rem;border:2px solid rgba(255,255,255,.2);box-shadow:0 4px 16px rgba(9,32,19,.16)}
 .stagger-card:not(.is-center) .stagger-photo{border-color:#fff;box-shadow:0 4px 16px rgba(9,32,19,.16),0 0 0 1px var(--line)}
 .stagger-quote{font-family:var(--disp);font-weight:500;font-size:.98rem;line-height:1.5;letter-spacing:-.005em;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical}
-.stagger-card.is-center .stagger-quote{font-size:1.06rem;-webkit-line-clamp:7}
+.stagger-card.is-center .stagger-quote{
+  font-size:1.06rem;-webkit-line-clamp:unset;display:block;overflow-y:auto;flex:1;min-height:0;
+  padding-right:.6rem;margin-right:-.6rem;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.35) transparent;
+}
+.stagger-card.is-center .stagger-quote::-webkit-scrollbar{width:5px}
+.stagger-card.is-center .stagger-quote::-webkit-scrollbar-track{background:transparent}
+.stagger-card.is-center .stagger-quote::-webkit-scrollbar-thumb{background:rgba(255,255,255,.35);border-radius:3px}
 .stagger-who{margin-top:auto;padding-top:1.4rem}
 .stagger-name{font-family:var(--disp);font-weight:600;font-size:.92rem}
 .stagger-card:not(.is-center) .stagger-name{color:var(--ink)}

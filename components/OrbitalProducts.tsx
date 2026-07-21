@@ -94,6 +94,7 @@ export function OrbitalProducts() {
   const [rotation, setRotation] = useState(0);
   const [autoRotate, setAutoRotate] = useState(true);
   const [activeId, setActiveId] = useState<number | null>(null);
+  const [hoverId, setHoverId] = useState<number | null>(null);
   const [radius, setRadius] = useState(190);
   const stageRef = useRef<HTMLDivElement>(null);
 
@@ -129,9 +130,12 @@ export function OrbitalProducts() {
   };
 
   const relatedOf = (id: number) => nodes.find((n) => n.id === id)?.relatedIds ?? [];
-  const isRelated = (id: number) => activeId !== null && relatedOf(activeId).includes(id);
+  const focusId = hoverId ?? activeId;
+  const isRelated = (id: number) => focusId !== null && relatedOf(focusId).includes(id);
 
   const activeNode = nodes.find((n) => n.id === activeId) ?? null;
+  const previewNode = nodes.find((n) => n.id === focusId) ?? null;
+  const displayNode = activeNode ?? previewNode;
 
   return (
     <div
@@ -146,11 +150,21 @@ export function OrbitalProducts() {
     >
       <div className="orbital-stage">
         <div className="orbital-ring" aria-hidden="true"></div>
-        <div className="orbital-core">
+        <button
+          type="button"
+          className="orbital-core"
+          onClick={(e) => {
+            e.stopPropagation();
+            setActiveId(null);
+            setHoverId(null);
+            setAutoRotate(true);
+          }}
+          aria-label="Reset selection"
+        >
           <span className="orbital-core-ping" aria-hidden="true"></span>
           <span className="orbital-core-ping delay" aria-hidden="true"></span>
           <span className="orbital-core-dot">DX</span>
-        </div>
+        </button>
 
         {nodes.map((node, i) => {
           const angle = ((i / nodes.length) * 360 + rotation) % 360;
@@ -158,17 +172,26 @@ export function OrbitalProducts() {
           const x = radius * Math.cos(radian);
           const y = radius * Math.sin(radian);
           const active = activeId === node.id;
+          const hovered = hoverId === node.id;
           const related = isRelated(node.id);
 
           return (
             <div
               key={node.id}
               className={`orbital-node ${active ? "is-active" : ""} ${
-                related ? "is-related" : ""
-              }`}
+                hovered ? "is-hovered" : ""
+              } ${related ? "is-related" : ""}`}
               style={{
                 transform: `translate(${x}px, ${y}px)`,
-                zIndex: active ? 40 : Math.round(20 + 10 * Math.cos(radian)),
+                zIndex: active ? 40 : hovered ? 35 : Math.round(20 + 10 * Math.cos(radian)),
+              }}
+              onMouseEnter={() => {
+                setHoverId(node.id);
+                setAutoRotate(false);
+              }}
+              onMouseLeave={() => {
+                setHoverId(null);
+                if (!activeId) setAutoRotate(true);
               }}
             >
               <button
@@ -178,6 +201,8 @@ export function OrbitalProducts() {
                   e.stopPropagation();
                   toggle(node.id);
                 }}
+                onFocus={() => setHoverId(node.id)}
+                onBlur={() => setHoverId(null)}
                 aria-expanded={active}
                 aria-label={node.title}
               >
@@ -189,56 +214,79 @@ export function OrbitalProducts() {
         })}
       </div>
 
-      <div className={`orbital-card ${activeNode ? "open" : ""}`}>
-        {activeNode && (
+      <div
+        className={`orbital-card ${displayNode ? "open" : ""} ${
+          activeNode ? "is-pinned" : "is-preview"
+        }`}
+        key={displayNode?.id ?? "empty"}
+      >
+        {displayNode && (
           <>
             <div className="oc-head">
-              <span className={`oc-status oc-${activeNode.status}`}>
-                {statusLabel[activeNode.status]}
+              <span className={`oc-status oc-${displayNode.status}`}>
+                {statusLabel[displayNode.status]}
               </span>
-              <button
-                type="button"
-                className="oc-close"
-                onClick={() => {
-                  setActiveId(null);
-                  setAutoRotate(true);
-                }}
-                aria-label="Close"
-              >
-                <Icon name="chevron" style={{ transform: "rotate(90deg)" }} />
-              </button>
+              {activeNode && (
+                <button
+                  type="button"
+                  className="oc-close"
+                  onClick={() => {
+                    setActiveId(null);
+                    setAutoRotate(true);
+                  }}
+                  aria-label="Close"
+                >
+                  <Icon name="chevron" style={{ transform: "rotate(90deg)" }} />
+                </button>
+              )}
             </div>
-            <span className="oc-tag">{activeNode.tag}</span>
-            <h3>{activeNode.title}</h3>
-            <p>{activeNode.desc}</p>
+            <span className="oc-tag">{displayNode.tag}</span>
+            <h3>{displayNode.title}</h3>
+            <p>{displayNode.desc}</p>
             <div className="oc-energy">
               <div className="oc-energy-row">
                 <span>Adoption</span>
-                <span>{activeNode.energy}%</span>
+                <span>{displayNode.energy}%</span>
               </div>
               <div className="oc-energy-bar">
                 <div
                   className="oc-energy-fill"
-                  style={{ width: `${activeNode.energy}%` }}
+                  style={{ width: `${displayNode.energy}%` }}
                 ></div>
               </div>
             </div>
-            <a className="oc-go" href={activeNode.href}>
-              Explore {activeNode.title} <span className="ar">→</span>
+            <a className="oc-go" href={displayNode.href}>
+              Explore {displayNode.title} <span className="ar">→</span>
             </a>
           </>
         )}
-        {!activeNode && (
+        {!displayNode && (
           <div className="oc-empty">
             <span className="oc-tag">The Devnet platform</span>
             <h3>One platform, every document.</h3>
             <p>
-              Select any node to see how it fits into the DocuDEX ecosystem —
-              capture, manage, automate, store and scale, all built to the
-              same engineering standard.
+              Hover or select any node to see how it fits into the DocuDEX
+              ecosystem — capture, manage, automate, store and scale, all
+              built to the same engineering standard.
             </p>
           </div>
         )}
+      </div>
+
+      <div className="orbital-dots" role="tablist" aria-label="Product nodes">
+        {nodes.map((node) => (
+          <button
+            key={node.id}
+            type="button"
+            className={`orbital-dot ${activeId === node.id ? "on" : ""}`}
+            onClick={() => toggle(node.id)}
+            onMouseEnter={() => setHoverId(node.id)}
+            onMouseLeave={() => setHoverId(null)}
+            aria-label={`Show ${node.title}`}
+            role="tab"
+            aria-selected={activeId === node.id}
+          />
+        ))}
       </div>
     </div>
   );

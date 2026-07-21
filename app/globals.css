@@ -582,7 +582,7 @@ a.chip{cursor:pointer}
 .reach{background:var(--ink-2);padding:5rem 0;position:relative;overflow:hidden}
 .reach::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(46,232,108,.1),transparent 65%);top:-220px;left:-160px;pointer-events:none}
 .reach-grid{
-  display:grid;grid-template-columns:auto 1fr auto;gap:3.5rem;align-items:center;
+  display:grid;grid-template-columns:auto 1fr;gap:3.5rem;align-items:center;
   position:relative;z-index:1;
 }
 .reach-contact{display:flex;align-items:center;gap:1.3rem;padding-right:3.5rem;border-right:1px solid var(--line-inv)}
@@ -594,7 +594,8 @@ a.chip{cursor:pointer}
 .reach-label{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut-inv);margin-bottom:.35rem}
 .reach-number{font-family:var(--disp);font-weight:700;font-size:1.6rem;color:#fff;letter-spacing:-.01em;transition:color .25s;white-space:nowrap}
 .reach-number:hover{color:var(--green-hot)}
-.reach-news{min-width:0}
+.reach-news{min-width:0;justify-self:end;text-align:right}
+.reach-news .newsletter-form.newsletter-form-light>div{margin-left:auto}
 .reach-news h3{font-family:var(--disp);font-weight:700;font-size:1.25rem;color:#fff;letter-spacing:-.01em;margin-bottom:1rem}
 .reach-tagline{margin-top:.8rem;font-style:italic;color:var(--mut-inv);font-size:.86rem}
 .newsletter-form.newsletter-form-light>div{display:flex;gap:.6rem;max-width:420px}
@@ -613,6 +614,8 @@ a.chip{cursor:pointer}
 @media(max-width:900px){
   .reach-grid{grid-template-columns:1fr;gap:2.2rem}
   .reach-contact{padding-right:0;border-right:none;padding-bottom:2.2rem;border-bottom:1px solid var(--line-inv)}
+  .reach-news{justify-self:start;text-align:left}
+  .reach-news .newsletter-form.newsletter-form-light>div{margin-left:0}
 }
 @media(max-width:768px){
   .reach{padding:3.5rem 0}

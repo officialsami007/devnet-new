@@ -204,19 +204,6 @@ export function NavMenu({ className = "" }: { className?: string }) {
             <Icon name="chevron" className="nav-drop-chev" />
           </button>
         </li>
-        <li>
-          <Link
-            href="/docudex"
-            onMouseEnter={(e) => {
-              if (closeTimer.current) clearTimeout(closeTimer.current);
-              setOpenMenu(null);
-              trackPill(e.currentTarget);
-            }}
-            onMouseLeave={() => setHoverPill(null)}
-          >
-            DocuDEX
-          </Link>
-        </li>
         <li
           className="nav-drop"
           onMouseEnter={(e) => open("services", e.currentTarget)}

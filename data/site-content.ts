@@ -780,7 +780,6 @@ export const contactDetails = {
 
 export const mobileNavLinks = [
   { label: "Products", href: "/products" },
-  { label: "DocuDEX", href: "/docudex" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" }

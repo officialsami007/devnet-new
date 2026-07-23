@@ -80,7 +80,51 @@ const nodes: OrbitalNode[] = [
     href: "/ai-and-machine-learning",
     status: "growing",
     energy: 60,
+    relatedIds: [2, 10],
+  },
+  {
+    id: 7,
+    title: "Agile Audit",
+    tag: "Audit and Compliance",
+    desc: "Move from distributed audit work to a controlled digital workflow — planning, observations, rectification and risk supervision in one place.",
+    icon: "check",
+    href: "/agile-audit",
+    status: "live",
+    energy: 65,
     relatedIds: [2],
+  },
+  {
+    id: 8,
+    title: "HRIS",
+    tag: "People Operations",
+    desc: "A next-generation HRIS centralizing recruitment, onboarding, payroll, performance, training and employee self-service.",
+    icon: "users",
+    href: "/hrms",
+    status: "live",
+    energy: 68,
+    relatedIds: [2],
+  },
+  {
+    id: 9,
+    title: "E-KYC Management",
+    tag: "Digital Identity and Onboarding",
+    desc: "Real-time customer identification, verification and digital onboarding with facial recognition and document authentication.",
+    icon: "fingerprint",
+    href: "/e-kyc-and-cim-solution",
+    status: "live",
+    energy: 62,
+    relatedIds: [3, 10],
+  },
+  {
+    id: 10,
+    title: "Land Management",
+    tag: "GIS-enabled Public Records",
+    desc: "Centralize cadastral records, land parcels and ownership details, with GIS for planning, compliance and valuation.",
+    icon: "map",
+    href: "/land-management-solution",
+    status: "live",
+    energy: 58,
+    relatedIds: [1, 9],
   },
 ];
 
@@ -106,7 +150,7 @@ export function OrbitalProducts() {
   useEffect(() => {
     const updateRadius = () => {
       const w = window.innerWidth;
-      setRadius(w <= 640 ? 115 : w <= 1080 ? 150 : 190);
+      setRadius(w <= 640 ? 170 : w <= 1080 ? 180 : 240);
     };
     updateRadius();
     window.addEventListener("resize", updateRadius);

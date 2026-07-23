@@ -221,7 +221,7 @@ nav.hidden-nav{transform:translateY(-100%)}
 .trustline b{color:var(--green-deep);font-weight:500}
 
 /* ============ SOLUTIONS — BENTO ============ */
-.solutions{background:var(--paper);padding:6rem 0 7rem}
+.solutions{background:var(--paper);padding:6rem 0 3rem}
 .b-clean{background:var(--card);border:1px solid var(--line);padding:2rem 1.9rem 1.9rem;transition:transform .45s var(--ease),box-shadow .45s,border-color .45s}
 .b-clean:hover{transform:translateY(-7px);box-shadow:0 26px 50px rgba(9,32,19,.11);border-color:rgba(22,163,74,.35)}
 .b-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem}
@@ -241,10 +241,10 @@ nav.hidden-nav{transform:translateY(-100%)}
   position:relative;display:grid;grid-template-columns:1fr 380px;gap:2.5rem;align-items:center;
 }
 .orbital-stage{
-  position:relative;height:480px;display:flex;align-items:center;justify-content:center;
+  position:relative;height:610px;display:flex;align-items:center;justify-content:center;
 }
 .orbital-ring{
-  position:absolute;width:380px;height:380px;border-radius:50%;border:1px dashed var(--line);
+  position:absolute;width:480px;height:480px;border-radius:50%;border:1px dashed var(--line);
   transition:border-color .4s;
 }
 .orbital-stage:hover .orbital-ring{border-color:rgba(22,163,74,.3)}
@@ -356,18 +356,19 @@ nav.hidden-nav{transform:translateY(-100%)}
 .orbital-dot.on{background:var(--green-deep);width:22px;border-radius:4px}
 @media(max-width:1080px){
   .orbital{grid-template-columns:1fr;gap:2rem}
-  .orbital-stage{height:400px}
-  .orbital-ring{width:300px;height:300px}
+  .orbital-stage{height:500px}
+  .orbital-ring{width:360px;height:360px}
   .orbital-dots{display:none}
 }
 @media(max-width:640px){
-  .orbital-stage{height:360px}
-  .orbital-ring{width:230px;height:230px}
-  .orbital-core{width:68px;height:68px}
-  .orbital-core-mark{width:30px;height:30px}
-  .orbital-btn{width:52px;height:52px}
-  .orbital-btn svg{width:22px;height:22px}
-  .orbital-label{font-size:.58rem}
+  .orbital-stage{height:460px}
+  .orbital-ring{width:340px;height:340px}
+  .orbital-core{width:64px;height:64px}
+  .orbital-core-mark{width:28px;height:28px}
+  .orbital-btn{width:44px;height:44px}
+  .orbital-btn svg{width:19px;height:19px}
+  .orbital-node{gap:.4rem}
+  .orbital-label{font-size:.52rem}
   .orbital-card{padding:1.7rem 1.5rem;min-height:260px}
 }
 
@@ -421,7 +422,7 @@ nav.hidden-nav{transform:translateY(-100%)}
 a.chip{cursor:pointer}
 
 /* ============ PRODUCT FAMILY ============ */
-.family{background:var(--paper);padding:6.5rem 0 6rem}
+.family{background:var(--paper);padding:6.5rem 0 3rem}
 
 /* ---- Product family bento ---- */
 .family-bento{display:grid;grid-template-columns:repeat(6,1fr);gap:1.3rem;margin-top:1rem}
@@ -487,7 +488,7 @@ a.chip{cursor:pointer}
 }
 
 /* ============ MILESTONES — IMAGE CARDS ============ */
-.miles{background:var(--paper);padding:6.5rem 0}
+.miles{background:var(--paper);padding:3rem 0 6.5rem}
 .miles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
 .mcard{background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;transition:transform .45s var(--ease),box-shadow .45s}
 .mcard:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(9,32,19,.13)}
@@ -522,7 +523,7 @@ a.chip{cursor:pointer}
 .band-chip b{color:var(--green-hot);font-weight:500}
 
 /* ============ ABOUT / VALUES ============ */
-.about{background:var(--paper);padding:6.5rem 0}
+.about{background:var(--paper);padding:3rem 0 6.5rem}
 .about-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:4rem;align-items:center}
 .about-img{position:relative;border-radius:24px;overflow:hidden;margin:0;aspect-ratio:4/3;box-shadow:0 30px 70px rgba(9,32,19,.14)}
 .about-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}

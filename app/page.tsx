@@ -1590,7 +1590,7 @@ export default function Home() {
                   </svg>
                   <span>
                     <a href="tel:+880255013964">+8802 55013964</a> ·{" "}
-                    <a href="tel:+880255013965">65</a>
+                    <a href="tel:+880255013965">+8802 55013965</a>
                     <br />
                     <a href="tel:+8801713044055">+880 1713-044055</a>
                   </span>

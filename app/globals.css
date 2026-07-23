@@ -461,11 +461,11 @@ a.chip{cursor:pointer}
 }
 .fb-stat .fb-tag{color:rgba(255,255,255,.85)}
 .fb-cell h3{
-  font-family:var(--disp);font-weight:700;font-size:1.5rem;letter-spacing:-.015em;margin-bottom:.5rem;color:var(--green-deep);
+  font-family:var(--disp);font-weight:700;font-size:1.5rem;letter-spacing:-.015em;margin-bottom:.5rem;color:var(--green);
 }
 .fb-flagship h3{font-size:1.9rem}
-.fb-title-link{color:var(--green-deep);transition:color .25s}
-.fb-title-link:hover{color:var(--green-hot)}
+.fb-title-link{color:var(--green);transition:color .25s}
+.fb-title-link:hover{color:var(--green-deep)}
 .fb-cell p.fb-desc{font-size:.9rem;color:var(--txt);max-width:46ch;margin-bottom:1.3rem;line-height:1.55}
 .fb-stat p.fb-desc{color:rgba(255,255,255,.88)}
 .fb-chips{display:flex;flex-wrap:wrap;gap:.5rem}

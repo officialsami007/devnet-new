@@ -432,7 +432,7 @@ a.chip{cursor:pointer}
 .family{background:var(--paper);padding:6.5rem 0 3rem}
 
 /* ---- Product family bento ---- */
-.family-bento{display:grid;grid-template-columns:repeat(12,1fr);gap:1.3rem;margin-top:1rem}
+.family-bento{display:grid;grid-template-columns:repeat(12,1fr);align-items:start;gap:1.3rem;margin-top:1rem}
 .fb-cell{
   position:relative;border-radius:24px;overflow:hidden;color:var(--ink);
   display:flex;flex-direction:column;
@@ -479,7 +479,7 @@ a.chip{cursor:pointer}
 .fb-chip:hover{background:var(--green-hot);border-color:var(--green-hot);color:var(--ink);transform:translateY(-2px)}
 .fb-go{
   display:inline-flex;align-items:center;gap:.4rem;font-family:var(--disp);font-weight:600;font-size:.85rem;
-  color:var(--green-deep);margin-top:1.2rem;position:relative;z-index:3;
+  color:var(--green-deep);margin-top:auto;padding-top:1.2rem;position:relative;z-index:3;
 }
 .fb-stat .fb-go{color:#fff}
 .fb-go .ar{transition:transform .3s var(--ease)}

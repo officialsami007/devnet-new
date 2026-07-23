@@ -11,20 +11,124 @@ export const metadata: Metadata = {
 };
 
 const directors = [
-  { name: "A. K. Sabbir Mahbub", role: "Co-Founder & Chairman", initials: "AK" },
-  { name: "Syed Abu Md. Jafor", role: "Managing Director", initials: "SJ" },
-  { name: "Masrifa Ahmed", role: "Director, Devnet Limited", initials: "MA" },
+  {
+    name: "A. K. Sabbir Mahbub",
+    role: "Co-Founder & Chairman",
+    photo: "/assets/img/team/sabbir-mahbub.png",
+  },
+  {
+    name: "Syed Abu Md. Jafor",
+    role: "Managing Director",
+    photo: "/assets/img/team/abu-jafor.png",
+  },
+  {
+    name: "Masrifa Ahmed",
+    role: "Director, Devnet Limited",
+    photo: "/assets/img/team/masrifa-ahmed.png",
+  },
 ];
 
 const team = [
-  { name: "Mohammad Emran Hasan", role: "Chief Technology Officer", initials: "ME" },
-  { name: "Mohammad Syful Islam Noman", role: "Senior Software Engineer", initials: "MN" },
-  { name: "Neamot Ullah", role: "Senior Executive · Accounts", initials: "NU" },
-  { name: "Md Kabir Hussain", role: "System Engineer", initials: "MK" },
-  { name: "Mahmudul Islam", role: "Associate UI & UX Designer", initials: "MI" },
-  { name: "Md Al-Amin", role: "Software Engineer · QA", initials: "MA" },
-  { name: "Nafiz Fuad", role: "Assistant Software Engineer", initials: "NF" },
+  {
+    name: "Mohammad Emran Hasan",
+    role: "Chief Technology Officer",
+    photo: "/assets/img/team/emran-hasan.png",
+  },
+  {
+    name: "Mohammad Syful Islam Noman",
+    role: "Software Architect",
+    photo: "/assets/img/team/syful-noman.png",
+  },
+  {
+    name: "Habib Ullah Bhuiyan",
+    role: "General Manager · HR & Admin",
+    photo: "/assets/img/team/habib-bhuiyan.png",
+  },
+  {
+    name: "Md Maraj Hossain",
+    role: "Development Team Lead",
+    photo: "/assets/img/team/maraj-hossain.png",
+  },
+  {
+    name: "Rakib Islam",
+    role: "Senior Project Manager",
+    photo: "/assets/img/team/rakib-islam.png",
+  },
+  {
+    name: "Md Ibrahim",
+    role: "Software Engineer · Software Development",
+    photo: "/assets/img/team/md-ibrahim.png",
+  },
+  {
+    name: "Ehsanul Haque Shujan Bhuiyan",
+    role: "Senior Manager",
+    photo: "/assets/img/team/ehsanul-shujan.png",
+  },
+  {
+    name: "Hossain Mohammad Abdullah",
+    role: "Associate General Manager",
+    photo: "/assets/img/team/hossain-abdullah.png",
+  },
+  {
+    name: "Reazul Islam Palash",
+    role: "Senior Software Engineer",
+    photo: "/assets/img/team/reazul-palash.png",
+  },
+  {
+    name: "Md Nazmul Alam Riaz",
+    role: "Senior Software Engineer",
+    photo: "/assets/img/team/nazmul-riaz.png",
+  },
+  {
+    name: "Md Ariful Islam",
+    role: "Deputy Manager",
+    photo: "/assets/img/team/ariful-islam.png",
+  },
+  {
+    name: "Parvin Akter",
+    role: "Manager · Accounts",
+    photo: null,
+  },
+  {
+    name: "Bijoy Lal Dewanjee",
+    role: "Senior Software Engineer",
+    photo: "/assets/img/team/bijoy-dewanjee.jpg",
+  },
+  {
+    name: "Neamot Ullah",
+    role: "Senior Executive · Accounts",
+    photo: "/assets/img/team/neamot-ullah.png",
+  },
+  {
+    name: "Md Kabir Hussain",
+    role: "System Engineer",
+    photo: "/assets/img/team/kabir-hussain.png",
+  },
+  {
+    name: "Mahmudul Islam",
+    role: "Associate UI & UX Designer",
+    photo: "/assets/img/team/mahmudul-islam.png",
+  },
+  {
+    name: "Md Al-Amin",
+    role: "Software Engineer · QA",
+    photo: "/assets/img/team/al-amin.png",
+  },
+  {
+    name: "Nafiz Fuad",
+    role: "Assistant Software Engineer",
+    photo: "/assets/img/team/nafiz-fuad.png",
+  },
 ];
+
+const initialsOf = (name: string) =>
+  name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase();
 
 export default function AboutPage() {
   return (
@@ -151,9 +255,14 @@ export default function AboutPage() {
             </div>
             <div className="aboutp-directors">
               {directors.map((person) => (
-                <article className="b-clean" key={person.name} data-reveal>
+                <article className="aboutp-director-card" key={person.name} data-reveal>
                   <div className="aboutp-portrait">
-                    <span>{person.initials}</span>
+                    {person.photo ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={person.photo} alt={person.name} loading="lazy" />
+                    ) : (
+                      <span>{initialsOf(person.name)}</span>
+                    )}
                   </div>
                   <small className="b-idx">Board member</small>
                   <h3>{person.name}</h3>
@@ -179,7 +288,14 @@ export default function AboutPage() {
             <div className="aboutp-team-grid">
               {team.map((person) => (
                 <article key={person.name} data-reveal>
-                  <div className="aboutp-avatar">{person.initials}</div>
+                  <div className="aboutp-avatar">
+                    {person.photo ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={person.photo} alt={person.name} loading="lazy" />
+                    ) : (
+                      <span>{initialsOf(person.name)}</span>
+                    )}
+                  </div>
                   <h3>{person.name}</h3>
                   <p>{person.role}</p>
                 </article>

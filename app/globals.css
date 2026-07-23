@@ -558,7 +558,7 @@ a.chip{cursor:pointer}
 .plogo img{height:100%;width:auto;max-width:160px;object-fit:contain}
 
 /* ============ ASSOCIATIONS ============ */
-.assoc{background:var(--paper);padding:6rem 0}
+.assoc{background:var(--paper);padding:3rem 0}
 .assoc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
 .assoc-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:2rem 1.4rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.1rem;margin:0;transition:transform .4s var(--ease),box-shadow .4s}
 .assoc-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(9,32,19,.1)}

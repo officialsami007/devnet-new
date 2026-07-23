@@ -1043,6 +1043,40 @@ export default function Home() {
                 </div>
               </article>
 
+              <article className="fb-cell fb-new" data-reveal>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/assets/img/records-vault.jpg"
+                  alt="Secure records storage facility with rolling shelving"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span className="fb-ol" aria-hidden="true"></span>
+                <span className="fb-tag">Coming soon</span>
+                <h3>Digital Signature.</h3>
+                <p className="fb-desc">
+                  Sign, approve and route documents with legally binding
+                  e-signatures — no printing required.
+                </p>
+              </article>
+
+              <article className="fb-cell fb-new" data-reveal>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/assets/img/capture-analysis.jpg"
+                  alt="Analyst reviewing dashboards on dual monitors in a modern office"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span className="fb-ol" aria-hidden="true"></span>
+                <span className="fb-tag">Coming soon</span>
+                <h3>Cloud Hosting &amp; Managed IT.</h3>
+                <p className="fb-desc">
+                  Infrastructure, hosting and managed operations for the
+                  platforms Devnet builds.
+                </p>
+              </article>
+
               <div className="fb-cell fb-stat" data-reveal>
                 <span className="fb-tag">The full portfolio</span>
                 <div>

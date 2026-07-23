@@ -910,171 +910,189 @@ export default function Home() {
 
             <div className="family-bento">
               <article className="fb-cell fb-flagship" data-reveal>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/assets/img/scanner-macro.jpg"
-                  alt="High-speed production document scanner in operation"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span className="fb-ol" aria-hidden="true"></span>
-                <span className="fb-tag">The DocuDEX Platform</span>
-                <h3>
-                  <a href="/docudex" className="fb-title-link">
-                    One platform, every document.
-                  </a>
-                </h3>
-                <p className="fb-desc">
-                  Capture, manage, automate and store — the flagship EDMS
-                  suite behind 10+ banks and the nation&apos;s largest
-                  archives.
-                </p>
-                <div className="fb-chips">
-                  {docudexCoreSlugs.map((slug) => {
-                    const item = pageBySlug(slug);
-                    return item ? (
-                      <a className="fb-chip" href={`/${slug}`} key={slug}>
-                        {item.navTitle}
-                      </a>
-                    ) : null;
-                  })}
+                <div className="fb-cell-img">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/assets/img/scanner-macro.jpg"
+                    alt="High-speed production document scanner in operation"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
-                <a href="/docudex" className="fb-go">
-                  Explore the platform <span className="ar">→</span>
-                </a>
+                <div className="fb-cell-body">
+                  <span className="fb-tag">The DocuDEX Platform</span>
+                  <h3>
+                    <a href="/docudex" className="fb-title-link">
+                      One platform, every document.
+                    </a>
+                  </h3>
+                  <p className="fb-desc">
+                    Capture, manage, automate and store — the flagship EDMS
+                    suite behind 10+ banks and the nation&apos;s largest
+                    archives.
+                  </p>
+                  <div className="fb-chips">
+                    {docudexCoreSlugs.map((slug) => {
+                      const item = pageBySlug(slug);
+                      return item ? (
+                        <a className="fb-chip" href={`/${slug}`} key={slug}>
+                          {item.navTitle}
+                        </a>
+                      ) : null;
+                    })}
+                  </div>
+                  <a href="/docudex" className="fb-go">
+                    Explore the platform <span className="ar">→</span>
+                  </a>
+                </div>
               </article>
 
               <article className="fb-cell fb-biz" data-reveal>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/assets/img/workflow-approval.jpg"
-                  alt="Professional approving documents in a workflow app on a tablet"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span className="fb-ol" aria-hidden="true"></span>
-                <span className="fb-tag">Business Solutions</span>
-                <h3>
-                  <a href="/products" className="fb-title-link">
-                    Beyond documents.
-                  </a>
-                </h3>
-                <p className="fb-desc">
-                  Audit, HR, identity, land and more — built on the same
-                  platform standard.
-                </p>
-                <div className="fb-chips">
-                  {docudexExtendedSlugs.map((slug) => {
-                    const item = pageBySlug(slug);
-                    return item ? (
-                      <a className="fb-chip" href={`/${slug}`} key={slug}>
-                        {item.navTitle}
-                      </a>
-                    ) : null;
-                  })}
+                <div className="fb-cell-img">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/assets/img/workflow-approval.jpg"
+                    alt="Professional approving documents in a workflow app on a tablet"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className="fb-cell-body">
+                  <span className="fb-tag">Business Solutions</span>
+                  <h3>
+                    <a href="/products" className="fb-title-link">
+                      Beyond documents.
+                    </a>
+                  </h3>
+                  <p className="fb-desc">
+                    Audit, HR, identity, land and more — built on the same
+                    platform standard.
+                  </p>
+                  <div className="fb-chips">
+                    {docudexExtendedSlugs.map((slug) => {
+                      const item = pageBySlug(slug);
+                      return item ? (
+                        <a className="fb-chip" href={`/${slug}`} key={slug}>
+                          {item.navTitle}
+                        </a>
+                      ) : null;
+                    })}
+                  </div>
                 </div>
               </article>
 
               <article className="fb-cell fb-hw" data-reveal>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/assets/img/scanner-hardware.jpg"
-                  alt="Large-format production document scanner in a digitization facility"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span className="fb-ol" aria-hidden="true"></span>
-                <span className="fb-tag">Scanning Hardware</span>
-                <h3>
-                  <a href="/document-scanner" className="fb-title-link">
-                    Capture at any scale.
-                  </a>
-                </h3>
-                <p className="fb-desc">
-                  From desktop scanners to robotic book digitization and
-                  archival microfilm.
-                </p>
-                <div className="fb-chips">
-                  {[
-                    "document-scanner",
-                    "robotic-scanner",
-                    "book-map-scanner",
-                    "microfilm-scanners",
-                  ].map((slug) => {
-                    const item = pageBySlug(slug);
-                    return item ? (
-                      <a className="fb-chip" href={`/${slug}`} key={slug}>
-                        {item.navTitle}
-                      </a>
-                    ) : null;
-                  })}
+                <div className="fb-cell-img">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/assets/img/scanner-hardware.jpg"
+                    alt="Large-format production document scanner in a digitization facility"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className="fb-cell-body">
+                  <span className="fb-tag">Scanning Hardware</span>
+                  <h3>
+                    <a href="/document-scanner" className="fb-title-link">
+                      Capture at any scale.
+                    </a>
+                  </h3>
+                  <p className="fb-desc">
+                    From desktop scanners to robotic book digitization and
+                    archival microfilm.
+                  </p>
+                  <div className="fb-chips">
+                    {[
+                      "document-scanner",
+                      "robotic-scanner",
+                      "book-map-scanner",
+                      "microfilm-scanners",
+                    ].map((slug) => {
+                      const item = pageBySlug(slug);
+                      return item ? (
+                        <a className="fb-chip" href={`/${slug}`} key={slug}>
+                          {item.navTitle}
+                        </a>
+                      ) : null;
+                    })}
+                  </div>
                 </div>
               </article>
 
               <article className="fb-cell fb-svc" data-reveal>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/assets/img/data-center.jpg"
-                  alt="Modern data center aisle with green status lighting"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span className="fb-ol" aria-hidden="true"></span>
-                <span className="fb-tag">Enterprise Services</span>
-                <h3>
-                  <a href="/services" className="fb-title-link">
-                    Built around you.
-                  </a>
-                </h3>
-                <p className="fb-desc">
-                  Application development, AI, banking and outsourcing —
-                  delivered by the same team that builds DocuDEX.
-                </p>
-                <div className="fb-chips">
-                  {servicePages.map((item) => (
-                    <a
-                      className="fb-chip"
-                      href={`/${item.slug}`}
-                      key={item.slug}
-                    >
-                      {item.navTitle}
+                <div className="fb-cell-img">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/assets/img/data-center.jpg"
+                    alt="Modern data center aisle with green status lighting"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className="fb-cell-body">
+                  <span className="fb-tag">Enterprise Services</span>
+                  <h3>
+                    <a href="/services" className="fb-title-link">
+                      Built around you.
                     </a>
-                  ))}
+                  </h3>
+                  <p className="fb-desc">
+                    Application development, AI, banking and outsourcing —
+                    delivered by the same team that builds DocuDEX.
+                  </p>
+                  <div className="fb-chips">
+                    {servicePages.map((item) => (
+                      <a
+                        className="fb-chip"
+                        href={`/${item.slug}`}
+                        key={item.slug}
+                      >
+                        {item.navTitle}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </article>
 
               <article className="fb-cell fb-new" data-reveal>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/assets/img/records-vault.jpg"
-                  alt="Secure records storage facility with rolling shelving"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span className="fb-ol" aria-hidden="true"></span>
-                <span className="fb-tag">Coming soon</span>
-                <h3>Digital Signature.</h3>
-                <p className="fb-desc">
-                  Sign, approve and route documents with legally binding
-                  e-signatures — no printing required.
-                </p>
+                <div className="fb-cell-img">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/assets/img/records-vault.jpg"
+                    alt="Secure records storage facility with rolling shelving"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className="fb-cell-body">
+                  <span className="fb-tag">Coming soon</span>
+                  <h3>Digital Signature.</h3>
+                  <p className="fb-desc">
+                    Sign, approve and route documents with legally binding
+                    e-signatures — no printing required.
+                  </p>
+                </div>
               </article>
 
               <article className="fb-cell fb-new" data-reveal>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/assets/img/capture-analysis.jpg"
-                  alt="Analyst reviewing dashboards on dual monitors in a modern office"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span className="fb-ol" aria-hidden="true"></span>
-                <span className="fb-tag">Coming soon</span>
-                <h3>Cloud Hosting &amp; Managed IT.</h3>
-                <p className="fb-desc">
-                  Infrastructure, hosting and managed operations for the
-                  platforms Devnet builds.
-                </p>
+                <div className="fb-cell-img">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/assets/img/capture-analysis.jpg"
+                    alt="Analyst reviewing dashboards on dual monitors in a modern office"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className="fb-cell-body">
+                  <span className="fb-tag">Coming soon</span>
+                  <h3>Cloud Hosting &amp; Managed IT.</h3>
+                  <p className="fb-desc">
+                    Infrastructure, hosting and managed operations for the
+                    platforms Devnet builds.
+                  </p>
+                </div>
               </article>
 
               <div className="fb-cell fb-stat" data-reveal>

@@ -28,7 +28,7 @@ export function SiteNav() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="logo-img"
-              src="/devnet-logo-white.png"
+              src="/devnet-logo-white.svg"
               alt="Devnet Limited"
               width={120}
               height={38}

@@ -208,7 +208,7 @@ export function OrbitalProducts() {
           <span className="orbital-core-ping" aria-hidden="true"></span>
           <span className="orbital-core-ping delay" aria-hidden="true"></span>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="orbital-core-mark" src="/devnet-mark-white.png" alt="" />
+          <img className="orbital-core-mark" src="/devnet-mark-white.svg" alt="" />
         </button>
 
         {nodes.map((node, i) => {

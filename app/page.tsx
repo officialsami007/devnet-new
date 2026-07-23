@@ -11,10 +11,13 @@ import {
   docudexExtendedSlugs,
   mobileNavLinks,
   productPages,
+  servicePages,
   socialLinks,
 } from "@/data/site-content";
 
-const pageBySlug = (slug: string) => productPages.find((p) => p.slug === slug);
+const pageBySlug = (slug: string) =>
+  productPages.find((p) => p.slug === slug) ??
+  servicePages.find((p) => p.slug === slug);
 
 export default function Home() {
   useEffect(() => {
@@ -877,12 +880,12 @@ export default function Home() {
                 </span>
                 <span className="lm">
                   <span>
-                    sixteen{" "}
+                    23{" "}
                     <em
                       className="serif-i"
                       style={{ color: "var(--green-deep)" }}
                     >
-                      products
+                      products &amp; services
                     </em>
                     .
                   </span>
@@ -890,8 +893,8 @@ export default function Home() {
               </h2>
               <p className="lead" data-reveal>
                 DocuDEX leads the line-up — but it&apos;s one of many. Every
-                Devnet product is engineered to the same standard, for
-                organisations that live and breathe documents.
+                Devnet product and service is engineered to the same
+                standard, for organisations that live and breathe documents.
               </p>
             </div>
 
@@ -998,14 +1001,46 @@ export default function Home() {
                 </div>
               </article>
 
+              <article className="fb-cell fb-svc" data-reveal>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/assets/img/data-center.jpg"
+                  alt="Modern data center aisle with green status lighting"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span className="fb-ol" aria-hidden="true"></span>
+                <span className="fb-tag">Enterprise Services</span>
+                <h3>
+                  <a href="/services" className="fb-title-link">
+                    Built around you.
+                  </a>
+                </h3>
+                <p className="fb-desc">
+                  Application development, AI, banking and outsourcing —
+                  delivered by the same team that builds DocuDEX.
+                </p>
+                <div className="fb-chips">
+                  {servicePages.map((item) => (
+                    <a
+                      className="fb-chip"
+                      href={`/${item.slug}`}
+                      key={item.slug}
+                    >
+                      {item.navTitle}
+                    </a>
+                  ))}
+                </div>
+              </article>
+
               <div className="fb-cell fb-stat" data-reveal>
                 <span className="fb-tag">The full portfolio</span>
                 <div>
                   <div className="fb-stat-num">
-                    16<em>products</em>
+                    23<em>products &amp; services</em>
                   </div>
                   <p className="fb-desc" style={{ marginTop: ".6rem" }}>
-                    One engineering standard, sixteen ways to go paperless.
+                    One engineering standard, every way to go paperless.
                   </p>
                 </div>
                 <div className="fb-stat-btns">

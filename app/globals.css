@@ -437,13 +437,15 @@ a.chip{cursor:pointer}
 .fb-cell:hover img{transform:scale(1.06)}
 .fb-ol{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,13,9,.72) 0%,rgba(4,13,9,.72) 40%,rgba(4,13,9,.88) 65%,rgba(4,13,9,.97) 100%);z-index:1}
 .fb-cell>*{position:relative;z-index:2}
-.fb-flagship{grid-column:span 4;min-height:400px}
-.fb-biz{grid-column:span 2}
+.fb-flagship{grid-column:span 3;min-height:400px}
+.fb-biz{grid-column:span 3}
 .fb-hw{grid-column:span 3}
+.fb-svc{grid-column:span 3}
 .fb-stat{
-  grid-column:span 3;justify-content:space-between;
-  background:linear-gradient(150deg,var(--green-deep),var(--green) 85%);color:#fff;
+  grid-column:span 6;justify-content:space-between;flex-direction:row;align-items:center;flex-wrap:wrap;gap:1.5rem;
+  background:linear-gradient(150deg,var(--green-deep),var(--green) 85%);color:#fff;min-height:auto;padding:2.4rem 2.6rem;
 }
+.fb-stat>div{flex:1;min-width:240px}
 .fb-tag{
   font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;
   color:var(--green-hot);margin-bottom:.7rem;display:block;
@@ -478,13 +480,15 @@ a.chip{cursor:pointer}
   .fb-flagship{grid-column:span 6}
   .fb-biz{grid-column:span 3}
   .fb-hw{grid-column:span 3}
-  .fb-stat{grid-column:span 6}
+  .fb-svc{grid-column:span 3}
+  .fb-stat{grid-column:span 6;flex-direction:column;align-items:flex-start}
 }
 @media(max-width:680px){
   .family-bento{grid-template-columns:1fr;gap:1rem}
-  .fb-flagship,.fb-biz,.fb-hw,.fb-stat{grid-column:1}
+  .fb-flagship,.fb-biz,.fb-hw,.fb-svc,.fb-stat{grid-column:1}
   .fb-cell{min-height:300px;padding:1.6rem}
   .fb-flagship{min-height:340px}
+  .fb-stat{flex-direction:column;align-items:flex-start;padding:2rem 1.6rem}
 }
 
 /* ============ MILESTONES — IMAGE CARDS ============ */

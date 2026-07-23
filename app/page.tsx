@@ -325,7 +325,12 @@ export default function Home() {
           </a>
           <NavMenu />
           <a className="btn btn-hot nav-cta" href="/contact">
-            Get in touch <span className="ar">→</span>
+            Get in touch
+            <span className="nav-cta-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </span>
           </a>
           <button
             className="burger"
@@ -345,8 +350,13 @@ export default function Home() {
             {link.label}
           </a>
         ))}
-        <a className="btn btn-hot" href="/contact">
-          Get in touch <span className="ar">→</span>
+        <a className="btn btn-hot nav-cta" href="/contact">
+          Get in touch
+          <span className="nav-cta-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </span>
         </a>
       </div>
 

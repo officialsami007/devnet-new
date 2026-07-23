@@ -432,7 +432,7 @@ a.chip{cursor:pointer}
 .family{background:var(--paper);padding:6.5rem 0 3rem}
 
 /* ---- Product family bento ---- */
-.family-bento{display:grid;grid-template-columns:repeat(6,1fr);gap:1.3rem;margin-top:1rem}
+.family-bento{display:grid;grid-template-columns:repeat(12,1fr);gap:1.3rem;margin-top:1rem}
 .fb-cell{
   position:relative;border-radius:24px;overflow:hidden;color:var(--ink);
   display:flex;flex-direction:column;
@@ -444,14 +444,15 @@ a.chip{cursor:pointer}
 .fb-cell-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
 .fb-cell:hover .fb-cell-img img{transform:scale(1.06)}
 .fb-cell-body{padding:1.8rem 2rem 2rem;display:flex;flex-direction:column;flex:1}
-.fb-flagship{grid-column:span 3}
-.fb-biz{grid-column:span 3}
-.fb-hw{grid-column:span 3}
-.fb-svc{grid-column:span 3}
-.fb-new{grid-column:span 3}
+.fb-flagship{grid-column:span 7}
+.fb-biz{grid-column:span 5}
+.fb-hw{grid-column:span 5}
+.fb-svc{grid-column:span 7}
+.fb-new{grid-column:span 6}
 .fb-new .fb-tag{color:var(--amber)}
+.fb-new .fb-cell-img{aspect-ratio:16/8}
 .fb-stat{
-  grid-column:span 6;justify-content:space-between;flex-direction:row;align-items:center;flex-wrap:wrap;gap:1.5rem;
+  grid-column:span 12;justify-content:space-between;flex-direction:row;align-items:center;flex-wrap:wrap;gap:1.5rem;
   background:linear-gradient(150deg,var(--green-deep),var(--green) 85%);color:#fff;min-height:auto;padding:2.4rem 2.6rem;
 }
 .fb-stat>div{flex:1;min-width:240px}
@@ -489,15 +490,16 @@ a.chip{cursor:pointer}
 .fb-stat-btns .btn{font-size:.85rem;padding:.7rem 1.3rem}
 .family-cta{display:flex;gap:.9rem;margin-top:2.6rem;justify-content:center;flex-wrap:wrap}
 @media(max-width:1100px){
-  .fb-flagship{grid-column:span 6}
-  .fb-biz{grid-column:span 3}
-  .fb-hw{grid-column:span 3}
-  .fb-svc{grid-column:span 3}
-  .fb-new{grid-column:span 3}
-  .fb-stat{grid-column:span 6;flex-direction:column;align-items:flex-start}
+  .family-bento{grid-template-columns:repeat(2,1fr)}
+  .fb-flagship{grid-column:span 2}
+  .fb-biz{grid-column:span 1}
+  .fb-hw{grid-column:span 1}
+  .fb-svc{grid-column:span 2}
+  .fb-new{grid-column:span 1}
+  .fb-stat{grid-column:span 2;flex-direction:column;align-items:flex-start}
 }
 @media(max-width:680px){
-  .family-bento{grid-template-columns:1fr;gap:1rem}
+  .family-bento{grid-template-columns:1fr}
   .fb-flagship,.fb-biz,.fb-hw,.fb-svc,.fb-new,.fb-stat{grid-column:1}
   .fb-cell-body{padding:1.5rem 1.6rem 1.6rem}
   .fb-stat{flex-direction:column;align-items:flex-start;padding:2rem 1.6rem}

@@ -35,8 +35,8 @@ export default function Home() {
       else if (y < lastY - 6 || y <= 420) nav.classList.remove("hidden-nav");
       lastY = y;
       const h = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = document.getElementById("progress")!;
-      progress.style.width = (h > 0 ? (y / h) * 100 : 0) + "%";
+      const progress = document.getElementById("progress");
+      if (progress) progress.style.width = (h > 0 ? (y / h) * 100 : 0) + "%";
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
